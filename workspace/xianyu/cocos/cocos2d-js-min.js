@@ -21572,7 +21572,7 @@
     }, {} ],
     182: [ function(t, e, i) {
         "use strict";
-        i.__esModule = !0, i.default = L, i.getDependUuidList = function(t) {
+        i.__esModule = !0, i.default = N, i.getDependUuidList = function(t) {
             var e = t[1];
             return t[10].map(function(t) {
                 return e[t];
@@ -21581,11 +21581,11 @@
             var e = t[5], i = e[e.length - 1];
             return "number" == typeof i && i < 0;
         }, i.packCustomObjData = function(t, e, i) {
-            return [ 1, d, d, [ t ], d, i ? [ e, -1 ] : [ e ], [ 0 ], d, [], [], [] ];
+            return [ d, _, _, [ t ], _, i ? [ e, -1 ] : [ e ], [ 0 ], _, [], [], [] ];
         }, i.unpackJSONs = function(t, e) {
-            if (t[0] < 1) throw new Error(cc.debug.getError(5304, t[0]));
-            O(t, !0, e), D(t);
-            for (var i = new N(t[0]), n = t[1], r = t[2], s = t[3], a = t[4], o = t[m], c = 0; c < o.length; ++c) o[c].unshift(i, n, r, s, a);
+            if (t[0] < d) throw new Error(cc.debug.getError(5304, t[0]));
+            D(t, !0, e), P(t);
+            for (var i = new F(t[0]), n = t[1], r = t[2], s = t[3], a = t[4], o = t[y], c = 0; c < o.length; ++c) o[c].unshift(i, n, r, s, a);
             return o;
         };
         var n = f(t("./js")), r = f(t("../value-types/vec2")), s = f(t("../value-types/vec3")), a = f(t("../value-types/vec4")), o = f(t("../value-types/color")), c = f(t("../value-types/size")), l = f(t("../value-types/rect")), h = f(t("../value-types/quat")), u = f(t("../value-types/mat4"));
@@ -21594,15 +21594,15 @@
                 default: t
             };
         }
-        var d = 0, _ = [ r.default, s.default, a.default, h.default, o.default, c.default, l.default, u.default ];
-        function p(t, e) {
+        var d = 1, _ = 0, p = [ r.default, s.default, a.default, h.default, o.default, c.default, l.default, u.default ];
+        function v(t, e) {
             t.x = e[1], t.y = e[2], t.z = e[3], t.w = e[4];
         }
-        var v = [ function(t, e) {
+        var g = [ function(t, e) {
             t.x = e[1], t.y = e[2];
         }, function(t, e) {
             t.x = e[1], t.y = e[2], t.z = e[3];
-        }, p, p, function(t, e) {
+        }, v, v, function(t, e) {
             t._val = e[1];
         }, function(t, e) {
             t.width = e[1], t.height = e[2];
@@ -21610,7 +21610,7 @@
             t.x = e[1], t.y = e[2], t.width = e[3], t.height = e[4];
         }, function(t, e) {
             u.default.fromArray(t, e, 1);
-        } ], g = 0, m = 5, y = function() {
+        } ], m = 0, y = 5, T = function() {
             function t() {
                 this.uuidObjList = null, this.uuidPropList = null, this.uuidList = null;
             }
@@ -21623,7 +21623,7 @@
                 this.uuidObjList.push(t), this.uuidPropList.push(e), this.uuidList.push(i);
             }, t;
         }();
-        function T(t, e, i) {
+        function E(t, e, i) {
             for (var n = t.length - 1, r = 0, s = 3 * t[n]; r < s; r += 3) {
                 var a = t[r], o = e[t[r + 2]], c = t[r + 1];
                 c >= 0 ? a[i[c]] = o : a[~c] = o;
@@ -21633,83 +21633,83 @@
                 u >= 0 ? l[i[u]] = h : l[~u] = h;
             }
         }
-        function E(t, e) {
+        function A(t, e) {
             for (var i = t[4][e[0]], n = i[0], r = new (0, n[0])(), s = n[1], a = n[2], o = i[i.length - 1], c = 1; c < o; ++c) r[s[i[c]]] = e[c];
             for (;c < e.length; ++c) {
                 var l = s[i[c]], h = n[i[c] + a];
-                (0, w[h])(t, r, l, e[c]);
+                (0, M[h])(t, r, l, e[c]);
             }
             return r;
         }
-        function A(t, e, i) {
+        function b(t, e, i) {
             var r = new e();
             return r._deserialize ? r._deserialize(i, t[0]) : cc.errorID(5303, n.default.getClassName(e)), 
             r;
         }
-        function b(t, e, i, n) {
+        function x(t, e, i, n) {
             n >= 0 ? e[i] = t[5][n] : t[7][3 * ~n] = e;
         }
-        function x(t) {
+        function C(t) {
             return function(e, i, n, r) {
                 i[n] = r;
                 for (var s = 0; s < r.length; ++s) t(e, r, s, r[s]);
             };
         }
-        function C(t, e, i, n) {
+        function S(t, e, i, n) {
             e[i] = null, t[8][n] = e;
         }
-        function S(t, e, i, n) {
-            e[i] = E(t, n);
+        function w(t, e, i, n) {
+            e[i] = A(t, n);
         }
-        y.pool = new n.default.Pool(function(t) {
+        T.pool = new n.default.Pool(function(t) {
             t.reset();
-        }, 5), y.pool.get = function() {
-            return this._get() || new y();
+        }, 5), T.pool.get = function() {
+            return this._get() || new T();
         };
-        var w = new Array(13);
-        function M(t) {
+        var M = new Array(13);
+        function R(t) {
             var e = t[5], i = t[6], n = 0 === i ? 0 : i.length, r = e[e.length - 1], s = e.length - n;
             "number" != typeof r ? r = 0 : (r < 0 && (r = ~r), --s);
-            for (var a = 0; a < s; ++a) e[a] = E(t, e[a]);
+            for (var a = 0; a < s; ++a) e[a] = A(t, e[a]);
             for (var o = t[3], c = 0; c < n; ++c, ++a) {
                 var l = i[c], h = e[a];
                 if (l >= 0) {
                     var u = o[l];
-                    e[a] = A(t, u, h);
-                } else (0, w[l = ~l])(t, e, a, h);
+                    e[a] = b(t, u, h);
+                } else (0, M[l = ~l])(t, e, a, h);
             }
             return r;
         }
-        function R(t, e) {
-            return t || L.reportMissingClass(e), Object;
+        function I(t, e) {
+            return t || N.reportMissingClass(e), Object;
         }
-        function I(t, e, i, n, r, s) {
+        function O(t, e, i, n, r, s) {
             var a = t(e);
             if (!a) {
                 if (r) return void (i[n] = function(e, i, n) {
                     return function() {
-                        var r = t(n) || R(s, n);
+                        var r = t(n) || I(s, n);
                         return e[i] = r, new r();
                     };
                 }(i, n, e));
-                a = R(s, e);
+                a = I(s, e);
             }
             i[n] = a;
         }
-        function O(t, e, i) {
+        function D(t, e, i) {
             for (var r = i || n.default._getClassById, s = t[3], a = 0; a < s.length; ++a) {
                 var o = s[a];
-                "string" != typeof o ? I(r, o[0], o, g, e, i) : I(r, o, s, a, e, i);
+                "string" != typeof o ? O(r, o[0], o, m, e, i) : O(r, o, s, a, e, i);
             }
         }
-        function D(t) {
+        function P(t) {
             var e = t[4];
             if (e) for (var i = t[3], n = 0; n < e.length; ++n) {
                 var r = e[n];
                 r[0] = i[r[0]];
             }
         }
-        function P(t) {
+        function L(t) {
             for (var e = t[5], i = t[2], n = t[1], r = t[8], s = t[9], a = t[10], o = 0; o < r.length; ++o) {
                 var c = r[o];
                 "number" == typeof c && (r[o] = e[c]);
@@ -21719,45 +21719,45 @@
                 "number" == typeof h && (a[o] = n[h]);
             }
         }
-        function L(t, e, i) {
+        function N(t, e, i) {
             "string" == typeof t && (t = JSON.parse(t));
             var n = !e;
-            (e = e || y.pool.get()).init(t), i = i || {};
+            (e = e || T.pool.get()).init(t), i = i || {};
             var r = t[0], s = !1;
             if ("object" == typeof r && (s = r.preprocessed, r = r.version), r < 1) throw new Error(cc.debug.getError(5304, r));
-            i._version = r, i.result = e, t[0] = i, s || (O(t, !1, i.classFinder), D(t)), cc.game._isCloning = !0;
-            var a = t[5], o = M(t);
-            return cc.game._isCloning = !1, t[7] && T(t[7], a, t[2]), P(t), n && y.pool.put(e), 
+            i._version = r, i.result = e, t[0] = i, s || (D(t, !1, i.classFinder), P(t)), cc.game._isCloning = !0;
+            var a = t[5], o = R(t);
+            return cc.game._isCloning = !1, t[7] && E(t[7], a, t[2]), L(t), n && T.pool.put(e), 
             a[o];
         }
-        w[0] = function(t, e, i, n) {
+        M[0] = function(t, e, i, n) {
             e[i] = n;
-        }, w[1] = b, w[2] = x(b), w[3] = x(C), w[4] = S, w[5] = function(t, e, i, n) {
-            v[n[0]](e[i], n);
-        }, w[6] = C, w[7] = function(t, e, i, n) {
+        }, M[1] = x, M[2] = C(x), M[3] = C(S), M[4] = w, M[5] = function(t, e, i, n) {
+            g[n[0]](e[i], n);
+        }, M[6] = S, M[7] = function(t, e, i, n) {
             e[i].set(n);
-        }, w[8] = function(t, e, i, n) {
-            var r = new _[n[0]]();
-            v[n[0]](r, n), e[i] = r;
-        }, w[9] = x(S), w[10] = function(t, e, i, n) {
+        }, M[8] = function(t, e, i, n) {
+            var r = new p[n[0]]();
+            g[n[0]](r, n), e[i] = r;
+        }, M[9] = C(w), M[10] = function(t, e, i, n) {
             var r = t[3][n[0]];
-            e[i] = A(t, r, n[1]);
-        }, w[11] = function(t, e, i, n) {
+            e[i] = b(t, r, n[1]);
+        }, M[11] = function(t, e, i, n) {
             var r = n[0];
             e[i] = r;
             for (var s = 1; s < n.length; s += 3) {
                 var a = n[s], o = n[s + 1], c = n[s + 2];
-                (0, w[o])(t, r, a, c);
+                (0, M[o])(t, r, a, c);
             }
-        }, w[12] = function(t, e, i, n) {
+        }, M[12] = function(t, e, i, n) {
             var r = n[0];
             e[i] = r;
             for (var s = 0; s < r.length; ++s) {
                 var a = r[s], o = n[s + 1];
-                0 !== o && (0, w[o])(t, r, s, a);
+                0 !== o && (0, M[o])(t, r, s, a);
             }
-        }, L.Details = y;
-        var N = function(t) {
+        }, N.Details = T;
+        var F = function(t) {
             this.preprocessed = !0, this.version = t;
         };
     }, {

@@ -27,7 +27,7 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
 }({
     1: [ function(e, t, n) {}, {} ],
     2: [ function(e, t, n) {
-        var o = window.fsUtils, r = o.getUserDataPath, i = o.readJsonSync, a = o.makeDirSync, c = o.writeFileSync, u = o.copyFile, s = o.downloadFile, l = o.writeFile, f = o.deleteFile, d = o.rmdirSync, p = o.unzip, h = o.isOutOfStorage, m = !1, g = null, y = !1, v = [], b = [], w = !1, _ = 0, E = /^https?:\/\/.*/;
+        var o = window.fsUtils, r = o.getUserDataPath, i = o.readJsonSync, a = o.makeDirSync, c = o.writeFileSync, u = o.copyFile, s = o.downloadFile, l = o.writeFile, d = o.deleteFile, f = o.rmdirSync, p = o.unzip, h = o.isOutOfStorage, m = !1, g = null, y = !1, v = [], b = [], w = !1, _ = 0, E = /^https?:\/\/.*/;
         cc.assetManager.cacheManager = t.exports = {
             cacheDir: "gamecaches",
             cachedFileName: "cacheList.json",
@@ -50,7 +50,7 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
             init: function() {
                 this.cacheDir = r() + "/" + this.cacheDir;
                 var e = this.cacheDir + "/" + this.cachedFileName, t = i(e);
-                t instanceof Error || !t.version ? (t instanceof Error || d(this.cacheDir, !0), 
+                t instanceof Error || !t.version ? (t instanceof Error || f(this.cacheDir, !0), 
                 this.cachedFiles = new cc.AssetManager.Cache(), a(this.cacheDir, !0), c(e, JSON.stringify({
                     files: this.cachedFiles._map,
                     version: this.version
@@ -97,7 +97,7 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
                 }, m) || (m = !0, this.outOfStorage ? m = !1 : setTimeout(this._cache.bind(this), this.cacheInterval));
             },
             clearCache: function() {
-                var e = this, t = (d(this.cacheDir, !0), this.cachedFiles = new cc.AssetManager.Cache(), 
+                var e = this, t = (f(this.cacheDir, !0), this.cachedFiles = new cc.AssetManager.Cache(), 
                 a(this.cacheDir, !0), this.cacheDir + "/" + this.cachedFileName);
                 this.outOfStorage = !1, c(t, JSON.stringify({
                     files: this.cachedFiles._map,
@@ -125,7 +125,7 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
                         this.writeCacheFile(function() {
                             setTimeout(function n() {
                                 var o = e.pop();
-                                t._isZipFile(o.originUrl) ? (d(o.url, !0), t._deleteFileCB()) : f(o.url, t._deleteFileCB.bind(t)), 
+                                t._isZipFile(o.originUrl) ? (f(o.url, !0), t._deleteFileCB()) : d(o.url, t._deleteFileCB.bind(t)), 
                                 0 < e.length ? setTimeout(n, t.deleteInterval) : w = !1;
                             }, t.deleteInterval);
                         });
@@ -135,7 +135,7 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
             removeCache: function(e) {
                 var t, n;
                 this.cachedFiles.has(e) && (n = (t = this).cachedFiles.remove(e).url, this.writeCacheFile(function() {
-                    t._isZipFile(e) ? (d(n, !0), t._deleteFileCB()) : f(n, t._deleteFileCB.bind(t));
+                    t._isZipFile(e) ? (f(n, !0), t._deleteFileCB()) : d(n, t._deleteFileCB.bind(t));
                 }));
             },
             _deleteFileCB: function(e) {
@@ -147,7 +147,7 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
             unzipAndCacheBundle: function(e, t, n, o) {
                 var r = Date.now().toString(), i = "".concat(this.cacheDir, "/").concat(n, "/").concat(r).concat(_++), c = this;
                 a(i, !0), p(t, i, function(t) {
-                    t ? (d(i, !0), h(t.message) && (c.outOfStorage = !0, c.autoClear) && c.clearLRU(), 
+                    t ? (f(i, !0), h(t.message) && (c.outOfStorage = !0, c.autoClear) && c.clearLRU(), 
                     o && o(t)) : (c.cachedFiles.add(e, {
                         bundle: n,
                         url: i,
@@ -162,7 +162,7 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
     }, {} ],
     3: [ function(e, t, n) {
         function o(e, t, n) {
-            "function" == typeof t && (n = t, t = null), N.test(e) ? n && n(new Error("Can not load remote scripts")) : (__cocos_require__(e), 
+            "function" == typeof t && (n = t, t = null), S.test(e) ? n && n(new Error("Can not load remote scripts")) : (__cocos_require__(e), 
             n && n(null));
         }
         function r(e, t, n) {
@@ -170,135 +170,134 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
             n && n(null, t);
         }
         function i(e, t, n, o, r) {
-            var i = j(e, n);
-            i.inLocal ? t(i.url, n, r) : i.inCache ? (y.updateLastTime(e), t(i.url, n, function(t, n) {
-                t && y.removeCache(e), r(t, n);
-            })) : b(e, null, n.header, o, function(o, i) {
+            var i = R(e, n);
+            i.inLocal ? t(i.url, n, r) : i.inCache ? (g.updateLastTime(e), t(i.url, n, function(t, n) {
+                t && g.removeCache(e), r(t, n);
+            })) : v(e, null, n.header, o, function(o, i) {
                 o ? r(o, null) : t(i, n, function(t, o) {
-                    t || (y.tempFiles.add(e, i), y.cacheFile(e, i, n.cacheEnabled, n.__cacheBundleRoot__, !0)), 
+                    t || (g.tempFiles.add(e, i), g.cacheFile(e, i, n.cacheEnabled, n.__cacheBundleRoot__, !0)), 
                     r(t, o);
                 });
             });
         }
         function a(e, t, n) {
-            _(e, n);
-        }
-        function c(e, t, n) {
             w(e, n);
         }
+        function c(e, t, n) {
+            b(e, n);
+        }
         function u(e, t, n) {
-            E(e, n);
+            _(e, n);
         }
         function s(e, t, n) {
             n(null, e);
         }
         function l(e, t, n) {
-            n(null, e);
-        }
-        function f(e, t, n) {
-            i(e, l, t, t.onFileProgress, n);
+            i(e, s, t, t.onFileProgress, n);
         }
         function d(e, t, n) {
-            _(e, function(e, o) {
+            w(e, function(e, o) {
+                if (e) return n(e);
+                D(o, t, n);
+            });
+        }
+        function f(e, t, n) {
+            w(e, function(e, o) {
                 if (e) return n(e);
                 P(o, t, n);
             });
         }
-        function p(e, t, n) {
-            _(e, function(e, o) {
-                if (e) return n(e);
-                I(o, t, n);
-            });
-        }
-        var h, m, g, y = e("../cache-manager"), v = (e = window.fsUtils).fs, b = e.downloadFile, w = e.readText, _ = e.readArrayBuffer, E = e.readJson, x = e.loadSubpackage, S = e.getUserDataPath, N = /^https?:\/\/.*/, e = cc.assetManager.downloader, T = cc.assetManager.parser, O = cc.assetManager.presets, C = __globalAdapter.isSubContext, M = (e.maxConcurrency = 8, 
-        e.maxRequestsPerFrame = 64, O.scene.maxConcurrency = 10, O.scene.maxRequestsPerFrame = 64, 
-        {}), D = {}, A = C ? function(e, t, n) {
-            e = (e = j(e, t).url).slice(h.length + 1), t = __cocos_require__(cc.path.changeExtname(e, ".js")), 
+        var p, h, m, g = e("../cache-manager"), y = (e = window.fsUtils).fs, v = e.downloadFile, b = e.readText, w = e.readArrayBuffer, _ = e.readJson, E = e.loadSubpackage, x = e.getUserDataPath, S = /^https?:\/\/.*/, e = cc.assetManager.downloader, N = cc.assetManager.parser, T = cc.assetManager.presets, O = __globalAdapter.isSubContext, M = (e.maxConcurrency = 8, 
+        e.maxRequestsPerFrame = 64, T.scene.maxConcurrency = 10, T.scene.maxRequestsPerFrame = 64, 
+        {}), C = {}, A = O ? function(e, t, n) {
+            e = (e = R(e, t).url).slice(p.length + 1), t = __cocos_require__(cc.path.changeExtname(e, ".js")), 
             n && n(null, t);
         } : function(e, t, n) {
             i(e, u, t, t.onFileProgress, n);
-        }, O = C ? function(e, t, n) {
+        }, T = O ? function(e, t, n) {
             n(null, "Arial");
         } : function(e, t, n) {
             n(null, __globalAdapter.loadFont(e) || "Arial");
-        }, P = T.parsePVRTex, I = T.parsePKMTex, R = C ? function(e, t, n) {
-            n(null, e = j(e, t).url);
-        } : f, j = (e.downloadDomAudio = r, e.downloadScript = o, T.parsePVRTex = d, T.parsePKMTex = p, 
+        }, D = N.parsePVRTex, P = N.parsePKMTex, I = O ? function(e, t, n) {
+            n(null, e = R(e, t).url);
+        } : l, R = (e.downloadDomAudio = r, e.downloadScript = o, N.parsePVRTex = d, N.parsePKMTex = f, 
         e.register({
             ".js": o,
-            ".mp3": f,
-            ".ogg": f,
-            ".wav": f,
-            ".m4a": f,
-            ".png": R,
-            ".jpg": R,
-            ".bmp": R,
-            ".jpeg": R,
-            ".gif": R,
-            ".ico": R,
-            ".tiff": R,
-            ".image": R,
-            ".webp": R,
-            ".pvr": f,
-            ".pkm": f,
-            ".font": f,
-            ".eot": f,
-            ".ttf": f,
-            ".woff": f,
-            ".svg": f,
-            ".ttc": f,
-            ".txt": f,
-            ".xml": f,
-            ".vsh": f,
-            ".fsh": f,
-            ".atlas": f,
-            ".tmx": f,
-            ".tsx": f,
-            ".plist": f,
-            ".fnt": f,
+            ".mp3": l,
+            ".ogg": l,
+            ".wav": l,
+            ".m4a": l,
+            ".png": I,
+            ".jpg": I,
+            ".bmp": I,
+            ".jpeg": I,
+            ".gif": I,
+            ".ico": I,
+            ".tiff": I,
+            ".image": I,
+            ".webp": I,
+            ".pvr": l,
+            ".pkm": l,
+            ".font": l,
+            ".eot": l,
+            ".ttf": l,
+            ".woff": l,
+            ".svg": l,
+            ".ttc": l,
+            ".txt": l,
+            ".xml": l,
+            ".vsh": l,
+            ".fsh": l,
+            ".atlas": l,
+            ".tmx": l,
+            ".tsx": l,
+            ".plist": l,
+            ".fnt": l,
             ".json": A,
-            ".ExportJson": f,
-            ".binary": f,
-            ".bin": f,
-            ".dbbin": f,
-            ".skel": f,
-            ".mp4": f,
-            ".avi": f,
-            ".mov": f,
-            ".mpg": f,
-            ".mpeg": f,
-            ".rm": f,
-            ".rmvb": f,
+            ".ExportJson": l,
+            ".binary": l,
+            ".bin": l,
+            ".dbbin": l,
+            ".skel": l,
+            ".mp4": l,
+            ".avi": l,
+            ".mov": l,
+            ".mpg": l,
+            ".mpeg": l,
+            ".rm": l,
+            ".rmvb": l,
             bundle: function(e, t, n) {
-                var o, r, i, a = cc.path.basename(e), c = t.version || cc.assetManager.downloader.bundleVers[a], u = function(e, o) {
-                    var i, a, c;
-                    e ? n && n(e) : o.isZip ? (e = o.zipVersion, e = "".concat(r, "/res.").concat(e ? e + "." : "", "zip"), 
-                    i = e, a = t, c = function(e, t) {
-                        e ? n && n(e) : (o.base = t + "/res/", (e = cc.sys).platform === e.ALIPAY_GAME && e.os === e.OS_ANDROID && v.accessSync({
+                function o(e, o) {
+                    var r, a, c;
+                    e ? n && n(e) : o.isZip ? (e = o.zipVersion, e = "".concat(i, "/res.").concat(e ? e + "." : "", "zip"), 
+                    r = e, a = t, c = function(e, t) {
+                        e ? n && n(e) : (o.base = t + "/res/", (e = cc.sys).platform === e.ALIPAY_GAME && e.os === e.OS_ANDROID && y.accessSync({
                             path: e = t + "res/"
                         }) && (o.base = e), n && n(null, o));
-                    }, (e = y.cachedFiles.get(i)) ? (y.updateLastTime(i), c(null, e.url)) : N.test(i) ? b(i, null, a.header, a.onFileProgress, function(e, t) {
-                        e ? c(e) : y.unzipAndCacheBundle(i, t, a.__cacheBundleRoot__, c);
-                    }) : y.unzipAndCacheBundle(i, i, a.__cacheBundleRoot__, c)) : (o.base = r + "/", 
+                    }, (e = g.cachedFiles.get(r)) ? (g.updateLastTime(r), c(null, e.url)) : S.test(r) ? v(r, null, a.header, a.onFileProgress, function(e, t) {
+                        e ? c(e) : g.unzipAndCacheBundle(r, t, a.__cacheBundleRoot__, c);
+                    }) : g.unzipAndCacheBundle(r, r, a.__cacheBundleRoot__, c)) : (o.base = i + "/", 
                     n && n(null, o));
-                };
-                M[a] ? (i = "subpackages/".concat(a, "/config.").concat(c ? c + "." : "", "json"), 
-                x(a, t.onFileProgress, function(e) {
-                    e ? n(e, null) : A(i, t, function(e, t) {
-                        t && (t.base = "subpackages/".concat(a, "/")), n(e, t);
+                }
+                var r, i, a, c = cc.path.basename(e), u = t.version || cc.assetManager.downloader.bundleVers[c];
+                M[c] ? (a = "subpackages/".concat(c, "/config.").concat(u ? u + "." : "", "json"), 
+                E(c, t.onFileProgress, function(e) {
+                    e ? n(e, null) : A(a, t, function(e, t) {
+                        t && (t.base = "subpackages/".concat(c, "/")), n(e, t);
                     });
-                })) : (N.test(e) || !C && e.startsWith(S()) ? (r = e, o = "src/scripts/".concat(a, "/index.js"), 
-                y.makeBundleFolder(a)) : D[a] ? (r = "".concat(m, "remote/").concat(a), o = "src/scripts/".concat(a, "/index.js"), 
-                y.makeBundleFolder(a)) : (r = "assets/".concat(a), o = "assets/".concat(a, "/index.js")), 
-                __cocos_require__(o), t.__cacheBundleRoot__ = a, i = "".concat(r, "/config.").concat(c ? c + "." : "", "json"), 
-                "config" !== a && cc.sys._bundleAll && cc.sys._bundleAll[a] ? s(cc.sys._bundleAll[a], 0, function(e, t) {
-                    u(e, t), delete cc.sys._bundleAll[a];
-                }) : A(i, t, u));
+                })) : (S.test(e) || !O && e.startsWith(x()) ? (i = e, r = "src/scripts/".concat(c, "/index.js"), 
+                g.makeBundleFolder(c)) : C[c] ? (i = "".concat(h, "remote/").concat(c), r = "src/scripts/".concat(c, "/index.js"), 
+                g.makeBundleFolder(c)) : (i = "assets/".concat(c), r = "assets/".concat(c, "/index.js")), 
+                __cocos_require__(r), t.__cacheBundleRoot__ = c, a = "".concat(i, "/config.").concat(u ? u + "." : "", "json"), 
+                "config" !== c && cc.sys._bundleAll && cc.sys._bundleAll[c] ? (e = cc.sys._bundleAll[c], 
+                function(e, t) {
+                    o(null, t), delete cc.sys._bundleAll[c];
+                }(0, e)) : A(a, t, o));
             },
             default: function(e, t, n) {
                 i(e, c, t, t.onFileProgress, n);
             }
-        }), T.register({
+        }), N.register({
             ".png": e.downloadDomImage,
             ".jpg": e.downloadDomImage,
             ".bmp": e.downloadDomImage,
@@ -309,13 +308,13 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
             ".image": e.downloadDomImage,
             ".webp": e.downloadDomImage,
             ".pvr": d,
-            ".pkm": p,
-            ".font": O,
-            ".eot": O,
-            ".ttf": O,
-            ".woff": O,
-            ".svg": O,
-            ".ttc": O,
+            ".pkm": f,
+            ".font": T,
+            ".eot": T,
+            ".ttf": T,
+            ".woff": T,
+            ".svg": T,
+            ".ttc": T,
             ".mp3": r,
             ".ogg": r,
             ".wav": r,
@@ -329,7 +328,7 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
             ".tsx": c,
             ".fnt": c,
             ".plist": function(e, t, n) {
-                w(e, function(e, t) {
+                b(e, function(e, t) {
                     var o = null;
                     e || (o = cc.plistParser.parse(t)) || (e = new Error("parse failed")), n && n(e, o);
                 });
@@ -339,32 +338,32 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
             ".dbbin": a,
             ".skel": a,
             ".ExportJson": u
-        }), C ? function(e, t) {
+        }), O ? function(e, t) {
             return {
-                url: e = N.test(e) ? e : h + "/" + e
+                url: e = S.test(e) ? e : p + "/" + e
             };
         } : function(e, t) {
             var n = !1, o = !1;
-            return !e.startsWith(S()) && N.test(e) ? t.reload || ((t = y.cachedFiles.get(e)) ? (o = !0, 
-            e = t.url) : (t = y.tempFiles.get(e)) && (n = !0, e = t)) : n = !0, {
+            return !e.startsWith(x()) && S.test(e) ? t.reload || ((t = g.cachedFiles.get(e)) ? (o = !0, 
+            e = t.url) : (t = g.tempFiles.get(e)) && (n = !0, e = t)) : n = !0, {
                 url: e,
                 inLocal: n,
                 inCache: o
             };
         });
-        C ? (g = cc.assetManager.init, cc.assetManager.init = function(e) {
-            g.call(cc.assetManager, e), h = e.subContextRoot || "";
+        O ? (m = cc.assetManager.init, cc.assetManager.init = function(e) {
+            m.call(cc.assetManager, e), p = e.subContextRoot || "";
         }) : (cc.assetManager.transformPipeline.append(function(e) {
             for (var t = e.output = e.input, n = 0, o = t.length; n < o; n++) {
                 var r = t[n], i = r.options;
                 r.config ? i.__cacheBundleRoot__ = r.config.name : "bundle" !== r.ext && (i.cacheEnabled = void 0 !== i.cacheEnabled && i.cacheEnabled);
             }
-        }), g = cc.assetManager.init, cc.assetManager.init = function(e) {
-            g.call(cc.assetManager, e), e.subpackages && e.subpackages.forEach(function(e) {
+        }), m = cc.assetManager.init, cc.assetManager.init = function(e) {
+            m.call(cc.assetManager, e), e.subpackages && e.subpackages.forEach(function(e) {
                 return M[e] = "subpackages/" + e;
             }), e.remoteBundles && e.remoteBundles.forEach(function(e) {
-                return D[e] = !0;
-            }), (m = e.server || "") && !m.endsWith("/") && (m += "/"), y.init();
+                return C[e] = !0;
+            }), (h = e.server || "") && !h.endsWith("/") && (h += "/"), g.init();
         });
     }, {
         "../cache-manager": 2
@@ -431,15 +430,15 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
     }, {} ],
     7: [ function(e, t, n) {
         function o() {
-            s.call(this), this._eventListeners = {
+            u.call(this), this._eventListeners = {
                 onKeyboardInput: null,
                 onKeyboardConfirm: null,
                 onKeyboardComplete: null
             };
         }
-        var r, i, a, c, u, s;
-        cc && cc.EditBox && (r = cc.EditBox, i = cc.js, a = r.KeyboardReturnType, u = c = null, 
-        s = r._ImplClass, i.extend(o, s), r._ImplClass = o, Object.assign(o.prototype, {
+        var r, i, a, c, u;
+        cc && cc.EditBox && (r = cc.EditBox, i = r.KeyboardReturnType, c = a = null, u = r._ImplClass, 
+        cc.js.extend(o, u), r._ImplClass = o, Object.assign(o.prototype, {
             init: function(e) {
                 e ? this._delegate = e : cc.error("EditBox init failed");
             },
@@ -447,7 +446,7 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
                 var e = this;
                 this._editing || this._ensureKeyboardHide(function() {
                     var t = e._delegate;
-                    e._showKeyboard(), e._registerKeyboardEvent(), e._editing = !0, u = e, t.editBoxEditingDidBegan();
+                    e._showKeyboard(), e._registerKeyboardEvent(), e._editing = !0, c = e, t.editBoxEditingDidBegan();
                 });
             },
             endEditing: function() {
@@ -464,7 +463,7 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
                     var o = e._eventListeners;
                     o.onKeyboardComplete && o.onKeyboardComplete();
                 }, n.onKeyboardComplete = function() {
-                    e._editing = !1, u = null, e._unregisterKeyboardEvent(), t.editBoxEditingDidEnded();
+                    e._editing = !1, c = null, e._unregisterKeyboardEvent(), t.editBoxEditingDidEnded();
                 }, __globalAdapter.onKeyboardInput(n.onKeyboardInput), __globalAdapter.onKeyboardConfirm(n.onKeyboardConfirm), 
                 __globalAdapter.onKeyboardComplete(n.onKeyboardComplete);
             },
@@ -476,13 +475,13 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
                 e.onKeyboardComplete = null);
             },
             _otherEditing: function() {
-                return !!u && u !== this && u._editing;
+                return !!c && c !== this && c._editing;
             },
             _ensureKeyboardHide: function(e) {
                 var t = this._otherEditing();
-                if (!t && !c) return e();
-                c && clearTimeout(c), t && u.endEditing(), c = setTimeout(function() {
-                    c = null, e();
+                if (!t && !a) return e();
+                a && clearTimeout(a), t && c.endEditing(), a = setTimeout(function() {
+                    a = null, e();
                 }, 600);
             },
             _showKeyboard: function() {
@@ -494,20 +493,20 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
                     confirmHold: !1,
                     confirmType: function() {
                         switch (e.returnType) {
-                          case a.DEFAULT:
-                          case a.DONE:
+                          case i.DEFAULT:
+                          case i.DONE:
                             return "done";
 
-                          case a.SEND:
+                          case i.SEND:
                             return "send";
 
-                          case a.SEARCH:
+                          case i.SEARCH:
                             return "search";
 
-                          case a.GO:
+                          case i.GO:
                             return "go";
 
-                          case a.NEXT:
+                          case i.NEXT:
                             return "next";
                         }
                         return "done";
@@ -748,7 +747,7 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
             (e.currentElement || e.doc).appendChild(t);
         }
         o.prototype.parseFromString = function(e, t) {
-            var n = this.options, o = new l(), i = n.domBuilder || new r(), c = n.errorHandler, u = n.locator, f = n.xmlns || {}, d = (t = /\/x?html?$/.test(t)) ? s.entityMap : {
+            var n = this.options, o = new l(), i = n.domBuilder || new r(), c = n.errorHandler, u = n.locator, d = n.xmlns || {}, f = (t = /\/x?html?$/.test(t)) ? s.entityMap : {
                 lt: "<",
                 gt: ">",
                 amp: "&",
@@ -770,19 +769,19 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
                 }
                 var o = {}, c = e instanceof Function;
                 return t = t || {}, n("warning"), n("error"), n("fatalError"), o;
-            }(c, u), o.domBuilder = n.domBuilder || i, t && (f[""] = "http://www.w3.org/1999/xhtml"), 
-            f.xml = f.xml || "http://www.w3.org/XML/1998/namespace", e ? o.parse(e, f, d) : o.errorHandler.error("invalid doc source"), 
+            }(c, u), o.domBuilder = n.domBuilder || i, t && (d[""] = "http://www.w3.org/1999/xhtml"), 
+            d.xml = d.xml || "http://www.w3.org/XML/1998/namespace", e ? o.parse(e, d, f) : o.errorHandler.error("invalid doc source"), 
             i.doc;
         }, r.prototype = {
             startDocument: function() {
-                this.doc = new f().createDocument(null, null, null), this.locator && (this.doc.documentURI = this.locator.systemId);
+                this.doc = new d().createDocument(null, null, null), this.locator && (this.doc.documentURI = this.locator.systemId);
             },
             startElement: function(e, t, n, o) {
                 var r = this.doc, a = r.createElementNS(e, n || t), c = o.length;
                 u(this, a), this.currentElement = a, this.locator && i(this.locator, a);
                 for (var s = 0; s < c; s++) {
-                    var e = o.getURI(s), l = o.getValue(s), n = o.getQName(s), f = r.createAttributeNS(e, n);
-                    this.locator && i(o.getLocator(s), f), f.value = f.nodeValue = l, a.setAttributeNode(f);
+                    var e = o.getURI(s), l = o.getValue(s), n = o.getQName(s), d = r.createAttributeNS(e, n);
+                    this.locator && i(o.getLocator(s), d), d.value = d.nodeValue = l, a.setAttributeNode(d);
                 }
             },
             endElement: function(e, t, n) {
@@ -838,7 +837,7 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
                 return null;
             };
         });
-        var s = e("./entities"), l = e("./sax").XMLReader, f = n.DOMImplementation = e("./dom").DOMImplementation;
+        var s = e("./entities"), l = e("./sax").XMLReader, d = n.DOMImplementation = e("./dom").DOMImplementation;
         n.XMLSerializer = e("./dom").XMLSerializer, n.DOMParser = o;
     }, {
         "./dom": 20,
@@ -884,16 +883,16 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
                 e._inc = t;
             }
         }
-        function f() {}
-        function d(e, t) {
+        function d() {}
+        function f(e, t) {
             for (var n = e.length; n--; ) if (e[n] === t) return n;
         }
         function p(e, t, n, o) {
-            o ? t[d(t, o)] = n : t[t.length++] = n, e && (t = (n.ownerElement = e).ownerDocument) && (o && w(t, e, o), 
+            o ? t[f(t, o)] = n : t[t.length++] = n, e && (t = (n.ownerElement = e).ownerDocument) && (o && w(t, e, o), 
             o = e, e = n, (n = t) && n._inc++, "http://www.w3.org/2000/xmlns/" == e.namespaceURI) && (o._nsMap[e.prefix ? e.localName : ""] = e.value);
         }
         function h(e, t, n) {
-            var o = d(t, n);
+            var o = f(t, n);
             if (!(0 <= o)) throw c(8, new Error(e.tagName + "@" + n));
             for (var r, i = t.length - 1; o < i; ) t[o] = t[++o];
             t.length = i, e && (r = e.ownerDocument) && (w(r, e, n), n.ownerElement = null);
@@ -949,10 +948,10 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
         function N() {}
         function T() {}
         function O() {}
-        function C() {}
         function M() {}
-        function D() {}
+        function C() {}
         function A() {}
+        function D() {}
         function P() {}
         function I() {}
         function R() {}
@@ -985,22 +984,22 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
                 r = r || [];
                 var i = e.attributes, a = i.length, c = e.firstChild, u = e.tagName;
                 n = "http://www.w3.org/1999/xhtml" === e.namespaceURI || n, t.push("<", u);
-                for (d = 0; d < a; d++) "xmlns" == (s = i.item(d)).prefix ? r.push({
+                for (f = 0; f < a; f++) "xmlns" == (s = i.item(f)).prefix ? r.push({
                     prefix: s.localName,
                     namespace: s.value
                 }) : "xmlns" == s.nodeName && r.push({
                     prefix: "",
                     namespace: s.value
                 });
-                for (var s, l, f, d = 0; d < a; d++) k(s = i.item(d), 0, r) && (l = s.prefix || "", 
-                f = s.namespaceURI, t.push(l ? " xmlns:" + l : " xmlns", '="', f, '"'), r.push({
+                for (var s, l, d, f = 0; f < a; f++) k(s = i.item(f), 0, r) && (l = s.prefix || "", 
+                d = s.namespaceURI, t.push(l ? " xmlns:" + l : " xmlns", '="', d, '"'), r.push({
                     prefix: l,
-                    namespace: f
+                    namespace: d
                 })), H(s, t, n, o, r);
-                if (k(e, 0, r) && (l = e.prefix || "", f = e.namespaceURI, t.push(l ? " xmlns:" + l : " xmlns", '="', f, '"'), 
+                if (k(e, 0, r) && (l = e.prefix || "", d = e.namespaceURI, t.push(l ? " xmlns:" + l : " xmlns", '="', d, '"'), 
                 r.push({
                     prefix: l,
-                    namespace: f
+                    namespace: d
                 })), c || n && !/^(?:meta|link|img|br|hr|input)$/i.test(u)) {
                     if (t.push(">"), n && /^script$/i.test(u)) for (;c; ) c.data ? t.push(c.data) : H(c, t, n, o, r), 
                     c = c.nextSibling; else for (;c; ) H(c, t, n, o, r), c = c.nextSibling;
@@ -1067,7 +1066,7 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
             }
         }, s.prototype.item = function(e) {
             return l(this), this[e];
-        }, a(s, u), f.prototype = {
+        }, a(s, u), d.prototype = {
             length: 0,
             item: u.prototype.item,
             getNamedItem: function(e) {
@@ -1110,7 +1109,7 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
                 t && (n = o.createElementNS(e, t), o.appendChild(n)), o;
             },
             createDocumentType: function(e, t, n) {
-                var o = new D();
+                var o = new A();
                 return o.name = e, o.nodeName = e, o.publicId = t, o.systemId = n, o;
             }
         }, g.prototype = {
@@ -1150,9 +1149,9 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
                     }
                     switch (n.childNodes && (a.childNodes = new u()), a.ownerDocument = t, a.nodeType) {
                       case 1:
-                        var s = n.attributes, l = a.attributes = new f(), d = s.length;
+                        var s = n.attributes, l = a.attributes = new d(), f = s.length;
                         l._ownerElement = a;
-                        for (var p = 0; p < d; p++) a.setAttributeNode(e(t, s.item(p), !0));
+                        for (var p = 0; p < f; p++) a.setAttributeNode(e(t, s.item(p), !0));
                         break;
 
                       case 2:
@@ -1238,7 +1237,7 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
             createElement: function(e) {
                 var t = new S();
                 return t.ownerDocument = this, t.nodeName = e, t.tagName = e, t.childNodes = new u(), 
-                (t.attributes = new f())._ownerElement = t;
+                (t.attributes = new d())._ownerElement = t;
             },
             createDocumentFragment: function() {
                 var e = new R();
@@ -1249,11 +1248,11 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
                 return t.ownerDocument = this, t.appendData(e), t;
             },
             createComment: function(e) {
-                var t = new C();
+                var t = new M();
                 return t.ownerDocument = this, t.appendData(e), t;
             },
             createCDATASection: function(e) {
-                var t = new M();
+                var t = new C();
                 return t.ownerDocument = this, t.appendData(e), t;
             },
             createProcessingInstruction: function(e, t) {
@@ -1271,7 +1270,7 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
                 return t.ownerDocument = this, t.nodeName = e, t;
             },
             createElementNS: function(e, t) {
-                var n = new S(), o = t.split(":"), r = n.attributes = new f();
+                var n = new S(), o = t.split(":"), r = n.attributes = new d();
                 return n.childNodes = new u(), n.ownerDocument = this, n.nodeName = t, n.tagName = t, 
                 n.namespaceURI = e, 2 == o.length ? (n.prefix = o[0], n.localName = o[1]) : n.localName = t, 
                 r._ownerElement = n;
@@ -1375,13 +1374,13 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
                 this.length = n.length, this.ownerDocument.createTextNode(t));
                 return this.parentNode && this.parentNode.insertBefore(e, this.nextSibling), e;
             }
-        }, a(O, T), C.prototype = {
+        }, a(O, T), M.prototype = {
             nodeName: "#comment",
             nodeType: 8
-        }, a(C, T), M.prototype = {
+        }, a(M, T), C.prototype = {
             nodeName: "#cdata-section",
             nodeType: 4
-        }, a(M, T), D.prototype.nodeType = 10, a(D, g), A.prototype.nodeType = 12, a(A, g), 
+        }, a(C, T), A.prototype.nodeType = 10, a(A, g), D.prototype.nodeType = 12, a(D, g), 
         P.prototype.nodeType = 6, a(P, g), I.prototype.nodeType = 5, a(I, g), R.prototype.nodeName = "#document-fragment", 
         R.prototype.nodeType = 11, a(R, g), j.prototype.nodeType = 7, a(j, g), L.prototype.serializeToString = function(e, t, n) {
             return F.call(e, t, n);
@@ -1677,18 +1676,18 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
         }
         function i(e, t, n) {
             for (var o = e.tagName, r = null, i = e.length; i--; ) {
-                var c = e[i], u = c.qName, s = c.value, u = 0 < (f = u.indexOf(":")) ? (l = c.prefix = u.slice(0, f), 
-                d = u.slice(f + 1), "xmlns" === l && d) : (l = null, "xmlns" === (d = u) && "");
-                c.localName = d, !1 !== u && (null == r && (r = {}, a(n, n = {})), n[u] = r[u] = s, 
+                var c = e[i], u = c.qName, s = c.value, u = 0 < (d = u.indexOf(":")) ? (l = c.prefix = u.slice(0, d), 
+                f = u.slice(d + 1), "xmlns" === l && f) : (l = null, "xmlns" === (f = u) && "");
+                c.localName = f, !1 !== u && (null == r && (r = {}, a(n, n = {})), n[u] = r[u] = s, 
                 c.uri = "http://www.w3.org/2000/xmlns/", t.startPrefixMapping(u, s));
             }
             for (var l, i = e.length; i--; ) (l = (c = e[i]).prefix) && ("xml" === l && (c.uri = "http://www.w3.org/XML/1998/namespace"), 
             "xmlns" !== l) && (c.uri = n[l || ""]);
-            var f, d = 0 < (f = o.indexOf(":")) ? (l = e.prefix = o.slice(0, f), e.localName = o.slice(f + 1)) : (l = null, 
+            var d, f = 0 < (d = o.indexOf(":")) ? (l = e.prefix = o.slice(0, d), e.localName = o.slice(d + 1)) : (l = null, 
             e.localName = o), p = e.uri = n[l || ""];
-            if (t.startElement(p, d, o, e), !e.closed) return e.currentNSMap = n, e.localNSMap = r, 
+            if (t.startElement(p, f, o, e), !e.closed) return e.currentNSMap = n, e.localNSMap = r, 
             1;
-            if (t.endElement(p, d, o), r) for (l in r) t.endPrefixMapping(l);
+            if (t.endElement(p, f, o), r) for (l in r) t.endPrefixMapping(l);
         }
         function a(e, t) {
             for (var n in e) t[n] = e[n];
@@ -1707,39 +1706,39 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
                     }
                     function s(t) {
                         var n;
-                        P < t && (n = e.substring(P, t).replace(/&#?\w+;/g, u), M && l(P), o.characters(n, 0, t - P), 
+                        P < t && (n = e.substring(P, t).replace(/&#?\w+;/g, u), C && l(P), o.characters(n, 0, t - P), 
                         P = t);
                     }
                     function l(t, n) {
-                        for (;O <= t && (n = C.exec(e)); ) T = n.index, O = T + n[0].length, M.lineNumber++;
-                        M.columnNumber = t - T + 1;
+                        for (;O <= t && (n = M.exec(e)); ) T = n.index, O = T + n[0].length, C.lineNumber++;
+                        C.columnNumber = t - T + 1;
                     }
-                    for (var f, d, p, h, m, g, y, v, b, w, _, E, x, S, N, T = 0, O = 0, C = /.*(?:\r\n?|\n)|.*$/g, M = o.locator, D = [ {
+                    for (var d, f, p, h, m, g, y, v, b, w, _, E, x, S, N, T = 0, O = 0, M = /.*(?:\r\n?|\n)|.*$/g, C = o.locator, A = [ {
                         currentNSMap: t
-                    } ], A = {}, P = 0; ;) {
+                    } ], D = {}, P = 0; ;) {
                         try {
                             var I, R, j = e.indexOf("<", P);
                             if (j < 0) return e.substr(P).match(/^\s*$/) || (R = (I = o.doc).createTextNode(e.substr(P)), 
                             I.appendChild(R), o.currentElement = R);
                             switch (P < j && s(j), e.charAt(j + 1)) {
                               case "/":
-                                var L = e.indexOf(">", j + 3), F = e.substring(j + 2, L), k = D.pop(), H = (L < 0 ? (F = e.substring(j + 2).replace(/[\s<].*/, ""), 
+                                var L = e.indexOf(">", j + 3), F = e.substring(j + 2, L), k = A.pop(), H = (L < 0 ? (F = e.substring(j + 2).replace(/[\s<].*/, ""), 
                                 a.error("end tag name: " + F + " is not complete:" + k.tagName), L = j + 1 + F.length) : F.match(/\s</) && (F = F.replace(/[\s<].*/, ""), 
                                 a.error("end tag name: " + F + " maybe not complete"), L = j + 1 + F.length), k.localNSMap), B = k.tagName == F;
                                 if (B || k.tagName && k.tagName.toLowerCase() == F.toLowerCase()) {
                                     if (o.endElement(k.uri, k.localName, F), H) for (var U in H) o.endPrefixMapping(U);
                                     B || a.fatalError("end tag name: " + F + " is not match the current start tagName:" + k.tagName);
-                                } else D.push(k);
+                                } else A.push(k);
                                 L++;
                                 break;
 
                               case "?":
-                                M && l(j), x = j, S = o, N = void 0, L = (N = (E = e).indexOf("?>", x)) && (E = E.substring(x, N).match(/^<\?(\S*)\s*([\s\S]*?)\s*$/)) ? (E[0].length, 
+                                C && l(j), x = j, S = o, L = (N = (E = e).indexOf("?>", x)) && (E = E.substring(x, N).match(/^<\?(\S*)\s*([\s\S]*?)\s*$/)) ? (E[0].length, 
                                 S.processingInstruction(E[1], E[2]), N + 2) : -1;
                                 break;
 
                               case "!":
-                                M && l(j), y = j, v = o, b = a, _ = w = void 0, L = "-" === (g = e).charAt(y + 2) ? "-" === g.charAt(y + 3) ? y < (_ = g.indexOf("--\x3e", y + 4)) ? (v.comment(g, y + 4, _ - y - 4), 
+                                C && l(j), y = j, v = o, b = a, _ = w = void 0, L = "-" === (g = e).charAt(y + 2) ? "-" === g.charAt(y + 3) ? y < (_ = g.indexOf("--\x3e", y + 4)) ? (v.comment(g, y + 4, _ - y - 4), 
                                 _ + 3) : (b.error("Unclosed comment"), -1) : -1 : "CDATA[" == g.substr(y + 3, 6) ? (_ = g.indexOf("]]>", y + 9), 
                                 v.startCDATA(), v.characters(g, y + 9, _ - y - 9), v.endCDATA(), _ + 3) : 1 < (_ = (b = function(e, t) {
                                     var n, o = [], r = /'[^']+'|"[^"]+"|[^\s<>\/=]+=?|(\/?\s*>|<)/g;
@@ -1750,8 +1749,8 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
                                 break;
 
                               default:
-                                M && l(j);
-                                var W = new c(), V = D[D.length - 1].currentNSMap, L = function(e, t, n, o, r, i) {
+                                C && l(j);
+                                var W = new c(), V = A[A.length - 1].currentNSMap, L = function(e, t, n, o, r, i) {
                                     for (var a, c = ++t, u = 0; ;) {
                                         var s = e.charAt(c);
                                         switch (s) {
@@ -1866,15 +1865,15 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
                                         c++;
                                     }
                                 }(e, j, W, V, u, a), K = W.length;
-                                if (!W.closed && (f = e, d = L, p = W.tagName, m = void 0, null == (m = (h = A)[p]) && ((m = f.lastIndexOf("</" + p + ">")) < d && (m = f.lastIndexOf("</" + p)), 
-                                h[p] = m), m < d) && (W.closed = !0, n.nbsp || a.warning("unclosed xml attribute")), 
-                                M && K) {
-                                    for (var G = r(M, {}), q = 0; q < K; q++) {
+                                if (!W.closed && (d = e, f = L, p = W.tagName, m = void 0, null == (m = (h = D)[p]) && ((m = d.lastIndexOf("</" + p + ">")) < f && (m = d.lastIndexOf("</" + p)), 
+                                h[p] = m), m < f) && (W.closed = !0, n.nbsp || a.warning("unclosed xml attribute")), 
+                                C && K) {
+                                    for (var G = r(C, {}), q = 0; q < K; q++) {
                                         var z = W[q];
-                                        l(z.offset), z.locator = r(M, {});
+                                        l(z.offset), z.locator = r(C, {});
                                     }
-                                    o.locator = G, i(W, o, V) && D.push(W), o.locator = M;
-                                } else i(W, o, V) && D.push(W);
+                                    o.locator = G, i(W, o, V) && A.push(W), o.locator = C;
+                                } else i(W, o, V) && A.push(W);
                                 "http://www.w3.org/1999/xhtml" !== W.uri || W.closed ? L++ : L = function(e, t, n, o, r) {
                                     if (/^(?:script|textarea)$/i.test(n)) {
                                         var i = e.indexOf("</" + n + ">", t), e = e.substring(t + 1, i);
@@ -1956,42 +1955,35 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
                 return t && "function" == typeof Symbol && t.constructor === Symbol && t !== Symbol.prototype ? "symbol" : void 0 === t ? "undefined" : e(t);
             })(t);
         }
-        function i(e, t) {
-            for (var n = 0; n < t.length; n++) {
-                var o = t[n];
-                o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), 
-                Object.defineProperty(e, o.key, o);
-            }
-        }
-        function a(e, t, n) {
-            return (a = "undefined" != typeof Reflect && Reflect.get ? Reflect.get : function(e, t, n) {
+        function i(e, t, n) {
+            return (i = "undefined" != typeof Reflect && Reflect.get ? Reflect.get : function(e, t, n) {
                 if (e = function(e, t) {
-                    for (;!Object.prototype.hasOwnProperty.call(e, t) && null !== (e = u(e)); ) ;
+                    for (;!Object.prototype.hasOwnProperty.call(e, t) && null !== (e = c(e)); ) ;
                     return e;
                 }(e, t)) return (e = Object.getOwnPropertyDescriptor(e, t)).get ? e.get.call(n) : e.value;
             })(e, t, n || e);
         }
-        function c(e, t) {
-            return (c = Object.setPrototypeOf || function(e, t) {
+        function a(e, t) {
+            return (a = Object.setPrototypeOf || function(e, t) {
                 return e.__proto__ = t, e;
             })(e, t);
         }
-        function u(e) {
-            return (u = Object.setPrototypeOf ? Object.getPrototypeOf : function(e) {
+        function c(e) {
+            return (c = Object.setPrototypeOf ? Object.getPrototypeOf : function(e) {
                 return e.__proto__ || Object.getPrototypeOf(e);
             })(e);
         }
         Object.defineProperty(o, "__esModule", {
             value: !0
         }), o.default = void 0;
-        var s = 1, l = {}, t = function(e) {
+        var u = 1, s = {}, t = function(e) {
             function t(e) {
                 var n;
                 if (!(this instanceof t)) throw new TypeError("Cannot call a class as a function");
-                (n = d.call(this))._$sn = s++, n.HAVE_NOTHING = 0, n.HAVE_METADATA = 1, n.HAVE_CURRENT_DATA = 2, 
+                (n = d.call(this))._$sn = u++, n.HAVE_NOTHING = 0, n.HAVE_METADATA = 1, n.HAVE_CURRENT_DATA = 2, 
                 n.HAVE_FUTURE_DATA = 3, n.HAVE_ENOUGH_DATA = 4, n.readyState = 0;
                 var o = wx.createInnerAudioContext();
-                return l[n._$sn] = o, n._canplayEvents = [ "load", "loadend", "canplay", "canplaythrough", "loadedmetadata" ], 
+                return s[n._$sn] = o, n._canplayEvents = [ "load", "loadend", "canplay", "canplaythrough", "loadedmetadata" ], 
                 o.onCanplay(function() {
                     n._loaded = !0, n.readyState = n.HAVE_CURRENT_DATA, n._canplayEvents.forEach(function(e) {
                         n.dispatchEvent({
@@ -1999,19 +1991,19 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
                         });
                     });
                 }), o.onPlay(function() {
-                    n._paused = l[n._$sn].paused, n.dispatchEvent({
+                    n._paused = s[n._$sn].paused, n.dispatchEvent({
                         type: "play"
                     });
                 }), o.onPause(function() {
-                    n._paused = l[n._$sn].paused, n.dispatchEvent({
+                    n._paused = s[n._$sn].paused, n.dispatchEvent({
                         type: "pause"
                     });
                 }), o.onEnded(function() {
-                    n._paused = l[n._$sn].paused, !1 === l[n._$sn].loop && n.dispatchEvent({
+                    n._paused = s[n._$sn].paused, !1 === s[n._$sn].loop && n.dispatchEvent({
                         type: "ended"
                     }), n.readyState = 4;
                 }), o.onError(function() {
-                    n._paused = l[n._$sn].paused, n.dispatchEvent({
+                    n._paused = s[n._$sn].paused, n.dispatchEvent({
                         type: "error"
                     });
                 }), e ? n.src = e : n._src = "", n._loop = o.loop, n._autoplay = o.autoplay, n._paused = o.paused, 
@@ -2025,7 +2017,8 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
                     writable: !0,
                     configurable: !0
                 }
-            }), e && c(n, e), o = t, f = function() {
+            }), e && a(n, e);
+            for (var o = t, l = function() {
                 if ("undefined" == typeof Reflect || !Reflect.construct) return !1;
                 if (Reflect.construct.sham) return !1;
                 if ("function" == typeof Proxy) return !0;
@@ -2036,21 +2029,19 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
                     e = VM2_INTERNAL_STATE_DO_NOT_USE_OR_PROGRAM_WILL_FAIL.handleException(e);
                     return !1;
                 }
-            }();
-            var o, f, d = function() {
-                var e, t = u(o), t = (e = f ? (e = u(this).constructor, Reflect.construct(t, arguments, e)) : t.apply(this, arguments), 
+            }(), d = function() {
+                var e, t = c(o), t = (e = l ? (e = c(this).constructor, Reflect.construct(t, arguments, e)) : t.apply(this, arguments), 
                 this);
                 if (!e || "object" !== r(e) && "function" != typeof e) {
                     if (void 0 !== t) return t;
                     throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
                 }
                 return e;
-            };
-            return i((n = t).prototype, [ {
+            }, f = (n = t).prototype, p = [ {
                 key: "addEventListener",
                 value: function(e, n) {
                     var o = 2 < arguments.length && void 0 !== arguments[2] ? arguments[2] : {};
-                    a(u(t.prototype), "addEventListener", this).call(this, e, n, o), e = String(e).toLowerCase(), 
+                    i(c(t.prototype), "addEventListener", this).call(this, e, n, o), e = String(e).toLowerCase(), 
                     this._loaded && -1 !== this._canplayEvents.indexOf(e) && this.dispatchEvent({
                         type: e
                     });
@@ -2061,27 +2052,27 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
             }, {
                 key: "play",
                 value: function() {
-                    l[this._$sn].play();
+                    s[this._$sn].play();
                 }
             }, {
                 key: "resume",
                 value: function() {
-                    l[this._$sn].resume();
+                    s[this._$sn].resume();
                 }
             }, {
                 key: "pause",
                 value: function() {
-                    l[this._$sn].pause();
+                    s[this._$sn].pause();
                 }
             }, {
                 key: "stop",
                 value: function() {
-                    l[this._$sn].stop();
+                    s[this._$sn].stop();
                 }
             }, {
                 key: "destroy",
                 value: function() {
-                    l[this._$sn].destroy();
+                    s[this._$sn].destroy();
                 }
             }, {
                 key: "canPlayType",
@@ -2098,15 +2089,15 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
             }, {
                 key: "currentTime",
                 get: function() {
-                    return l[this._$sn].currentTime;
+                    return s[this._$sn].currentTime;
                 },
                 set: function(e) {
-                    l[this._$sn].seek(e);
+                    s[this._$sn].seek(e);
                 }
             }, {
                 key: "duration",
                 get: function() {
-                    return l[this._$sn].duration;
+                    return s[this._$sn].duration;
                 }
             }, {
                 key: "src",
@@ -2114,7 +2105,7 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
                     return this._src;
                 },
                 set: function(e) {
-                    this._src = e, this._loaded = !1, this.readyState = this.HAVE_NOTHING, l[this._$sn].src = e;
+                    this._src = e, this._loaded = !1, this.readyState = this.HAVE_NOTHING, s[this._$sn].src = e;
                 }
             }, {
                 key: "loop",
@@ -2122,7 +2113,7 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
                     return this._loop;
                 },
                 set: function(e) {
-                    this._loop = e, l[this._$sn].loop = e;
+                    this._loop = e, s[this._$sn].loop = e;
                 }
             }, {
                 key: "autoplay",
@@ -2130,7 +2121,7 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
                     return this.autoplay;
                 },
                 set: function(e) {
-                    this._autoplay = e, l[this._$sn].autoplay = e;
+                    this._autoplay = e, s[this._$sn].autoplay = e;
                 }
             }, {
                 key: "paused",
@@ -2143,7 +2134,7 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
                     return this._volume;
                 },
                 set: function(e) {
-                    this._volume = e, this._muted || (l[this._$sn].volume = e);
+                    this._volume = e, this._muted || (s[this._$sn].volume = e);
                 }
             }, {
                 key: "muted",
@@ -2151,9 +2142,14 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
                     return this._muted;
                 },
                 set: function(e) {
-                    this._muted = e, l[this._$sn].volume = e ? 0 : this._volume;
+                    this._muted = e, s[this._$sn].volume = e ? 0 : this._volume;
                 }
-            } ]), t;
+            } ], h = 0; h < p.length; h++) {
+                var m = p[h];
+                m.enumerable = m.enumerable || !1, m.configurable = !0, "value" in m && (m.writable = !0), 
+                Object.defineProperty(f, m.key, m);
+            }
+            return t;
         }((t = (t = t("./HTMLAudioElement")) && t.__esModule ? t : {
             default: t
         }).default);
@@ -2166,7 +2162,7 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
             value: !0
         }), n.default = function() {
             var e = wx.createCanvas();
-            return e.type = "canvas", e.getContext, e.getBoundingClientRect = function() {
+            return e.type = "canvas", e.getBoundingClientRect = function() {
                 return {
                     top: 0,
                     left: 0,
@@ -2237,7 +2233,8 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
                     writable: !0,
                     configurable: !0
                 }
-            }), e && i(n, e), o = t, c = function() {
+            }), e && i(n, e);
+            var o = t, c = function() {
                 if ("undefined" == typeof Reflect || !Reflect.construct) return !1;
                 if (Reflect.construct.sham) return !1;
                 if ("function" == typeof Proxy) return !0;
@@ -2248,8 +2245,7 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
                     e = VM2_INTERNAL_STATE_DO_NOT_USE_OR_PROGRAM_WILL_FAIL.handleException(e);
                     return !1;
                 }
-            }();
-            var o, c, u = function() {
+            }(), u = function() {
                 var e, t = a(o), t = (e = c ? (e = a(this).constructor, Reflect.construct(t, arguments, e)) : t.apply(this, arguments), 
                 this);
                 if (!e || "object" !== r(e) && "function" != typeof e) {
@@ -2366,16 +2362,16 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
         }
         Object.defineProperty(n, "__esModule", {
             value: !0
-        }), n.default = void 0, function(e, t) {
-            for (var n = 0; n < t.length; n++) {
-                var o = t[n];
-                o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), 
-                Object.defineProperty(e, o.key, o);
-            }
-        }(o.prototype, [ {
+        }), n.default = void 0;
+        for (var r = o.prototype, i = [ {
             key: "construct",
             value: function() {}
-        } ]), n.default = o, t.exports = n.default;
+        } ], a = 0; a < i.length; a++) {
+            var c = i[a];
+            c.enumerable = c.enumerable || !1, c.configurable = !0, "value" in c && (c.writable = !0), 
+            Object.defineProperty(r, c.key, c);
+        }
+        n.default = o, t.exports = n.default;
     }, {} ],
     32: [ function(t, n, o) {
         function r(t) {
@@ -2410,7 +2406,8 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
                     writable: !0,
                     configurable: !0
                 }
-            }), e && i(n, e), o = t, c = function() {
+            }), e && i(n, e);
+            var o = t, c = function() {
                 if ("undefined" == typeof Reflect || !Reflect.construct) return !1;
                 if (Reflect.construct.sham) return !1;
                 if ("function" == typeof Proxy) return !0;
@@ -2421,8 +2418,7 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
                     e = VM2_INTERNAL_STATE_DO_NOT_USE_OR_PROGRAM_WILL_FAIL.handleException(e);
                     return !1;
                 }
-            }();
-            var o, c, u = function() {
+            }(), u = function() {
                 var e, t = a(o), t = (e = c ? (e = a(this).constructor, Reflect.construct(t, arguments, e)) : t.apply(this, arguments), 
                 this);
                 if (!e || "object" !== r(e) && "function" != typeof e) {
@@ -2463,35 +2459,28 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
             })(t);
         }
         function i(e, t) {
-            for (var n = 0; n < t.length; n++) {
-                var o = t[n];
-                o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), 
-                Object.defineProperty(e, o.key, o);
-            }
-        }
-        function a(e, t) {
-            return (a = Object.setPrototypeOf || function(e, t) {
+            return (i = Object.setPrototypeOf || function(e, t) {
                 return e.__proto__ = t, e;
             })(e, t);
         }
-        function c(e) {
-            return (c = Object.setPrototypeOf ? Object.getPrototypeOf : function(e) {
+        function a(e) {
+            return (a = Object.setPrototypeOf ? Object.getPrototypeOf : function(e) {
                 return e.__proto__ || Object.getPrototypeOf(e);
             })(e);
         }
         Object.defineProperty(o, "__esModule", {
             value: !0
         }), o.default = void 0;
-        var u = (u = t("./Element")) && u.__esModule ? u : {
-            default: u
-        }, s = t("./util/index.js"), l = t("./WindowProperties");
+        var c = (c = t("./Element")) && c.__esModule ? c : {
+            default: c
+        }, u = t("./util/index.js"), s = t("./WindowProperties");
         t = function(e) {
             function t() {
                 var e = 0 < arguments.length && void 0 !== arguments[0] ? arguments[0] : "", n = this;
-                if (n instanceof t) return (n = f.call(this)).className = "", n.childern = [], n.style = {
-                    width: "".concat(l.innerWidth, "px"),
-                    height: "".concat(l.innerHeight, "px")
-                }, n.insertBefore = s.noop, n.innerHTML = "", n.tagName = e.toUpperCase(), n;
+                if (n instanceof t) return (n = l.call(this)).className = "", n.childern = [], n.style = {
+                    width: "".concat(s.innerWidth, "px"),
+                    height: "".concat(s.innerHeight, "px")
+                }, n.insertBefore = u.noop, n.innerHTML = "", n.tagName = e.toUpperCase(), n;
                 throw new TypeError("Cannot call a class as a function");
             }
             var n = t;
@@ -2502,7 +2491,8 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
                     writable: !0,
                     configurable: !0
                 }
-            }), e && a(n, e), o = t, u = function() {
+            }), e && i(n, e);
+            for (var o = t, c = function() {
                 if ("undefined" == typeof Reflect || !Reflect.construct) return !1;
                 if (Reflect.construct.sham) return !1;
                 if ("function" == typeof Proxy) return !0;
@@ -2513,17 +2503,15 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
                     e = VM2_INTERNAL_STATE_DO_NOT_USE_OR_PROGRAM_WILL_FAIL.handleException(e);
                     return !1;
                 }
-            }();
-            var o, u, f = function() {
-                var e, t = c(o), t = (e = u ? (e = c(this).constructor, Reflect.construct(t, arguments, e)) : t.apply(this, arguments), 
+            }(), l = function() {
+                var e, t = a(o), t = (e = c ? (e = a(this).constructor, Reflect.construct(t, arguments, e)) : t.apply(this, arguments), 
                 this);
                 if (!e || "object" !== r(e) && "function" != typeof e) {
                     if (void 0 !== t) return t;
                     throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
                 }
                 return e;
-            };
-            return i((n = t).prototype, [ {
+            }, d = (n = t).prototype, f = [ {
                 key: "setAttribute",
                 value: function(e, t) {
                     this[e] = t;
@@ -2539,8 +2527,8 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
                     return {
                         top: 0,
                         left: 0,
-                        width: l.innerWidth,
-                        height: l.innerHeight
+                        width: s.innerWidth,
+                        height: s.innerHeight
                     };
                 }
             }, {
@@ -2558,8 +2546,13 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
                     var e = parseInt(this.style.fontSize, 10);
                     return Number.isNaN(e) ? 0 : e;
                 }
-            } ]), t;
-        }(u.default), o.default = t, n.exports = o.default;
+            } ], p = 0; p < f.length; p++) {
+                var h = f[p];
+                h.enumerable = h.enumerable || !1, h.configurable = !0, "value" in h && (h.writable = !0), 
+                Object.defineProperty(d, h.key, h);
+            }
+            return t;
+        }(c.default), o.default = t, n.exports = o.default;
     }, {
         "./Element": 26,
         "./WindowProperties": 43,
@@ -2582,19 +2575,12 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
             })(t);
         }
         function i(e, t) {
-            for (var n = 0; n < t.length; n++) {
-                var o = t[n];
-                o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), 
-                Object.defineProperty(e, o.key, o);
-            }
-        }
-        function a(e, t) {
-            return (a = Object.setPrototypeOf || function(e, t) {
+            return (i = Object.setPrototypeOf || function(e, t) {
                 return e.__proto__ = t, e;
             })(e, t);
         }
-        function c(e) {
-            return (c = Object.setPrototypeOf ? Object.getPrototypeOf : function(e) {
+        function a(e) {
+            return (a = Object.setPrototypeOf ? Object.getPrototypeOf : function(e) {
                 return e.__proto__ || Object.getPrototypeOf(e);
             })(e);
         }
@@ -2602,7 +2588,7 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
             value: !0
         }), o.default = void 0, t = function(e) {
             function t(e) {
-                if (this instanceof t) return s.call(this, e);
+                if (this instanceof t) return u.call(this, e);
                 throw new TypeError("Cannot call a class as a function");
             }
             var n = t;
@@ -2613,7 +2599,8 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
                     writable: !0,
                     configurable: !0
                 }
-            }), e && a(n, e), o = t, u = function() {
+            }), e && i(n, e);
+            for (var o = t, c = function() {
                 if ("undefined" == typeof Reflect || !Reflect.construct) return !1;
                 if (Reflect.construct.sham) return !1;
                 if ("function" == typeof Proxy) return !0;
@@ -2624,17 +2611,15 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
                     e = VM2_INTERNAL_STATE_DO_NOT_USE_OR_PROGRAM_WILL_FAIL.handleException(e);
                     return !1;
                 }
-            }();
-            var o, u, s = function() {
-                var e, t = c(o), t = (e = u ? (e = c(this).constructor, Reflect.construct(t, arguments, e)) : t.apply(this, arguments), 
+            }(), u = function() {
+                var e, t = a(o), t = (e = c ? (e = a(this).constructor, Reflect.construct(t, arguments, e)) : t.apply(this, arguments), 
                 this);
                 if (!e || "object" !== r(e) && "function" != typeof e) {
                     if (void 0 !== t) return t;
                     throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
                 }
                 return e;
-            };
-            return i((n = t).prototype, [ {
+            }, s = (n = t).prototype, l = [ {
                 key: "addTextTrack",
                 value: function() {}
             }, {
@@ -2652,7 +2637,12 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
             }, {
                 key: "play",
                 value: function() {}
-            } ]), t;
+            } ], d = 0; d < l.length; d++) {
+                var f = l[d];
+                f.enumerable = f.enumerable || !1, f.configurable = !0, "value" in f && (f.writable = !0), 
+                Object.defineProperty(s, f.key, f);
+            }
+            return t;
         }(((t = t("./HTMLElement")) && t.__esModule ? t : {
             default: t
         }).default), o.default = t, n.exports = o.default;
@@ -2692,7 +2682,8 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
                     writable: !0,
                     configurable: !0
                 }
-            }), e && i(n, e), o = t, c = function() {
+            }), e && i(n, e);
+            var o = t, c = function() {
                 if ("undefined" == typeof Reflect || !Reflect.construct) return !1;
                 if (Reflect.construct.sham) return !1;
                 if ("function" == typeof Proxy) return !0;
@@ -2703,8 +2694,7 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
                     e = VM2_INTERNAL_STATE_DO_NOT_USE_OR_PROGRAM_WILL_FAIL.handleException(e);
                     return !1;
                 }
-            }();
-            var o, c, u = function() {
+            }(), u = function() {
                 var e, t = a(o), t = (e = c ? (e = a(this).constructor, Reflect.construct(t, arguments, e)) : t.apply(this, arguments), 
                 this);
                 if (!e || "object" !== r(e) && "function" != typeof e) {
@@ -2745,19 +2735,12 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
             })(t);
         }
         function i(e, t) {
-            for (var n = 0; n < t.length; n++) {
-                var o = t[n];
-                o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), 
-                Object.defineProperty(e, o.key, o);
-            }
-        }
-        function a(e, t) {
-            return (a = Object.setPrototypeOf || function(e, t) {
+            return (i = Object.setPrototypeOf || function(e, t) {
                 return e.__proto__ = t, e;
             })(e, t);
         }
-        function c(e) {
-            return (c = Object.setPrototypeOf ? Object.getPrototypeOf : function(e) {
+        function a(e) {
+            return (a = Object.setPrototypeOf ? Object.getPrototypeOf : function(e) {
                 return e.__proto__ || Object.getPrototypeOf(e);
             })(e);
         }
@@ -2766,7 +2749,7 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
         }), o.default = void 0, t = function(e) {
             function t() {
                 var e;
-                if (this instanceof t) return (e = s.call(this)).childNodes = [], e;
+                if (this instanceof t) return (e = u.call(this)).childNodes = [], e;
                 throw new TypeError("Cannot call a class as a function");
             }
             var n = t;
@@ -2777,7 +2760,8 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
                     writable: !0,
                     configurable: !0
                 }
-            }), e && a(n, e), o = t, u = function() {
+            }), e && i(n, e);
+            for (var o = t, c = function() {
                 if ("undefined" == typeof Reflect || !Reflect.construct) return !1;
                 if (Reflect.construct.sham) return !1;
                 if ("function" == typeof Proxy) return !0;
@@ -2788,17 +2772,15 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
                     e = VM2_INTERNAL_STATE_DO_NOT_USE_OR_PROGRAM_WILL_FAIL.handleException(e);
                     return !1;
                 }
-            }();
-            var o, u, s = function() {
-                var e, t = c(o), t = (e = u ? (e = c(this).constructor, Reflect.construct(t, arguments, e)) : t.apply(this, arguments), 
+            }(), u = function() {
+                var e, t = a(o), t = (e = c ? (e = a(this).constructor, Reflect.construct(t, arguments, e)) : t.apply(this, arguments), 
                 this);
                 if (!e || "object" !== r(e) && "function" != typeof e) {
                     if (void 0 !== t) return t;
                     throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
                 }
                 return e;
-            };
-            return i((n = t).prototype, [ {
+            }, s = (n = t).prototype, l = [ {
                 key: "appendChild",
                 value: function(e) {
                     this.childNodes.push(e);
@@ -2817,7 +2799,12 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
                     });
                     return -1 < t ? this.childNodes.splice(t, 1) : null;
                 }
-            } ]), t;
+            } ], d = 0; d < l.length; d++) {
+                var f = l[d];
+                f.enumerable = f.enumerable || !1, f.configurable = !0, "value" in f && (f.writable = !0), 
+                Object.defineProperty(s, f.key, f);
+            }
+            return t;
         }(((t = t("./EventTarget.js")) && t.__esModule ? t : {
             default: t
         }).default), o.default = t, n.exports = o.default;
@@ -2833,25 +2820,22 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
     }, {} ],
     42: [ function(e, t, n) {
         function o(e) {
-            var t = this, n = 1 < arguments.length && void 0 !== arguments[1] ? arguments[1] : [], i = this, a = o;
-            if (!(i instanceof a)) throw new TypeError("Cannot call a class as a function");
+            var t = this, n = 1 < arguments.length && void 0 !== arguments[1] ? arguments[1] : [], i = o;
+            if (!(this instanceof i)) throw new TypeError("Cannot call a class as a function");
             if (this.binaryType = "", this.bufferedAmount = 0, this.extensions = "", this.onclose = null, 
             this.onerror = null, this.onmessage = null, this.onopen = null, this.protocol = "", 
-            this.readyState = 3, "string" == typeof e && /(^ws:\/\/)|(^wss:\/\/)/.test(e)) return i = !0, 
-            void 0 === o._socketConnectCnt && (o._socketConnectCnt = 0), o._socketConnectCnt += 1, 
-            2 < o._socketConnectCnt && (e += "&perMessageDeflate=0", i = !1), this.url = e, 
-            this.readyState = o.CONNECTING, a = wx.connectSocket({
+            this.readyState = 3, "string" == typeof e && /(^ws:\/\/)|(^wss:\/\/)/.test(e)) return this.url = e, 
+            this.readyState = o.CONNECTING, i = wx.connectSocket({
                 url: e,
                 protocols: Array.isArray(n) ? n : [ n ],
-                tcpNoDelay: !0,
-                perMessageDeflate: i
-            }), r.set(this, a), a.onClose(function(e) {
+                tcpNoDelay: !0
+            }), r.set(this, i), i.onClose(function(e) {
                 t.readyState = o.CLOSED, "function" == typeof t.onclose && t.onclose(e);
-            }), a.onMessage(function(e) {
-                o._socketConnectCnt = 0, "function" == typeof t.onmessage && t.onmessage(e);
-            }), a.onOpen(function() {
+            }), i.onMessage(function(e) {
+                "function" == typeof t.onmessage && t.onmessage(e);
+            }), i.onOpen(function() {
                 t.readyState = o.OPEN, "function" == typeof t.onopen && t.onopen();
-            }), a.onError(function(e) {
+            }), i.onError(function(e) {
                 "function" == typeof t.onerror && t.onerror(new Error(e.errMsg));
             }), this;
             throw new TypeError("Failed to construct 'WebSocket': The URL '".concat(e, "' is invalid"));
@@ -2888,7 +2872,7 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
         Object.defineProperty(n, "__esModule", {
             value: !0
         }), n.ontouchend = n.ontouchmove = n.ontouchstart = n.performance = n.screen = n.devicePixelRatio = n.innerHeight = n.innerWidth = void 0;
-        var o = (i = wx.getSystemInfoSync()).screenWidth, r = i.screenHeight, i = i.devicePixelRatio, i = (n.devicePixelRatio = i, 
+        var o = (i = wx.getSystemInfoSync()).screenWidth, r = i.screenHeight, i = (n.devicePixelRatio = i.devicePixelRatio, 
         o), a = r, o = {
             width: o,
             height: r,
@@ -2910,51 +2894,44 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
             })(t);
         }
         function i(e, t) {
-            for (var n = 0; n < t.length; n++) {
-                var o = t[n];
-                o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), 
-                Object.defineProperty(e, o.key, o);
-            }
-        }
-        function a(e, t) {
-            return (a = Object.setPrototypeOf || function(e, t) {
+            return (i = Object.setPrototypeOf || function(e, t) {
                 return e.__proto__ = t, e;
             })(e, t);
         }
-        function c(e) {
+        function a(e) {
             if (void 0 === e) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
             return e;
         }
-        function u(e) {
-            return (u = Object.setPrototypeOf ? Object.getPrototypeOf : function(e) {
+        function c(e) {
+            return (c = Object.setPrototypeOf ? Object.getPrototypeOf : function(e) {
                 return e.__proto__ || Object.getPrototypeOf(e);
             })(e);
         }
-        function s(e) {
+        function u(e) {
             if ("function" == typeof this["on".concat(e)]) {
                 for (var t = arguments.length, n = new Array(1 < t ? t - 1 : 0), o = 1; o < t; o++) n[o - 1] = arguments[o];
                 this["on".concat(e)].apply(this, n);
             }
         }
-        function l(e) {
-            this.readyState = e, s.call(this, "readystatechange");
+        function s(e) {
+            this.readyState = e, u.call(this, "readystatechange");
         }
         Object.defineProperty(o, "__esModule", {
             value: !0
         }), o.default = void 0, t = (t = t("./EventTarget.js")) && t.__esModule ? t : {
             default: t
         };
-        var f = new WeakMap(), d = new WeakMap(), p = new WeakMap(), h = new WeakMap(), m = new WeakMap();
+        var l = new WeakMap(), d = new WeakMap(), f = new WeakMap(), p = new WeakMap(), h = new WeakMap();
         t = function(e) {
             function t() {
                 var e;
-                if (this instanceof t) return (e = y.call(this)).timeout = 0, e.onabort = null, 
+                if (this instanceof t) return (e = g.call(this)).timeout = 0, e.onabort = null, 
                 e.onerror = null, e.onload = null, e.onloadstart = null, e.onprogress = null, e.ontimeout = null, 
                 e.onloadend = null, e.onreadystatechange = null, e.readyState = 0, e.response = null, 
                 e.responseText = null, e.responseType = "", e.responseXML = null, e.status = 0, 
-                e.statusText = "", e.upload = {}, e.withCredentials = !1, p.set(c(e), {
+                e.statusText = "", e.upload = {}, e.withCredentials = !1, f.set(a(e), {
                     "content-type": "application/x-www-form-urlencoded"
-                }), h.set(c(e), {}), e;
+                }), p.set(a(e), {}), e;
                 throw new TypeError("Cannot call a class as a function");
             }
             var n = t;
@@ -2965,7 +2942,8 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
                     writable: !0,
                     configurable: !0
                 }
-            }), e && a(n, e), o = t, g = function() {
+            }), e && i(n, e);
+            for (var o = t, m = function() {
                 if ("undefined" == typeof Reflect || !Reflect.construct) return !1;
                 if (Reflect.construct.sham) return !1;
                 if ("function" == typeof Proxy) return !0;
@@ -2976,21 +2954,19 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
                     e = VM2_INTERNAL_STATE_DO_NOT_USE_OR_PROGRAM_WILL_FAIL.handleException(e);
                     return !1;
                 }
-            }();
-            var o, g, y = function() {
-                var e = u(o), t = g ? (t = u(this).constructor, Reflect.construct(e, arguments, t)) : e.apply(this, arguments), e = this;
-                return !(t = t) || "object" !== r(t) && "function" != typeof t ? c(e) : t;
-            };
-            return i((n = t).prototype, [ {
+            }(), g = function() {
+                var e = c(o), t = m ? (t = c(this).constructor, Reflect.construct(e, arguments, t)) : e.apply(this, arguments), e = this;
+                return !t || "object" !== r(t) && "function" != typeof t ? a(e) : t;
+            }, y = (n = t).prototype, v = [ {
                 key: "abort",
                 value: function() {
-                    var e = m.get(this);
+                    var e = h.get(this);
                     e && e.abort();
                 }
             }, {
                 key: "getAllResponseHeaders",
                 value: function() {
-                    var e = h.get(this);
+                    var e = p.get(this);
                     return Object.keys(e).map(function(t) {
                         return "".concat(t, ": ").concat(e[t]);
                     }).join("\n");
@@ -2998,12 +2974,12 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
             }, {
                 key: "getResponseHeader",
                 value: function(e) {
-                    return h.get(this)[e];
+                    return p.get(this)[e];
                 }
             }, {
                 key: "open",
                 value: function(e, n) {
-                    d.set(this, e), f.set(this, n), l.call(this, t.OPENED);
+                    d.set(this, e), l.set(this, n), s.call(this, t.OPENED);
                 }
             }, {
                 key: "overrideMimeType",
@@ -3015,16 +2991,16 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
                     if (this.readyState !== t.OPENED) throw new Error("Failed to execute 'send' on 'XMLHttpRequest': The object's state must be OPENED.");
                     n = wx.request({
                         data: n,
-                        url: f.get(this),
+                        url: l.get(this),
                         method: d.get(this),
-                        header: p.get(this),
+                        header: f.get(this),
                         dataType: "other",
                         responseType: "arraybuffer" === this.responseType ? "arraybuffer" : "text",
                         timeout: this.timeout || void 0,
                         success: function(n) {
                             var o = n.data, r = n.statusCode, n = n.header;
-                            switch (e.status = r, h.set(e, n), s.call(e, "loadstart"), l.call(e, t.HEADERS_RECEIVED), 
-                            l.call(e, t.LOADING), e.responseType) {
+                            switch (e.status = r, p.set(e, n), u.call(e, "loadstart"), s.call(e, t.HEADERS_RECEIVED), 
+                            s.call(e, t.LOADING), e.responseType) {
                               case "json":
                                 e.responseText = o;
                                 try {
@@ -3048,19 +3024,19 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
                               default:
                                 e.response = null;
                             }
-                            l.call(e, t.DONE), s.call(e, "load"), s.call(e, "loadend");
+                            s.call(e, t.DONE), u.call(e, "load"), u.call(e, "loadend");
                         },
                         fail: function(t) {
-                            -1 !== (t = t.errMsg).indexOf("abort") ? s.call(e, "abort") : -1 !== t.indexOf("timeout") ? s.call(e, "timeout") : s.call(e, "error", t), 
-                            s.call(e, "loadend");
+                            -1 !== (t = t.errMsg).indexOf("abort") ? u.call(e, "abort") : -1 !== t.indexOf("timeout") ? u.call(e, "timeout") : u.call(e, "error", t), 
+                            u.call(e, "loadend");
                         }
-                    }), m.set(this, n);
+                    }), h.set(this, n);
                 }
             }, {
                 key: "setRequestHeader",
                 value: function(e, t) {
-                    var n = p.get(this);
-                    n[e] = t, p.set(this, n);
+                    var n = f.get(this);
+                    n[e] = t, f.set(this, n);
                 }
             }, {
                 key: "addEventListener",
@@ -3070,7 +3046,12 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
                         t.call(n, e);
                     });
                 }
-            } ]), t;
+            } ], b = 0; b < v.length; b++) {
+                var w = v[b];
+                w.enumerable = w.enumerable || !1, w.configurable = !0, "value" in w && (w.writable = !0), 
+                Object.defineProperty(y, w.key, w);
+            }
+            return t;
         }(t.default), (o.default = t).UNSEND = 0, t.OPENED = 1, t.HEADERS_RECEIVED = 2, 
         t.LOADING = 3, t.DONE = 4, n.exports = o.default;
     }, {
@@ -3108,7 +3089,7 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
             var n, o, i = {}, c = Object.defineProperty && Object.getOwnPropertyDescriptor;
             for (n in e) Object.prototype.hasOwnProperty.call(e, n) && ((o = c ? Object.getOwnPropertyDescriptor(e, n) : null) && (o.get || o.set) ? Object.defineProperty(i, n, o) : i[n] = e[n]);
             return i.default = e, t && t.set(e, i), i;
-        }(t("./window")), u = i(t("./HTMLElement")), s = i(t("./HTMLVideoElement")), l = i(t("./Image")), f = i(t("./Audio")), d = i(t("./Canvas"));
+        }(t("./window")), u = i(t("./HTMLElement")), s = i(t("./HTMLVideoElement")), l = i(t("./Image")), d = i(t("./Audio")), f = i(t("./Canvas"));
         t("./EventIniter/index.js");
         var p = {}, h = {
             readyState: "complete",
@@ -3123,7 +3104,7 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
             head: new u.default("head"),
             body: new u.default("body"),
             createElement: function(e) {
-                return "canvas" === e ? new d.default() : "audio" === e ? new f.default() : "img" === e ? new l.default() : "video" === e ? new s.default() : new u.default(e);
+                return "canvas" === e ? new f.default() : "audio" === e ? new d.default() : "img" === e ? new l.default() : "video" === e ? new s.default() : new u.default(e);
             },
             createElementNS: function(e, t) {
                 return this.createElement(t);
@@ -3208,15 +3189,15 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
         }, c.dispatchEvent = c.document.dispatchEvent, t = wx.getSystemInfoSync().platform, 
         "undefined" == typeof __devtoolssubcontext && "devtools" === t) {
             for (var l in c) {
-                var f = Object.getOwnPropertyDescriptor(s, l);
-                f && !0 !== f.configurable || Object.defineProperty(window, l, {
+                var d = Object.getOwnPropertyDescriptor(s, l);
+                d && !0 !== d.configurable || Object.defineProperty(window, l, {
                     value: c[l]
                 });
             }
-            for (var d in c.document) {
-                var p = Object.getOwnPropertyDescriptor(s.document, d);
-                p && !0 !== p.configurable || Object.defineProperty(s.document, d, {
-                    value: c.document[d]
+            for (var f in c.document) {
+                var p = Object.getOwnPropertyDescriptor(s.document, f);
+                p && !0 !== p.configurable || Object.defineProperty(s.document, f, {
+                    value: c.document[f]
                 });
             }
             window.parent = window;
@@ -3365,12 +3346,12 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
         }), Object.defineProperty(n, "Audio", {
             enumerable: !0,
             get: function() {
-                return f.default;
+                return d.default;
             }
         }), Object.defineProperty(n, "FileReader", {
             enumerable: !0,
             get: function() {
-                return d.default;
+                return f.default;
             }
         }), Object.defineProperty(n, "HTMLElement", {
             enumerable: !0,
@@ -3433,7 +3414,7 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
                 return E.default;
             }
         }), n.cancelAnimationFrame = n.requestAnimationFrame = n.clearInterval = n.clearTimeout = n.setInterval = n.setTimeout = n.canvas = void 0, 
-        o(e("./Canvas"))), a = o(e("./navigator")), c = o(e("./XMLHttpRequest")), u = o(e("./WebSocket")), s = o(e("./Image")), l = o(e("./ImageBitmap")), f = o(e("./Audio")), d = o(e("./FileReader")), p = o(e("./HTMLElement")), h = o(e("./HTMLImageElement")), m = o(e("./HTMLCanvasElement")), g = o(e("./HTMLMediaElement")), y = o(e("./HTMLAudioElement")), v = o(e("./HTMLVideoElement")), b = o(e("./WebGLRenderingContext")), w = e("./EventIniter/index.js"), _ = o(e("./localStorage")), E = o(e("./location")), x = e("./WindowProperties");
+        o(e("./Canvas"))), a = o(e("./navigator")), c = o(e("./XMLHttpRequest")), u = o(e("./WebSocket")), s = o(e("./Image")), l = o(e("./ImageBitmap")), d = o(e("./Audio")), f = o(e("./FileReader")), p = o(e("./HTMLElement")), h = o(e("./HTMLImageElement")), m = o(e("./HTMLCanvasElement")), g = o(e("./HTMLMediaElement")), y = o(e("./HTMLAudioElement")), v = o(e("./HTMLVideoElement")), b = o(e("./WebGLRenderingContext")), w = e("./EventIniter/index.js"), _ = o(e("./localStorage")), E = o(e("./location")), x = e("./WindowProperties");
         Object.keys(x).forEach(function(e) {
             "default" === e || "__esModule" === e || Object.prototype.hasOwnProperty.call(r, e) || e in n && n[e] === x[e] || Object.defineProperty(n, e, {
                 enumerable: !0,
@@ -3441,8 +3422,7 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
                     return x[e];
                 }
             });
-        }), GameGlobal.screencanvas = GameGlobal.screencanvas || new i.default(), e = GameGlobal.screencanvas, 
-        n.canvas = e;
+        }), GameGlobal.screencanvas = GameGlobal.screencanvas || new i.default(), n.canvas = e = GameGlobal.screencanvas;
         var e = (i = GameGlobal).setTimeout, S = i.setInterval, N = i.clearTimeout, T = i.clearInterval, O = i.requestAnimationFrame, i = i.cancelAnimationFrame;
         n.cancelAnimationFrame = i, n.requestAnimationFrame = O, n.clearInterval = T, n.clearTimeout = N, 
         n.setInterval = S, n.setTimeout = e;
@@ -3640,7 +3620,7 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
                     url: t,
                     success: function(c) {
                         if (200 === c.statusCode) a && a(null, c.tempFilePath || c.filePath); else {
-                            for (var u = void 0, s = void 0, l = 0, f = CDNS.length; l + 1 < f; l++) t.startsWith(CDNS[l]) && (u = CDNS[l], 
+                            for (var u = void 0, s = void 0, l = 0, d = CDNS.length; l + 1 < d; l++) t.startsWith(CDNS[l]) && (u = CDNS[l], 
                             s = CDNS[l + 1]);
                             CDNSwitch && u && s ? (console.warn("CDN: " + u + " download error, switch new CDN: " + s), 
                             e(t.replace(u, s), n, o, r, a)) : (c.filePath && i.deleteFile(c.filePath), console.warn("Download file failed: path: ".concat(t, " message: ").concat(c.statusCode)), 
@@ -3840,7 +3820,7 @@ var e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
     58: [ function(e, t, n) {
         var o, r, i, a, c, u, s, e = e("../../../common/utils");
         window.__globalAdapter && (o = window.__globalAdapter, i = (r = wx.getSystemInfoSync()).windowWidth, 
-        a = r.windowHeight, c = a < i, o.isSubContext = void 0 === wx.getOpenDataContext, 
+        c = (a = r.windowHeight) < i, o.isSubContext = void 0 === wx.getOpenDataContext, 
         o.isDevTool = "devtools" === r.platform, e.cloneMethod(o, wx, "getSystemInfoSync"), 
         e.cloneMethod(o, wx, "onTouchStart"), e.cloneMethod(o, wx, "onTouchMove"), e.cloneMethod(o, wx, "onTouchEnd"), 
         e.cloneMethod(o, wx, "onTouchCancel"), e.cloneMethod(o, wx, "createInnerAudioContext"), 
