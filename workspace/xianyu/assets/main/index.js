@@ -198,7 +198,7 @@ window.__require = function e(t, n, r) {
                 var r = e[t];
                 e[t] = e[n], e[n] = r;
             }
-            function S(e, t, n, r, o) {
+            function C(e, t, n, r, o) {
                 if (0 === e.length) return -1;
                 if ("string" == typeof n ? (r = n, n = 0) : n > 2147483647 ? n = 2147483647 : n < -2147483648 && (n = -2147483648), 
                 n = +n, isNaN(n) && (n = o ? 0 : e.length - 1), n < 0 && (n = e.length + n), n >= e.length) {
@@ -208,11 +208,11 @@ window.__require = function e(t, n, r) {
                     if (!o) return -1;
                     n = 0;
                 }
-                if ("string" == typeof t && (t = c.from(t, r)), c.isBuffer(t)) return 0 === t.length ? -1 : C(e, t, n, r, o);
-                if ("number" == typeof t) return t &= 255, c.TYPED_ARRAY_SUPPORT && "function" == typeof Uint8Array.prototype.indexOf ? o ? Uint8Array.prototype.indexOf.call(e, t, n) : Uint8Array.prototype.lastIndexOf.call(e, t, n) : C(e, [ t ], n, r, o);
+                if ("string" == typeof t && (t = c.from(t, r)), c.isBuffer(t)) return 0 === t.length ? -1 : S(e, t, n, r, o);
+                if ("number" == typeof t) return t &= 255, c.TYPED_ARRAY_SUPPORT && "function" == typeof Uint8Array.prototype.indexOf ? o ? Uint8Array.prototype.indexOf.call(e, t, n) : Uint8Array.prototype.lastIndexOf.call(e, t, n) : S(e, [ t ], n, r, o);
                 throw new TypeError("val must be string, number or Buffer");
             }
-            function C(e, t, n, r, o) {
+            function S(e, t, n, r, o) {
                 var i, a = 1, s = e.length, c = t.length;
                 if (void 0 !== r && ("ucs2" === (r = String(r).toLowerCase()) || "ucs-2" === r || "utf16le" === r || "utf-16le" === r)) {
                     if (e.length < 2 || t.length < 2) return -1;
@@ -403,9 +403,9 @@ window.__require = function e(t, n, r) {
             }, c.prototype.includes = function(e, t, n) {
                 return -1 !== this.indexOf(e, t, n);
             }, c.prototype.indexOf = function(e, t, n) {
-                return S(this, e, t, n, !0);
+                return C(this, e, t, n, !0);
             }, c.prototype.lastIndexOf = function(e, t, n) {
-                return S(this, e, t, n, !1);
+                return C(this, e, t, n, !1);
             }, c.prototype.write = function(e, t, n, r) {
                 if (void 0 === t) r = "utf8", n = this.length, t = 0; else if (void 0 === n && "string" == typeof t) r = t, 
                 n = this.length, t = 0; else {
@@ -1107,15 +1107,15 @@ window.__require = function e(t, n, r) {
                                 return !I(r) && !!r.has(e);
                             }
                             function y(e, t, n) {
-                                if (E(e, t, n)) return S(e, t, n);
+                                if (E(e, t, n)) return C(e, t, n);
                                 var r = F(t);
                                 return O(r) ? void 0 : y(e, r, n);
                             }
-                            function S(e, t, n) {
+                            function C(e, t, n) {
                                 var r = m(t, n, !1);
                                 if (!I(r)) return r.get(e);
                             }
-                            function C(e, t, n, r) {
+                            function S(e, t, n, r) {
                                 m(n, r, !0).set(e, t);
                             }
                             function A(e, t) {
@@ -1290,11 +1290,11 @@ window.__require = function e(t, n, r) {
                                 return function(n, r) {
                                     if (!w(n)) throw new TypeError();
                                     if (!I(r) && !G(r)) throw new TypeError();
-                                    C(e, t, n, r);
+                                    S(e, t, n, r);
                                 };
                             }), e("defineMetadata", function(e, t, n, r) {
                                 if (!w(n)) throw new TypeError();
-                                return I(r) || (r = M(r)), C(e, t, n, r);
+                                return I(r) || (r = M(r)), S(e, t, n, r);
                             }), e("hasMetadata", function(e, t, n) {
                                 if (!w(t)) throw new TypeError();
                                 return I(n) || (n = M(n)), v(e, t, n);
@@ -1306,7 +1306,7 @@ window.__require = function e(t, n, r) {
                                 return I(n) || (n = M(n)), y(e, t, n);
                             }), e("getOwnMetadata", function(e, t, n) {
                                 if (!w(t)) throw new TypeError();
-                                return I(n) || (n = M(n)), S(e, t, n);
+                                return I(n) || (n = M(n)), C(e, t, n);
                             }), e("getMetadataKeys", function(e, t) {
                                 if (!w(e)) throw new TypeError();
                                 return I(t) || (t = M(t)), A(e, t);
@@ -1415,7 +1415,7 @@ window.__require = function e(t, n, r) {
                     var n = Reflect.getOwnMetadata(s.pool, e);
                     if (n) return n.pool;
                     if (t) {
-                        var r = new S(e), o = {
+                        var r = new C(e), o = {
                             pool: r
                         };
                         return Reflect.defineMetadata(s.pool, o, e), v.pools.push(r), r;
@@ -1429,7 +1429,7 @@ window.__require = function e(t, n, r) {
                     };
                 }
                 void 0 === v.pools && (v.pools = []);
-                var S = function() {
+                var C = function() {
                     function e(e) {
                         this.priority = 0, this.idleCount = 0, this.activeCount = 0, this._maxIdleCount = -1, 
                         this._idles = [], this._factory = e;
@@ -1472,8 +1472,8 @@ window.__require = function e(t, n, r) {
                         configurable: !0
                     }), e;
                 }();
-                reflect("@jimu/basis/Pool")(S);
-                var C = function() {
+                reflect("@jimu/basis/Pool")(C);
+                var S = function() {
                     function e() {
                         this.instanceId = u.generateInstanceId(), this.promise = null, this.resolve = null, 
                         this.reject = null, this.value = void 0;
@@ -1493,7 +1493,7 @@ window.__require = function e(t, n, r) {
                         this.value = void 0, this.promise = null, this.resolve = null, this.reject = null;
                     }, t.__decorate([ y() ], e);
                 }();
-                reflect("@jimu/basis/Deferred")(C);
+                reflect("@jimu/basis/Deferred")(S);
                 var A = function(e) {
                     function n(t, n) {
                         var r = e.call(this, t) || this;
@@ -1756,8 +1756,8 @@ window.__require = function e(t, n, r) {
                     }
                     return t.__extends(n, e), n;
                 }(A);
-                reflect("@jimu/basis/InvalidError")(N), e.Deferred = C, e.Instances = O, e.InvalidError = N, 
-                e.ModuleError = A, e.NeverError = w, e.Pool = S, e.Signal = R, e.UnimplementedError = T, 
+                reflect("@jimu/basis/InvalidError")(N), e.Deferred = S, e.Instances = O, e.InvalidError = N, 
+                e.ModuleError = A, e.NeverError = w, e.Pool = C, e.Signal = R, e.UnimplementedError = T, 
                 e.UnsupportedError = b, e.Updater = I, e.Utils = u, e.addModule = function(e) {
                     var t = p.modules;
                     return !(t.indexOf(e) >= 0 || (t.push(e), 0));
@@ -2448,14 +2448,14 @@ window.__require = function e(t, n, r) {
                                     var v = _[h];
                                     g.call(e, v, s);
                                 }
-                                if (null !== p || e.onEntityRemovedb) for (var E = 0, y = l.instances, S = y.length; E < S; E++) v = y[E], 
+                                if (null !== p || e.onEntityRemovedb) for (var E = 0, y = l.instances, C = y.length; E < C; E++) v = y[E], 
                                 null !== p ? p.call(e, v, s) : e.onEntityRemoved(v, s.group);
                                 i._reactiveRemoveEnabled = !1;
                             }
                             if (t) {
-                                var C = s.onEntityAdd, A = s.onComponentAdd;
-                                if (null !== C || e.onEntityAddedb) for (var T = 0, R = u.instances, I = R.length; T < I; T++) v = R[T], 
-                                null !== C ? C.call(e, v, s) : e.onEntityAdded(v, s.group);
+                                var S = s.onEntityAdd, A = s.onComponentAdd;
+                                if (null !== S || e.onEntityAddedb) for (var T = 0, R = u.instances, I = R.length; T < I; T++) v = R[T], 
+                                null !== S ? S.call(e, v, s) : e.onEntityAdded(v, s.group);
                                 if (null !== A) for (var O = 0, w = f.instances, b = w.length; O < b; O++) v = w[O], 
                                 A.call(e, v, s);
                             }
@@ -2489,8 +2489,8 @@ window.__require = function e(t, n, r) {
                             if (v && 0 != (2048 & p.states) !== v) {
                                 p.onEnableb && p.onEnable();
                                 for (var E = 0, y = p.collectors; E < y.length; E++) {
-                                    var S = y[E], C = S.onEntityAdd, A = S.onComponentAdd, T = S.buffers, R = S.group, I = T[0], O = T[2], w = R.matcher, b = w.hasExtra, N = w.mode, L = b && 0 != (2 & N), M = C || p.onEntityAddedb;
-                                    S.handleEvent(!0);
+                                    var C = y[E], S = C.onEntityAdd, A = C.onComponentAdd, T = C.buffers, R = C.group, I = T[0], O = T[2], w = R.matcher, b = w.hasExtra, N = w.mode, L = b && 0 != (2 & N), M = S || p.onEntityAddedb;
+                                    C.handleEvent(!0);
                                     for (var P = 0, D = R.entities; P < D.length; P++) {
                                         var B = D[P];
                                         if (M && !I.contains(B) && I.add(B), A && b) for (var G = 0, x = B.components; G < x.length; G++) {
@@ -2525,8 +2525,8 @@ window.__require = function e(t, n, r) {
                             var s = (M = a[i])._enabled;
                             if (0 != (2048 & M.states) !== s) if (s) M.states |= 2048; else {
                                 M.states &= -2049;
-                                for (var c = 0, u = M.collectors; c < u.length; c++) for (var l = (b = u[c]).onEntityRemove, f = b.onComponentRemove, d = b.buffers, p = b.group, g = d[1], h = d[3], _ = p.matcher, m = _.hasExtra, v = _.mode, E = m && 0 != (2 & v), y = l || M.onEntityRemovedb, S = 0, C = p.entities; S < C.length; S++) {
-                                    var A = C[S];
+                                for (var c = 0, u = M.collectors; c < u.length; c++) for (var l = (b = u[c]).onEntityRemove, f = b.onComponentRemove, d = b.buffers, p = b.group, g = d[1], h = d[3], _ = p.matcher, m = _.hasExtra, v = _.mode, E = m && 0 != (2 & v), y = l || M.onEntityRemovedb, C = 0, S = p.entities; C < S.length; C++) {
+                                    var A = S[C];
                                     if (y && !g.contains(A) && g.add(A), f && m) for (var T = 0, R = A.components; T < R.length; T++) {
                                         var I = R[T];
                                         E && !I.enabled || !p.matcher.isExtra(I.constructor) || h.contains(I) || h.add(I);
@@ -3191,7 +3191,7 @@ window.__require = function e(t, n, r) {
                             for (var v = 0, y = n; v < y.length; v++) 0 !== (_ = y[v]).byteLength && (_.extras ? _.extras.data.byteLength !== _.byteLength && (_.extras.data = new Uint8Array(new ArrayBuffer(_.byteLength))) : _.extras = {
                                 data: new Uint8Array(new ArrayBuffer(_.byteLength))
                             });
-                            for (var S = 0, C = o; S < C.length; S++) (u = (L = C[S]).sparse) ? (E._setAccessorToBuffer(u.indices, n, r), 
+                            for (var C = 0, S = o; C < S.length; C++) (u = (L = S[C]).sparse) ? (E._setAccessorToBuffer(u.indices, n, r), 
                             E._setAccessorToBuffer(u.values, n, r)) : L.extras && E._setAccessorToBuffer(L, n, r);
                             for (var A = 0, T = 0, R = 0, I = r; R < I.length; R++) if (void 0 !== (c = I[R]).byteStride && 0 !== c.byteStride) {
                                 for (var O = n[c.buffer].extras.data, w = new Uint8Array(new ArrayBuffer(c.byteLength)), b = 0, N = i[A]; b < N.length; b++) {
@@ -3508,14 +3508,14 @@ window.__require = function e(t, n, r) {
                                 var y;
                                 if (u = E[v], y = i.entities[u.instanceId]) {
                                     if (0 === u.localId.length) {
-                                        var S = i.entityReferences[u.instanceId], C = u.localId = a.generateLocalId(u);
-                                        S && (S.localId = C);
+                                        var C = i.entityReferences[u.instanceId], S = u.localId = a.generateLocalId(u);
+                                        C && (C.localId = S);
                                     }
                                     i.entities[u.localId] = y, delete i.entities[u.instanceId];
                                     for (var A = 0, T = u.components; A < T.length; A++) {
                                         var R;
-                                        _ = T[A], (R = i.components[_.instanceId]) && (0 === _.localId.length && (S = i.componentReferences[_.instanceId], 
-                                        C = _.localId = a.generateLocalId(_), S && (S.localId = C)), y.components[y.components.indexOf(_.instanceId.toString())] = _.localId, 
+                                        _ = T[A], (R = i.components[_.instanceId]) && (0 === _.localId.length && (C = i.componentReferences[_.instanceId], 
+                                        S = _.localId = a.generateLocalId(_), C && (C.localId = S)), y.components[y.components.indexOf(_.instanceId.toString())] = _.localId, 
                                         i.components[_.localId] = R, delete i.components[_.instanceId]);
                                     }
                                 }
@@ -4122,25 +4122,25 @@ window.__require = function e(t, n, r) {
             return t.reset(e), t.decode();
         }
         var y = new g();
-        function S(e, t, n) {
+        function C(e, t, n) {
             if (void 0 === n && (n = !0), void 0 === t) return m(e, n);
             var r = y;
             return r.reset(), r.withDic(t), r.encode(e), r.getBytes(n);
         }
-        var C = new h();
+        var S = new h();
         function A(e, t) {
             if (void 0 === t) return E(e);
-            var n = C;
+            var n = S;
             return n.reset(e), n.withDic(t), n.decode();
         }
         globalThis.bon = {
             encode: m,
             decode: E,
-            encodeWithDic: S,
+            encodeWithDic: C,
             decodeWithDic: A
         }, n.BonDecoder = p, n.BonDecoderWithDic = h, n.BonEncoder = d, n.BonEncoderWithDic = g, 
         n.DataReader = a, n.DataWriter = u, n.Int64 = l, n.decode = E, n.decodeWithDic = A, 
-        n.encode = m, n.encodeWithDic = S;
+        n.encode = m, n.encodeWithDic = C;
     }, {
         "@o4e/global": 14
     } ],
@@ -4370,10 +4370,10 @@ window.__require = function e(t, n, r) {
             return e[0] = 112, e[1] = 108, e[2] = 170 & e[2] | (t >> 7 & 1) << 6 | (t >> 6 & 1) << 4 | (t >> 5 & 1) << 2 | (t >> 4 & 1) << 0, 
             e[3] = 170 & e[3] | (t >> 3 & 1) << 6 | (t >> 2 & 1) << 4 | (t >> 1 & 1) << 2 | (t >> 0 & 1) << 0, 
             e;
-        }, S = function(e) {
+        }, C = function(e) {
             for (var t = (e[2] >> 6 & 1) << 7 | (e[2] >> 4 & 1) << 6 | (e[2] >> 2 & 1) << 5 | (e[2] >> 0 & 1) << 4 | (e[3] >> 6 & 1) << 3 | (e[3] >> 4 & 1) << 2 | (e[3] >> 2 & 1) << 1 | (e[3] >> 0 & 1) << 0, n = Math.min(100, e.length); --n >= 2; ) e[n] ^= t;
             return e[0] = 4, e[1] = 34, e[2] = 77, e[3] = 24, E(e);
-        }, C = function() {
+        }, S = function() {
             function e() {
                 this.states = {}, this.nextState = void 0;
             }
@@ -4900,7 +4900,7 @@ window.__require = function e(t, n, r) {
                 if (s) {
                     var c = t[i];
                     s.recordFlag && (null === (o = t.setHistoryValue) || void 0 === o || o.call(t, i, c)), 
-                    t[i] = Se(a, c, s.type, r);
+                    t[i] = Ce(a, c, s.type, r);
                 }
             }
             r && n.getAllProps().forEach(function(n) {
@@ -4910,7 +4910,7 @@ window.__require = function e(t, n, r) {
                 }
             });
         }
-        function Se(e, t, r, o) {
+        function Ce(e, t, r, o) {
             switch (r || (r = z(t)), r.typeCode) {
               case "Number":
                 return +e || 0;
@@ -4931,7 +4931,7 @@ window.__require = function e(t, n, r) {
                 if (!Array.isArray(e)) return [];
                 var i = [], a = r.eTypes[0];
                 return e.forEach(function(e) {
-                    i.push(Se(e, void 0, a, !1));
+                    i.push(Ce(e, void 0, a, !1));
                 }), i;
 
               case "Map":
@@ -4941,7 +4941,7 @@ window.__require = function e(t, n, r) {
                 var c = r.eTypes[0], u = r.eTypes[1];
                 for (var l in e) {
                     var f = e[l];
-                    l = Se(l, void 0, c), null == f ? s.delete(l) : s.set(l, Se(f, s.get(l), u, o));
+                    l = Ce(l, void 0, c), null == f ? s.delete(l) : s.set(l, Ce(f, s.get(l), u, o));
                 }
                 return !p && o && s.forEach(function(t, n) {
                     n + "" in e || s.delete(n);
@@ -4955,20 +4955,20 @@ window.__require = function e(t, n, r) {
               case "Object":
                 if (!e) return r.createInstance();
                 var d, p = !(d = t);
-                for (var l in p && (d = new r.ctor()), e) d[l] = Se(e[l], d[l], void 0, o);
+                for (var l in p && (d = new r.ctor()), e) d[l] = Ce(e[l], d[l], void 0, o);
                 if (!p && o) for (var l in d) l in e || delete d[l];
                 return d;
 
               case "Any":
                 if (null == t) return e;
                 var g = z(e), h = z(t);
-                return g.typeCode === h.typeCode || "Object" === g.typeCode && ("Class" === h.typeCode || "Map" == h.typeCode) ? Se(e, t, void 0, o) : e;
+                return g.typeCode === h.typeCode || "Object" === g.typeCode && ("Class" === h.typeCode || "Map" == h.typeCode) ? Ce(e, t, void 0, o) : e;
 
               default:
                 return;
             }
         }
-        function Ce(e) {
+        function Se(e) {
             return function(t, n) {
                 var r = ee(t.constructor).getOwnProp(n);
                 r && (r.recordFlag = e);
@@ -5056,7 +5056,7 @@ window.__require = function e(t, n, r) {
                         return [ "getData type not match, ".concat(n.name, " != ").concat(t.name) ];
                     })(), t = n;
                 }
-                return this._data = Se(this.rawData, e, t), this._data;
+                return this._data = Ce(this.rawData, e, t), this._data;
             }, e.prototype.toLogString = function() {
                 var e = Object.assign({}, this._raw);
                 return delete e.body, e.data = this.rawData, e.rtt = this.rtt, M(e);
@@ -5079,7 +5079,7 @@ window.__require = function e(t, n, r) {
         }
         (be = Le)("lx", {
             encrypt: y,
-            decrypt: S
+            decrypt: C
         }), be("x", {
             encrypt: N,
             decrypt: L
@@ -5366,7 +5366,7 @@ window.__require = function e(t, n, r) {
                 var t = e.call(this) || this;
                 return t._destroyed = !1, t._pendingRecv = new Map(), t._recvGapSince = 0, t.enc = De(""), 
                 t.connVer = 0, t.badResp = 0, t.sending = !1, t.receiving = !1, globalThis.ws = t, 
-                t.networkState = c.rpc.networkState, t._sm = new C(), t._sm.registerState({
+                t.networkState = c.rpc.networkState, t._sm = new S(), t._sm.registerState({
                     state: n.WebSocketClientState.Running,
                     enter: function() {
                         return t.onRunningEnter();
@@ -5898,7 +5898,7 @@ window.__require = function e(t, n, r) {
             },
             PropInfo: oe,
             ReceiveMsgImpl: Re,
-            StateMachine: C,
+            StateMachine: S,
             SyncData: F,
             TimeUtil: b,
             TypeInfo: re,
@@ -5932,12 +5932,12 @@ window.__require = function e(t, n, r) {
             key: Ae,
             lz4Decode: E,
             lz4Encode: v,
-            lz4XorDecode: S,
+            lz4XorDecode: C,
             lz4XorEncode: y,
             map_t: ge,
             options: c,
             prop: ie,
-            record: Ce,
+            record: Se,
             registerEncryptor: Le,
             reset: Ee,
             sendAuto: nt,
@@ -5949,7 +5949,7 @@ window.__require = function e(t, n, r) {
             syncData: j,
             toJsonStringSB: M,
             toPlain: ve,
-            toTyped: Se,
+            toTyped: Ce,
             type: ae,
             version: "3.1.68",
             xorDecode: L,
@@ -5958,16 +5958,16 @@ window.__require = function e(t, n, r) {
         globalThis.o4e = Object.assign(globalThis.o4e || {}, rt), n.DataBase = me, n.DefaultSender = Je, 
         n.DelegateBase = K, n.EVENT_CLOSED = "e_closed", n.EVENT_CONNECTED = k, n.EVENT_MSG = U, 
         n.EVENT_PRECONNECT = H, n.EventEmitter = x, n.HttpDelegate = Ge, n.HttpRequest = P, 
-        n.PropInfo = oe, n.ReceiveMsgImpl = Re, n.StateMachine = C, n.SyncData = F, n.TimeUtil = b, 
+        n.PropInfo = oe, n.ReceiveMsgImpl = Re, n.StateMachine = S, n.SyncData = F, n.TimeUtil = b, 
         n.TypeInfo = re, n.WebSocketClient = qe, n.WebSocketDelegate = Xe, n.WebSocketDelegateAutoRecover = ze, 
         n.addStartBack = l, n.any_t = de, n.array_t = pe, n.autoProp = fe, n.bkdrHash = h, 
         n.bkdrHashStr = _, n.bkdrHashStrFast = m, n.clazz = ce, n.decMsg = we, n.defaultSender = $e, 
         n.encMsg = Oe, n.getEncryptor = De, n.getTypeInfo = ee, n.getTypeInfoByInstance = z, 
-        n.getTypeInfoByName = X, n.key = Ae, n.lz4Decode = E, n.lz4Encode = v, n.lz4XorDecode = S, 
-        n.lz4XorEncode = y, n.map_t = ge, n.options = c, n.prop = ie, n.record = Ce, n.registerEncryptor = Le, 
+        n.getTypeInfoByName = X, n.key = Ae, n.lz4Decode = E, n.lz4Encode = v, n.lz4XorDecode = C, 
+        n.lz4XorEncode = y, n.map_t = ge, n.options = c, n.prop = ie, n.record = Se, n.registerEncryptor = Le, 
         n.reset = Ee, n.sendAuto = nt, n.setIsArray = he, n.setIsMap = _e, n.setSender = tt, 
         n.sleep = A, n.startup = f, n.syncData = j, n.toJsonStringSB = M, n.toPlain = ve, 
-        n.toTyped = Se, n.type = ae, n.version = "3.1.68", n.xorDecode = L, n.xorEncode = N;
+        n.toTyped = Ce, n.type = ae, n.version = "3.1.68", n.xorDecode = L, n.xorEncode = N;
     }, {
         "@o4e/bon": 11,
         "@o4e/global": 14,
@@ -6148,10 +6148,10 @@ window.__require = function e(t, n, r) {
                 function y() {
                     return "function" == typeof Symbol && Symbol.toPrimitive || "@@toPrimitive";
                 }
-                function S(e) {
+                function C(e) {
                     return null === e ? null : "object" == typeof e ? "" + e : e;
                 }
-                function C(e, t) {
+                function S(e, t) {
                     for (var n = e.next(); !n.done; ) t(n.value), n = e.next();
                 }
                 function A() {
@@ -6204,7 +6204,7 @@ window.__require = function e(t, n, r) {
                 var M = {
                     identity: L,
                     structural: function(e, t) {
-                        return Sn(e, t);
+                        return Cn(e, t);
                     },
                     default: function(e, t) {
                         return function(e, t) {
@@ -6212,7 +6212,7 @@ window.__require = function e(t, n, r) {
                         }(e, t) || L(e, t);
                     },
                     shallow: function(e, t) {
-                        return Sn(e, t, 1);
+                        return Cn(e, t, 1);
                     }
                 }, P = function(e, t) {
                     return (P = Object.setPrototypeOf || {
@@ -6361,7 +6361,7 @@ window.__require = function e(t, n, r) {
                         deep: !1
                     }) : c(!1);
                 }), $ = Y(W), ee = Y(function(e, t) {
-                    return Sn(e, t) ? t : e;
+                    return Cn(e, t) ? t : e;
                 }), te = {
                     box: function(e, t) {
                         arguments.length > 2 && re("box");
@@ -6551,7 +6551,7 @@ window.__require = function e(t, n, r) {
                         for (var n = e.observing, r = n.length; r--; ) n[r].lowestObserverState = t.IDerivationState.UP_TO_DATE;
                     }
                 }
-                var Se = 0, Ce = 1, Ae = Object.getOwnPropertyDescriptor(function() {}, "name");
+                var Ce = 0, Se = 1, Ae = Object.getOwnPropertyDescriptor(function() {}, "name");
                 function Te(e, t) {
                     var n = function() {
                         return Re(e, t, this, arguments);
@@ -6590,14 +6590,14 @@ window.__require = function e(t, n, r) {
                         prevAllowStateReads: ve(!0),
                         notifySpy: r,
                         startTime: o,
-                        actionId: Ce++,
-                        parentActionId: Se
+                        actionId: Se++,
+                        parentActionId: Ce
                     };
-                    return Se = u.actionId, u;
+                    return Ce = u.actionId, u;
                 }
                 function Oe(e) {
-                    Se !== e.actionId && c("invalid action stack. did you forget to finish an action?"), 
-                    Se = e.parentActionId, void 0 !== e.error && (Ue.suppressReactionErrors = !0), be(e.prevAllowStateChanges), 
+                    Ce !== e.actionId && c("invalid action stack. did you forget to finish an action?"), 
+                    Ce = e.parentActionId, void 0 !== e.error && (Ue.suppressReactionErrors = !0), be(e.prevAllowStateChanges), 
                     Ee(e.prevAllowStateReads), Ke(), me(e.prevDerivation), e.notifySpy && nt({
                         time: Date.now() - e.startTime
                     }), Ue.suppressReactionErrors = !1;
@@ -6669,7 +6669,7 @@ window.__require = function e(t, n, r) {
                     }, t.prototype.toString = function() {
                         return this.name + "[" + this.value + "]";
                     }, t.prototype.valueOf = function() {
-                        return S(this.get());
+                        return C(this.get());
                     }, t;
                 }(w);
                 Ne.prototype[y()] = Ne.prototype.valueOf;
@@ -6765,7 +6765,7 @@ window.__require = function e(t, n, r) {
                     }, e.prototype.toString = function() {
                         return this.name + "[" + this.derivation.toString() + "]";
                     }, e.prototype.valueOf = function() {
-                        return S(this.get());
+                        return C(this.get());
                     }, e;
                 }();
                 Me.prototype[y()] = Me.prototype.valueOf;
@@ -7091,10 +7091,10 @@ window.__require = function e(t, n, r) {
                 function yt() {
                     this.message = "FLOW_CANCELLED";
                 }
-                function St(e) {
+                function Ct(e) {
                     "function" == typeof e.cancel && e.cancel();
                 }
-                function Ct(e, t) {
+                function St(e, t) {
                     if (null == e) return !1;
                     if (void 0 !== t) {
                         if (!1 === _n(e)) return !1;
@@ -7680,12 +7680,12 @@ window.__require = function e(t, n, r) {
                                 }
                                 return c("Cannot convert to map from '" + e + "'");
                             }(e), r = new Map(), o = !1;
-                            if (C(t._data.keys(), function(e) {
+                            if (S(t._data.keys(), function(e) {
                                 if (!n.has(e)) if (t.delete(e)) o = !0; else {
                                     var i = t._data.get(e);
                                     r.set(e, i);
                                 }
-                            }), C(n.entries(), function(e) {
+                            }), S(n.entries(), function(e) {
                                 var n = G(e, 2), i = n[0], a = n[1], s = t._data.has(i);
                                 if (t.set(i, a), t._data.has(i)) {
                                     var c = t._data.get(i);
@@ -8005,14 +8005,14 @@ window.__require = function e(t, n, r) {
                     return (void 0 !== t ? mn(e, t) : _n(e) || on(e) || cn(e) ? vn(e) : mn(e)).name;
                 }
                 var yn = Object.prototype.toString;
-                function Sn(e, t, n) {
+                function Cn(e, t, n) {
                     return void 0 === n && (n = -1), function e(t, n, r, o, i) {
                         if (t === n) return 0 !== t || 1 / t == 1 / n;
                         if (null == t || null == n) return !1;
                         if (t != t) return n != n;
                         var a = typeof t;
                         if ("function" !== a && "object" !== a && "object" != typeof n) return !1;
-                        t = Cn(t), n = Cn(n);
+                        t = Sn(t), n = Sn(n);
                         var s = yn.call(t);
                         if (s !== yn.call(n)) return !1;
                         switch (s) {
@@ -8050,7 +8050,7 @@ window.__require = function e(t, n, r) {
                         return o.pop(), i.pop(), !0;
                     }(e, t, n);
                 }
-                function Cn(e) {
+                function Sn(e) {
                     return en(e) ? e.peek() : m(e) || on(e) ? E(e.entries()) : v(e) || cn(e) ? E(e.entries()) : e;
                 }
                 function An(e, t) {
@@ -8189,9 +8189,9 @@ window.__require = function e(t, n, r) {
                         });
                         return c.cancel = st(t + " - runid: " + i + " - cancel", function() {
                             try {
-                                s && St(s);
+                                s && Ct(s);
                                 var e = a.return(void 0), t = Promise.resolve(e.value);
-                                t.then(f, f), St(t), n(new yt());
+                                t.then(f, f), Ct(t), n(new yt());
                             } catch (e) {
                                 e = VM2_INTERNAL_STATE_DO_NOT_USE_OR_PROGRAM_WILL_FAIL.handleException(e);
                                 n(e);
@@ -8213,9 +8213,9 @@ window.__require = function e(t, n, r) {
                 }, t.isArrayLike = function(e) {
                     return Array.isArray(e) || en(e);
                 }, t.isBoxedObservable = Le, t.isComputed = function(e) {
-                    return arguments.length > 1 ? c(!1) : Ct(e);
+                    return arguments.length > 1 ? c(!1) : St(e);
                 }, t.isComputedProp = function(e, t) {
-                    return "string" != typeof t ? c(!1) : Ct(e, t);
+                    return "string" != typeof t ? c(!1) : St(e, t);
                 }, t.isFlowCancellationError = function(e) {
                     return e instanceof yt;
                 }, t.isObservable = Tt, t.isObservableArray = en, t.isObservableMap = on, t.isObservableObject = _n, 
@@ -8914,7 +8914,7 @@ window.__require = function e(t, n, r) {
     }, {} ],
     24: [ function(e, t) {
         (function(e) {
-            var n, r, o, i, a, s, c, u, l, f, d, p, g, h, _, m, v, E, y, S, C, A, T, R, I, O, w, b, N, L, M, P;
+            var n, r, o, i, a, s, c, u, l, f, d, p, g, h, _, m, v, E, y, C, S, A, T, R, I, O, w, b, N, L, M, P;
             (function(n) {
                 var r = "object" == typeof e ? e : "object" == typeof self ? self : "object" == typeof this ? this : {};
                 function o(e, t) {
@@ -9159,7 +9159,7 @@ window.__require = function e(t, n, r) {
                     return e.concat(r || Array.prototype.slice.call(t));
                 }, y = function(e) {
                     return this instanceof y ? (this.v = e, this) : new y(e);
-                }, S = function(e, t, n) {
+                }, C = function(e, t, n) {
                     if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
                     var r, o = n.apply(e, t || []), i = [];
                     return r = Object.create(("function" == typeof AsyncIterator ? AsyncIterator : Object).prototype), 
@@ -9195,7 +9195,7 @@ window.__require = function e(t, n, r) {
                     function l(e, t) {
                         e(t), i.shift(), i.length && s(i[0][0], i[0][1]);
                     }
-                }, C = function(e) {
+                }, S = function(e) {
                     var t, n;
                     return t = {}, r("next"), r("throw", function(e) {
                         throw e;
@@ -9335,7 +9335,7 @@ window.__require = function e(t, n, r) {
                 e("__esDecorate", s), e("__runInitializers", c), e("__propKey", u), e("__setFunctionName", l), 
                 e("__metadata", f), e("__awaiter", d), e("__generator", p), e("__exportStar", g), 
                 e("__createBinding", N), e("__values", h), e("__read", _), e("__spread", m), e("__spreadArrays", v), 
-                e("__spreadArray", E), e("__await", y), e("__asyncGenerator", S), e("__asyncDelegator", C), 
+                e("__spreadArray", E), e("__await", y), e("__asyncGenerator", C), e("__asyncDelegator", S), 
                 e("__asyncValues", A), e("__makeTemplateObject", T), e("__importStar", R), e("__importDefault", I), 
                 e("__classPrivateFieldGet", O), e("__classPrivateFieldSet", w), e("__classPrivateFieldIn", b), 
                 e("__addDisposableResource", L), e("__disposeResources", M), e("__rewriteRelativeImportExtension", P);
@@ -9362,17 +9362,17 @@ window.__require = function e(t, n, r) {
         n.Tags = n.BuffLabel = n.BuffType = n.SkillEffect = n.SkillType = n.CampType = n.PickOrder = n.PickSort = n.PickFilter = n.PickType = n.TriggerConditionType = n.TriggerType = n.SkillLevelUpKey = n.RankType = n.HeroUnlockConditionType = n.SeasonRankType = n.FightRoomFullType = n.RobotSettings = n.Settings = n.RoomThemeType = n.ChoiceType = n.PushType = n.PrivilegeExpirationType = n.PrivilegeType = n.PeakRecordType = n.PackType = n.NightMareStarWheelType = n.NightMareStarConditionType = n.NightMareRaceTaskType = n.NightMareRaceConditionType = n.MonthActivityTaskType = n.MonthActivityType = n.MonsterType = n.SubModType = n.ModuleType = n.MedallionType = n.LegionWarMapType = n.LegionWarType2 = n.LegionWarType = n.TagColor = n.TagConditionType = n.LegionRank = n.LegionNameplateCondition = n.LegionNameplate = n.MatchZoneType = n.PayCurrencyType = n.ExpirationType = n.ItemLegionType = n.ItemType = n.ItemColor = void 0, 
         n.HolyBeastSkillConf = n.HolyBeastBaseConf = n.HolyBeastConstant = n.GoodsList = n.FragmentSynthesisConf = n.CollectionRankReward = n.CollectionExchangeShopConf = n.CollectionGiftPackConf = n.CollectionGiftPackConstant = n.ApexHelp = n.ApexFormation = n.ApexSupport = n.ApexShopConf = n.ApexRankRewardConf = n.ApexTaskConf = n.ApexKoMatchConf = n.ApexTeamMatchConf = n.ApexStageConf = n.ApexScheduleConf = n.ApexSeasonConf = n.ApexConstantConf = n.ActMergeItemGroupConf = n.ActMergeItemConf = n.ActMergeBoxConf = n.ActMergeTilesConf = n.ActMergeItemCostProgressConf = n.ActMergeProgressConf = n.ActMergeBoardConf = n.ActMergeConstant = n.Benefit = n.VipBenefitType = n.TournamentCondition = n.TestType = n.TaskCompleteType = n.TaskTriggerTimeType = n.TaskTriggerType = n.TaskType = n.StudyActType = n.OptionType = n.StudyClothesType = n.QuestionType = n.SpringActType = n.SkyBookType = n.SkyBuildingType = n.PetSkillUnlockType = n.BattleStatisticsKey = n.SkillStorageView = n.DamageType = n.OperatorType = n.BuffSlot = void 0, 
         n.LegionWarRankConf = n.LegionWarPreConf = n.LegionWarPointConf = n.LegionWarCityConf = n.LegionWarCheerConf = n.LegionWarBuildingConf = n.LegionWarBossConf = n.PayLoadTaskProgress = n.PayLoadTasks = n.PayLoadPathConf = n.PayLoadItem = n.PayLoadMap = n.PayLoadScheduleConf = n.PayLoadConstant = n.LegionLeagueMarqueeConf = n.LegionMemberCodeConf = n.LegionCodeConf = n.LegionCodeConstant = n.CarModifiedRewards = n.CarModified = n.CarPersonalPhaseRankReward = n.CarPersonalDayRankReward = n.CarLegionRankReward = n.PaidCar = n.FreeCar = n.CarQuality = n.CarLegion = n.CarConstantConf = n.LegacyChargeReward = n.LegacyBoss = n.LegacyGiftTaskConf = n.LegacyTasks = n.LegacyGiftConf = n.LegacyShopConf = n.LegacySpecialAttrConf = n.LegacyExtraAttrWeightPoolConf = n.LegacyAttrWeightPoolConf = n.LegacyDreamDustConf = n.LegacyCreateLevelConf = n.LegacyConf = n.LegacyScheduleConf = n.LegacyConstant = n.LeagueSeasonGroupConf = n.LeagueGroupConf = n.StateConf = n.InvitationCodeReward = n.HorseproAttrConf = n.HolyBeastExchangeConf = n.HolyBeastTextureConf = n.HolyBeastOrderConf = void 0, 
-        n.TenDayTaskConf = n.TenDayExchangeConf = n.TenDayDailyConf = n.TenDayActConf = n.TenDayActMapConf = n.TenDayConstantConf = n.SkySkillConf = n.SkyShopConf = n.SkyShopConstant = n.SkyProConf = n.SkillEffectSort = n.SeasonTowerRank = n.SeasonTowerRankReward = n.SeasonTowerReward = n.SeasonTowerConf = n.SeasonRescueMonster = n.SeasonRescueConstant = n.SeasonLvRewardConf = n.ArtifactDescConf = n.SeasonArtifactConf = n.QuenchChargeMissionConf = n.QuenchChargeConf = n.QuenchChargeConstant = n.QuenchLotteryRewardConf = n.QuenchCarnivalLevelConf = n.QuenchCarnivalMissionConf = n.QuenchCarnivalConstant = n.PetPlayActiveTask = n.PetPlayBoardConf = n.PetPlayConstant = n.PetQuenchConsumeConf = n.PetTilesConf = n.PetAttrRandPoolConf = n.PetAttrTypePoolConf = n.QuenchAdditionConf = n.PetQuenchAdditionConf = n.PetTalentConf = n.PetStarConf = n.PetLevelConf = n.PetConf = n.PetColorConf = n.PetEggConf = n.PetConstant = n.NightMareBook = n.CompassReward = n.NightMareMonster = n.NightMare = n.MatchTeam = n.LiveEventConf = n.LegionWarThirdPointConf = void 0, 
-        n.ActMultiTowerScheduleConf = n.ActMultiTowerConf = n.MissionConf = n.ActGmGroupConf = n.KillBossAchievementConf = n.VoteConf = n.CheerRewardConf = n.CheerConf = n.EGameConf = n.MonopolyConf = n.TreasureConf = n.CumulativeChargeActConf = n.FuKaActConf = n.ProgressBarConf = n.MineConf = n.BingoRewardConf = n.BingoConf = n.ActMerchandiseConf = n.ExchangeActConf = n.SkinGachaMilestoneRewarConf = n.SkinGachaRewardConf = n.LotteryRatioConf = n.LotteryPackConf = n.LotteryActConf = n.MilestoneRewardConf = n.ActFestivalConf = n.DragonBoatLegionConf = n.DragonBoatConf = n.ActConstantConf = n.ActCardTowerShopConf = n.ActCardTowerEquipConf = n.ActCardTowerRankRewardConf = n.ActCardTowerRewardConf = n.ActCardTowerShowConf = n.ActCardTowerConf = n.ActHideBossConf = n.ActBossConf = n.BetActivityTimeConf = n.BetFormationConf = n.BetBaseConf = n.AchievementTaskList = n.AchievementConf = n.UnsealCardConf = n.UnsealEventTimeConf = n.UnsealShowConf = n.UnsealBaseConf = n.AccSprintConf = n.TenDaySprintCarnivalConf = n.TenDayGiftConf = n.TenDayRankRewardConf = void 0, 
-        n.RewardInfo = n.PaymentData = n.RewardData = n.AttributeData = n.SkillLevelUpData = n.BasePush = n.AvatarFrameConf = n.AvatarConf = n.AutoConf = n.AuraConf = n.AttributeLimitConf = n.AttributeCompareConf = n.ArtifactConf = n.ArenaRefreshConf = n.ArenaGift = n.ArenaScore = n.ArenaRankConf = n.AFKMapConf = n.SignConf = n.MerchandiseConf = n.FundTaskConf = n.FundConf = n.DayBuyConf = n.DailyDealConf = n.CardConf = n.ActivityConf = n.ActRogueBookRewardConf = n.ActRogueBookColumnConf = n.ActRogueBookConf = n.ActRogueMonsterConf = n.ActRogueBossConf = n.ActRogueDebuffConf = n.ActRogueBuffConf = n.ActRogueConsumeConf = n.ActRogueEquipLevelConf = n.ActRogueEquipConf = n.ActRogueArtifactConf = n.ActRogueRankRewardConf = n.ActRogueRewardConf = n.ActRogueRowConf = n.ActRogueLevelConf = n.NoobSubMissionConf = n.NoobMissionConf = n.NoobSign = n.ActNoobConf = n.ActMultiTowerRewardConf = n.ActMultiTowerEnhanceConf = n.LanguageConf = n.ActMultiTowerLevelRewardConf = n.ActMultiTowerShowConf = void 0, 
-        n.CoinGetConf = n.ChatAlertConf = n.ChatSensitiveConf = n.CharmTask = n.CharmGift = n.CharmConf = n.ChargePackConf = n.CareerChallengeConstantConf = n.CareerChallengeConf = n.CardDetailConf = n.CardPackageConf = n.CardSeriesConf = n.CalenderMonthConf = n.CalenderActIConf = n.CalendarConf = n.BulletConf = n.BriefreportConf = n.BoxStageConf = n.BoxConf = n.BottleTime = n.BottlePool = n.Bottle = n.BossTowerShopConf = n.BossHelpRankRewardConfig = n.BossTowerConf = n.BossRewardsConfig = n.BossLoopConfig = n.BossInfoConfig = n.BookStageConf = n.BookConf = n.BlessingSortConf = n.BlessingData = n.BlessingConf = n.BlackMarketMerchandiseConf = n.BlackMarketConf = n.BattlePassMissionConf = n.BattlePassConf = n.BattlePassBaseConf = n.OppositeBattleAttributeKey = n.GotoData = n.LegionRewardData = n.BuffCommand = n.JumpInfo = n.GuideAnim = n.BundleData = n.StarSpendPack = n.ComboActivateData = n.BookActivateData = n.BattleMonsterData = n.ConditionData = void 0, 
-        n.FootballMatchScheduleConf = n.FootballMatchConstantConf = n.FlyNumberStyleSheet = n.FlyNumberFormatter = n.FlyupTheme = n.ExcelVer = n.EvoTowerShareTasks = n.EvoTowerShareConstant = n.EvoTowerGachaShop = n.EvoTowerGachaRewardConf = n.EvoTowerGachaConstant = n.EvoTowerLegionRankReward = n.EvoTowerTaskConf = n.EvoTowerStageConf = n.EvoTowerReward = n.EvoTowerClubPrivilegeConf = n.EvoTowerConf = n.EvoTowerScheduleConf = n.EvoTowerConstant = n.EquipmentForgeSpend = n.EquipmentSetConf = n.EquipmentLvConf = n.EquipmentConf = n.EquipForgeSpend = n.EquipLvSpend = n.EquipLvConf = n.EquipConf = n.EmojiConf = n.EffectConf = n.DungeonMonsterConf = n.DungeonItemConf = n.DungeonMerchantConf = n.DungeonConf = n.DropDailyMail = n.DingniuInConstantConf = n.DingniuConstantConf = n.DiamondShopConf = n.DialogConf = n.WeekLimitConf = n.DayLimitConf = n.DailyTaskConf = n.CustomCardConf = n.CurrencyMarketConf = n.ConstantConf = n.CollectionItem = n.CollectionHeroSuitsConf = n.CollectionSeriesConf = n.CollectionHeroConf = n.CollectionStageConf = n.CollectionConf = void 0, 
-        n.GooglePrice = n.IosPrice = n.MailLanguageConf = n.LoadingLanguageConf = n.ErrocodeLanguageConf = n.ItemLegionConf = n.ItemConf = n.Invite = n.HideQuenchPoint = n.HorseMapConf = n.HorseMatchingRule = n.HorseMerchandiseConf = n.HorseSelfRewardConf = n.HorseLegionRewardConf = n.HorseBoxConf = n.RandomHorseConf = n.HorseProgressConf = n.HorseSubScheduleConf = n.HorseScheduleConf = n.HorseConstant = n.HeroStarSpend = n.HeroStarExt = n.HeroOrder = n.HeroLvLimit = n.HeroLvSpend = n.HeroAttrConf = n.HeroConf = n.H5GiftConf = n.GuideConf = n.GlobalSignGoalConf = n.AutoAddConf = n.SingleSignConf = n.GlobalSignConf = n.GenieSweepConf = n.GenieLevelConf = n.GenieConf = n.TTSubscribeMsg = n.GameCardTTConf = n.GachaConstant = n.GachaBox = n.GachaAccumRewardConf = n.GachaGroupConf = n.GachaRewardConf = n.FormationConf = n.FootballMatchPicConf = n.FootballPlayerConf = n.KnockoutStageGroupConf = n.FootballFormationConf = n.WeeklyRankShowConf = n.WeeklyScoreConf = void 0, 
-        n.LevelWeaponDropConf = n.LevelWeaponSkillConf = n.LevelWeaponConf = n.ChapterConf = n.LevelConf = n.SeasonLegionLeagueSessionConf = n.SeasonLegionScheduleConf = n.LegionScheduleConf = n.LegionWarGuildRewardConf = n.LegionWarSkyKillRewardConf = n.LegionWarSkyRewardConf = n.SeasonLegionWarSkyRewardConf = n.LegionWarKillRewardConf = n.LegionWarRewardConf = n.WarRewardPageConf = n.LegionWarMedallionConf = n.LegionWarMapTypeMappingConf = n.LegionWarMapConf = n.LegionWarLanguageConf = n.MultiKillConf = n.AirshipConf = n.LegionWarConstantConf = n.TagConditionConf = n.TagConf = n.LegionSkinStoreConf = n.LegionStoreConf = n.LegionResearchConf = n.ResearchConf = n.LegionRankVersusConf = n.LegionRankRewardConf = n.LegionPointConf = n.LegionRankConstantConf = n.LegionRankConf = n.LegionNameplateConf = n.MatchZoneTypeConf = n.RankRangeConf = n.LegionMarqueeConf = n.LegionLevelConf = n.LegionLeagueSessionConf = n.LegionLeagueConf = n.LegionWarFinalRewardConf = n.LegionLeagueRewardConf = n.LegionLeagueSeasonCheerConf = n.LegionLeagueCheerConf = n.LegionLeagePointConf = n.LegionCupConf = n.LegionBossCostConf = n.LegionBossDailyRewardConf = n.LegionBossRewardConf = n.LegionBossConf = void 0, 
-        n.PeakRecord = n.BattleReward = n.PaoMaDengConf = n.PackConf = n.OverviewConf = n.OverviewConstant = n.OtherItemConf = n.NightMareGroupStarRewardConf = n.NightMareStarWheelConf = n.NightMareStarBookConf = n.NightMareStarConf = n.NightMareStarConstant = n.NightMareRaceTaskRewardConf = n.NightMareRaceRankRewardConf = n.NightMareRaceBattleBuffConf = n.NightMareRaceMonsterConf = n.NightMareRaceConf = n.NightMareRaceConstant = n.LegionGroupConf = n.MoonSubScheduleConf = n.MoonScheduleConf = n.MoonSelfRewardConf = n.MoonLegionRewardConf = n.MoonMerchandiseConf = n.TeleportConf = n.MoonTreeConf = n.RabbitBoxConf = n.MoonRabbitMonsterConf = n.MoonRabbitConf = n.MoonConstant = n.MonthActivityConf = n.MonthActivity = n.LevelCoeffConf = n.MonsterConf = n.SubModConf = n.ModuleConf = n.MedallionConf = n.MapConf = n.WeaponPassiveConf = n.WeaponActiveConf = n.WeaponConf = n.ProfileCardConf = n.LordSkinConf = n.LordOrderConf = n.LordLvLimitConf = n.LordLvConf = n.ActLevelConstant = n.ActModuleConditionConf = n.ActGuideConf = n.ActLevelConf = void 0, 
-        n.SeasonLordOrderConf = n.LevelLimitConf = n.SeasonLevel = n.HeroConditionConf = n.SeasonHeroConf = n.GemstoneAttrConf = n.GemstoneRandConf = n.SeasonHeroArrt = n.SeasonHeroBookConf = n.SeasonMerchandiseConf = n.SeasonBattlePassReward = n.SeasonBattlePassBaseConf = n.SeasonArenaRank = n.SeasonArenaReward = n.SeasonArenaConstant = n.RoomFightRoundConf = n.RoomFightColumnTimeConf = n.RoomTheme = n.RobotSettingsConf = n.RoomNightmareMonster = n.RoomMerchandiseConf = n.FightRoomSettingsConf = n.MatchRoomSettingsConf = n.AdvanceRoomSettingsConf = n.RoomSettingsConf = n.RoomConstant = n.RollUpPackConf = n.ReturnMissionConf = n.ReturnGachaConf = n.ResourcePath = n.RegressionRuleConf = n.Recover = n.QuenchRewardConf = n.QuenchBuffFloatConf = n.QuenchBuffConf = n.QuenchAttrConf = n.QuenchConf = n.QualitySelectionConf = n.PVPMapConf = n.PushList = n.PrivilegeSortConf = n.PrivilegeData = n.PrivilegeConf = n.PrisonConf = n.PearlSkillPoolConf = n.PearlAttrConf = n.PearlColorConf = n.PearlRandConf = n.PearlConstant = n.PeakRecordConf = void 0, 
-        n.TournamentScheduleConf = n.TournamentConf = n.TokenPackBulkConf = n.LocalConf = n.TestConf = n.TaskConf = n.StudyActConf = n.StudyRewardConf = n.StudyClothesConf = n.StudyConf = n.GoodsConf = n.StoreConf = n.StayRewardOrderConf = n.StayRewardConf = n.StayBuyTimeConf = n.CumulativeChargeConf = n.ExchangeConf = n.FuKaConf = n.SpringActConf = n.SkyBuildingReward = n.SkyBuildingBoss = n.SkyBoss = n.SkyMonster = n.SkyLevel = n.SkyConstant = n.SkyBuildingConf = n.SkyMapConf = n.SkinConf = n.SkillStorageConf = n.SkillSchemeMemoConf = n.PetPassiveSkillConf = n.PetActiveSkillConf = n.TriggerCondition = n.ComandParams = n.SkillParams = n.SkillEffectData = n.BuffLayer = n.SkillConf = n.SkillDynamicConf = n.BuffRewriteConf = n.BuffConf = n.SkillSchemeConf = n.AnimationClipData = n.SkeletonConf = n.SevenDayConf = n.BigServerConf = n.ServerNameConf = n.SeasonGuideConf = n.SeasonResearchConf = n.SeasonRankListConf = void 0, 
-        n.configList = n.decodeConfig = n.BenefitData = n.VipConf = n.VersionConf = n.TrumpCostConf = n.TrumpRankConf = n.TrumpTypeConf = n.TrumpConf = n.TowerStageConf = n.TowerReward = n.TowerConf = n.TournamentConstant = n.TournamentExtraAttr = n.TournamentMatchConf = n.TournamentRewardConf = n.TournamentShopConf = n.TournamentActConf = void 0;
+        n.TenDayExchangeConf = n.TenDayDailyConf = n.TenDayActConf = n.TenDayActMapConf = n.TenDayConstantConf = n.SkySkillConf = n.SkyShopConf = n.SkyShopConstant = n.SkyProConf = n.SkillEffectSort = n.SeasonTowerRank = n.SeasonTowerRankReward = n.SeasonTowerReward = n.SeasonTowerConf = n.SeasonRescueMonster = n.SeasonRescueConstant = n.SeasonLvRewardConf = n.ArtifactDescConf = n.SeasonArtifactConf = n.QuenchChargeMissionConf = n.QuenchChargeConf = n.QuenchChargeConstant = n.QuenchLotteryRewardConf = n.QuenchCarnivalLevelConf = n.QuenchCarnivalMissionConf = n.QuenchCarnivalConstant = n.PetPlayActiveTask = n.PetPlayBoardConf = n.PetPlayConstant = n.PetQuenchConsumeConf = n.PetTilesConf = n.PetAttrRandPoolConf = n.PetAttrTypePoolConf = n.QuenchAdditionConf = n.PetQuenchAdditionConf = n.PetTalentConf = n.PetStarConf = n.PetLevelConf = n.PetConf = n.PetColorConf = n.PetFestivalConf = n.PetEggConf = n.PetConstant = n.NightMareBook = n.CompassReward = n.NightMareMonster = n.NightMare = n.MatchTeam = n.LiveEventConf = n.LegionWarThirdPointConf = void 0, 
+        n.ActMultiTowerConf = n.MissionConf = n.ActGmGroupConf = n.KillBossAchievementConf = n.VoteConf = n.CheerRewardConf = n.CheerConf = n.EGameConf = n.MonopolyConf = n.TreasureConf = n.CumulativeChargeActConf = n.FuKaActConf = n.ProgressBarConf = n.MineConf = n.BingoRewardConf = n.BingoConf = n.ActMerchandiseConf = n.ExchangeActConf = n.SkinGachaMilestoneRewarConf = n.SkinGachaRewardConf = n.LotteryRatioConf = n.LotteryPackConf = n.LotteryActConf = n.MilestoneRewardConf = n.ActFestivalConf = n.DragonBoatLegionConf = n.DragonBoatConf = n.ActConstantConf = n.ActCardTowerShopConf = n.ActCardTowerEquipConf = n.ActCardTowerRankRewardConf = n.ActCardTowerRewardConf = n.ActCardTowerShowConf = n.ActCardTowerConf = n.ActHideBossConf = n.ActBossConf = n.BetActivityTimeConf = n.BetFormationConf = n.BetBaseConf = n.AchievementTaskList = n.AchievementConf = n.UnsealCardConf = n.UnsealEventTimeConf = n.UnsealShowConf = n.UnsealBaseConf = n.AccSprintConf = n.TenDaySprintCarnivalConf = n.TenDayGiftConf = n.TenDayRankRewardConf = n.TenDayTaskConf = void 0, 
+        n.PaymentData = n.RewardData = n.AttributeData = n.SkillLevelUpData = n.BasePush = n.AvatarFrameConf = n.AvatarConf = n.AutoConf = n.AuraConf = n.AttributeLimitConf = n.AttributeCompareConf = n.ArtifactConf = n.ArenaRefreshConf = n.ArenaGift = n.ArenaScore = n.ArenaRankConf = n.AFKMapConf = n.SignConf = n.MerchandiseConf = n.FundTaskConf = n.FundConf = n.DayBuyConf = n.DailyDealConf = n.CardConf = n.ActivityConf = n.ActRogueBookRewardConf = n.ActRogueBookColumnConf = n.ActRogueBookConf = n.ActRogueMonsterConf = n.ActRogueBossConf = n.ActRogueDebuffConf = n.ActRogueBuffConf = n.ActRogueConsumeConf = n.ActRogueEquipLevelConf = n.ActRogueEquipConf = n.ActRogueArtifactConf = n.ActRogueRankRewardConf = n.ActRogueRewardConf = n.ActRogueRowConf = n.ActRogueLevelConf = n.NoobSubMissionConf = n.NoobMissionConf = n.NoobSign = n.ActNoobConf = n.ActMultiTowerRewardConf = n.ActMultiTowerEnhanceConf = n.LanguageConf = n.ActMultiTowerLevelRewardConf = n.ActMultiTowerShowConf = n.ActMultiTowerScheduleConf = void 0, 
+        n.ChatAlertConf = n.ChatSensitiveConf = n.CharmTask = n.CharmGift = n.CharmConf = n.ChargePackConf = n.CareerChallengeConstantConf = n.CareerChallengeConf = n.CardDetailConf = n.CardPackageConf = n.CardSeriesConf = n.CalenderMonthConf = n.CalenderActIConf = n.CalendarConf = n.BulletConf = n.BriefreportConf = n.BoxStageConf = n.BoxConf = n.BottleTime = n.BottlePool = n.Bottle = n.BossTowerShopConf = n.BossHelpRankRewardConfig = n.BossTowerConf = n.BossRewardsConfig = n.BossLoopConfig = n.BossInfoConfig = n.BookStageConf = n.BookConf = n.BlessingSortConf = n.BlessingData = n.BlessingConf = n.BlackMarketMerchandiseConf = n.BlackMarketConf = n.BattlePassMissionConf = n.BattlePassConf = n.BattlePassBaseConf = n.OppositeBattleAttributeKey = n.GotoData = n.LegionRewardData = n.BuffCommand = n.JumpInfo = n.GuideAnim = n.BundleData = n.StarSpendPack = n.ComboActivateData = n.BookActivateData = n.BattleMonsterData = n.ConditionData = n.RewardInfo = void 0, 
+        n.FootballMatchConstantConf = n.FlyNumberStyleSheet = n.FlyNumberFormatter = n.FlyupTheme = n.ExcelVer = n.EvoTowerShareTasks = n.EvoTowerShareConstant = n.EvoTowerGachaShop = n.EvoTowerGachaRewardConf = n.EvoTowerGachaConstant = n.EvoTowerLegionRankReward = n.EvoTowerTaskConf = n.EvoTowerStageConf = n.EvoTowerReward = n.EvoTowerClubPrivilegeConf = n.EvoTowerConf = n.EvoTowerScheduleConf = n.EvoTowerConstant = n.EquipmentForgeSpend = n.EquipmentSetConf = n.EquipmentLvConf = n.EquipmentConf = n.EquipForgeSpend = n.EquipLvSpend = n.EquipLvConf = n.EquipConf = n.EmojiConf = n.EffectConf = n.DungeonMonsterConf = n.DungeonItemConf = n.DungeonMerchantConf = n.DungeonConf = n.DropDailyMail = n.DingniuInConstantConf = n.DingniuConstantConf = n.DiamondShopConf = n.DialogConf = n.WeekLimitConf = n.DayLimitConf = n.DailyTaskConf = n.CustomCardConf = n.CurrencyMarketConf = n.ConstantConf = n.CollectionItem = n.CollectionHeroSuitsConf = n.CollectionSeriesConf = n.CollectionHeroConf = n.CollectionStageConf = n.CollectionConf = n.CoinGetConf = void 0, 
+        n.IosPrice = n.MailLanguageConf = n.LoadingLanguageConf = n.ErrocodeLanguageConf = n.ItemLegionConf = n.ItemConf = n.Invite = n.HideQuenchPoint = n.HorseMapConf = n.HorseMatchingRule = n.HorseMerchandiseConf = n.HorseSelfRewardConf = n.HorseLegionRewardConf = n.HorseBoxConf = n.RandomHorseConf = n.HorseProgressConf = n.HorseSubScheduleConf = n.HorseScheduleConf = n.HorseConstant = n.HeroStarSpend = n.HeroStarExt = n.HeroOrder = n.HeroLvLimit = n.HeroLvSpend = n.HeroAttrConf = n.HeroConf = n.H5GiftConf = n.GuideConf = n.GlobalSignGoalConf = n.AutoAddConf = n.SingleSignConf = n.GlobalSignConf = n.GenieSweepConf = n.GenieLevelConf = n.GenieConf = n.TTSubscribeMsg = n.GameCardTTConf = n.GachaConstant = n.GachaBox = n.GachaAccumRewardConf = n.GachaGroupConf = n.GachaRewardConf = n.FormationConf = n.FootballMatchPicConf = n.FootballPlayerConf = n.KnockoutStageGroupConf = n.FootballFormationConf = n.WeeklyRankShowConf = n.WeeklyScoreConf = n.FootballMatchScheduleConf = void 0, 
+        n.LevelWeaponSkillConf = n.LevelWeaponConf = n.ChapterConf = n.LevelConf = n.SeasonLegionLeagueSessionConf = n.SeasonLegionScheduleConf = n.LegionScheduleConf = n.LegionWarGuildRewardConf = n.LegionWarSkyKillRewardConf = n.LegionWarSkyRewardConf = n.SeasonLegionWarSkyRewardConf = n.LegionWarKillRewardConf = n.LegionWarRewardConf = n.WarRewardPageConf = n.LegionWarMedallionConf = n.LegionWarMapTypeMappingConf = n.LegionWarMapConf = n.LegionWarLanguageConf = n.MultiKillConf = n.AirshipConf = n.LegionWarConstantConf = n.TagConditionConf = n.TagConf = n.LegionSkinStoreConf = n.LegionStoreConf = n.LegionResearchConf = n.ResearchConf = n.LegionRankVersusConf = n.LegionRankRewardConf = n.LegionPointConf = n.LegionRankConstantConf = n.LegionRankConf = n.LegionNameplateConf = n.MatchZoneTypeConf = n.RankRangeConf = n.LegionMarqueeConf = n.LegionLevelConf = n.LegionLeagueSessionConf = n.LegionLeagueConf = n.LegionWarFinalRewardConf = n.LegionLeagueRewardConf = n.LegionLeagueSeasonCheerConf = n.LegionLeagueCheerConf = n.LegionLeagePointConf = n.LegionCupConf = n.LegionBossCostConf = n.LegionBossDailyRewardConf = n.LegionBossRewardConf = n.LegionBossConf = n.GooglePrice = void 0, 
+        n.BattleReward = n.PaoMaDengConf = n.PackConf = n.OverviewConf = n.OverviewConstant = n.OtherItemConf = n.NightMareGroupStarRewardConf = n.NightMareStarWheelConf = n.NightMareStarBookConf = n.NightMareStarConf = n.NightMareStarConstant = n.NightMareRaceTaskRewardConf = n.NightMareRaceRankRewardConf = n.NightMareRaceBattleBuffConf = n.NightMareRaceMonsterConf = n.NightMareRaceConf = n.NightMareRaceConstant = n.LegionGroupConf = n.MoonSubScheduleConf = n.MoonScheduleConf = n.MoonSelfRewardConf = n.MoonLegionRewardConf = n.MoonMerchandiseConf = n.TeleportConf = n.MoonTreeConf = n.RabbitBoxConf = n.MoonRabbitMonsterConf = n.MoonRabbitConf = n.MoonConstant = n.MonthActivityConf = n.MonthActivity = n.LevelCoeffConf = n.MonsterConf = n.SubModConf = n.ModuleConf = n.MedallionConf = n.MapConf = n.WeaponPassiveConf = n.WeaponActiveConf = n.WeaponConf = n.ProfileCardConf = n.LordSkinConf = n.LordOrderConf = n.LordLvLimitConf = n.LordLvConf = n.ActLevelConstant = n.ActModuleConditionConf = n.ActGuideConf = n.ActLevelConf = n.LevelWeaponDropConf = void 0, 
+        n.LevelLimitConf = n.SeasonLevel = n.HeroConditionConf = n.SeasonHeroConf = n.GemstoneAttrConf = n.GemstoneRandConf = n.SeasonHeroArrt = n.SeasonHeroBookConf = n.SeasonMerchandiseConf = n.SeasonBattlePassReward = n.SeasonBattlePassBaseConf = n.SeasonArenaRank = n.SeasonArenaReward = n.SeasonArenaConstant = n.RoomFightRoundConf = n.RoomFightColumnTimeConf = n.RoomTheme = n.RobotSettingsConf = n.RoomNightmareMonster = n.RoomMerchandiseConf = n.FightRoomSettingsConf = n.MatchRoomSettingsConf = n.AdvanceRoomSettingsConf = n.RoomSettingsConf = n.RoomConstant = n.RollUpPackConf = n.ReturnMissionConf = n.ReturnGachaConf = n.ResourcePath = n.RegressionRuleConf = n.Recover = n.QuenchRewardConf = n.QuenchBuffFloatConf = n.QuenchBuffConf = n.QuenchAttrConf = n.QuenchConf = n.QualitySelectionConf = n.PVPMapConf = n.PushList = n.PrivilegeSortConf = n.PrivilegeData = n.PrivilegeConf = n.PrisonConf = n.PearlSkillPoolConf = n.PearlAttrConf = n.PearlColorConf = n.PearlRandConf = n.PearlConstant = n.PeakRecordConf = n.PeakRecord = void 0, 
+        n.TournamentConf = n.TokenPackBulkConf = n.LocalConf = n.TestConf = n.TaskConf = n.StudyActConf = n.StudyRewardConf = n.StudyClothesConf = n.StudyConf = n.GoodsConf = n.StoreConf = n.StayRewardOrderConf = n.StayRewardConf = n.StayBuyTimeConf = n.CumulativeChargeConf = n.ExchangeConf = n.FuKaConf = n.SpringActConf = n.SkyBuildingReward = n.SkyBuildingBoss = n.SkyBoss = n.SkyMonster = n.SkyLevel = n.SkyConstant = n.SkyBuildingConf = n.SkyMapConf = n.SkinConf = n.SkillStorageConf = n.SkillSchemeMemoConf = n.PetPassiveSkillConf = n.PetActiveSkillConf = n.TriggerCondition = n.ComandParams = n.SkillParams = n.SkillEffectData = n.BuffLayer = n.SkillConf = n.SkillDynamicConf = n.BuffRewriteConf = n.BuffConf = n.SkillSchemeConf = n.AnimationClipData = n.SkeletonConf = n.SevenDayConf = n.BigServerConf = n.ServerNameConf = n.SeasonGuideConf = n.SeasonResearchConf = n.SeasonRankListConf = n.SeasonLordOrderConf = void 0, 
+        n.configList = n.decodeConfig = n.BenefitData = n.VipConf = n.VersionConf = n.TrumpCostConf = n.TrumpRankConf = n.TrumpTypeConf = n.TrumpConf = n.TowerStageConf = n.TowerReward = n.TowerConf = n.TournamentConstant = n.TournamentExtraAttr = n.TournamentMatchConf = n.TournamentRewardConf = n.TournamentShopConf = n.TournamentActConf = n.TournamentScheduleConf = void 0;
         var r = function(e, t, n) {
             var o = t[n];
             if (void 0 === o) return e;
@@ -10038,7 +10038,8 @@ window.__require = function e(t, n, r) {
             e[e.NIGHTMARE_STAR = 10142] = "NIGHTMARE_STAR", e[e.MRT = 10143] = "MRT", e[e.PET = 10144] = "PET", 
             e[e.QUENCH_CARNIVAL = 10145] = "QUENCH_CARNIVAL", e[e.GACHA = 10146] = "GACHA", 
             e[e.PACK_ONETIME = 10147] = "PACK_ONETIME", e[e.QUENCH_CHARGE = 10148] = "QUENCH_CHARGE", 
-            e[e.APEX = 10149] = "APEX", e[e.ACT_LOOK_BACK = 10150] = "ACT_LOOK_BACK", e[e.SUMMER_ACTIVITY_26 = 10151] = "SUMMER_ACTIVITY_26";
+            e[e.APEX = 10149] = "APEX", e[e.ACT_LOOK_BACK = 10150] = "ACT_LOOK_BACK", e[e.SUMMER_ACTIVITY_26 = 10151] = "SUMMER_ACTIVITY_26", 
+            e[e.SPEED_CONTROl = 10152] = "SPEED_CONTROl", e[e.PET_FESTIVAL = 10153] = "PET_FESTIVAL";
         }(n.ModuleType || (n.ModuleType = {})), function(e) {
             e[e.BOX_GOLDEGG = 1] = "BOX_GOLDEGG", e[e.AUTO_SELECTLEVELWEAPON = 2] = "AUTO_SELECTLEVELWEAPON";
         }(n.SubModType || (n.SubModType = {})), function(e) {
@@ -10083,7 +10084,7 @@ window.__require = function e(t, n, r) {
         }(n.PushType || (n.PushType = {})), function(e) {
             e[e.DEFAULT = 0] = "DEFAULT", e[e.SINGLE = 1] = "SINGLE", e[e.MULTY = 2] = "MULTY", 
             e[e.RANGE = 3] = "RANGE", e[e.FORCE = 4] = "FORCE", e[e.DROPBOX = 5] = "DROPBOX", 
-            e[e.DROPSEG = 6] = "DROPSEG", e[e.CUSTOM = 7] = "CUSTOM";
+            e[e.DROPSEG = 6] = "DROPSEG", e[e.CUSTOM = 7] = "CUSTOM", e[e.SWITCH = 8] = "SWITCH";
         }(n.ChoiceType || (n.ChoiceType = {})), function(e) {
             e[e.DEFAULT = 0] = "DEFAULT", e[e.LEGION_CHAMPIONSHIP = 1] = "LEGION_CHAMPIONSHIP", 
             e[e.DRAGON_BOAT_RACE = 2] = "DRAGON_BOAT_RACE", e[e.KING_OF_QINGLONG = 3] = "KING_OF_QINGLONG", 
@@ -10104,7 +10105,7 @@ window.__require = function e(t, n, r) {
             e[e.ROUND = 18] = "ROUND", e[e.REQUIRED_HERO = 19] = "REQUIRED_HERO", e[e.FIGHTROOM_MODE = 20] = "FIGHTROOM_MODE", 
             e[e.FIGHTROOM_FORMAT = 21] = "FIGHTROOM_FORMAT", e[e.GROUP_NUM = 22] = "GROUP_NUM", 
             e[e.FIGHTROOM_GROUPFORMAT = 23] = "FIGHTROOM_GROUPFORMAT", e[e.LEGION_ROLE_NUM = 24] = "LEGION_ROLE_NUM", 
-            e[e.LEGION_NUM = 25] = "LEGION_NUM";
+            e[e.LEGION_NUM = 25] = "LEGION_NUM", e[e.ROOM_PASSWORD = 26] = "ROOM_PASSWORD";
         }(n.Settings || (n.Settings = {})), function(e) {
             e[e.DEFAULT = 0] = "DEFAULT", e[e.HP = 1] = "HP", e[e.ATTACK = 2] = "ATTACK", e[e.DEFENSE = 3] = "DEFENSE", 
             e[e.PIERCE_R = 4] = "PIERCE_R";
@@ -10427,7 +10428,7 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.costItem = r(a.costItem, [ 0, gr ], 0);
+                    Object.assign(i, a), i.costItem = r(a.costItem, [ 0, hr ], 0);
                     var s = e.map.get(i.actId);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.actId, i);
                 }
@@ -10441,7 +10442,7 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.reward = r(a.reward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.reward = r(a.reward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
@@ -10455,7 +10456,7 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.reward = r(a.reward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.reward = r(a.reward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
@@ -10497,7 +10498,7 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.consumeReward = r(a.consumeReward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.consumeReward = r(a.consumeReward, [ 0, hr ], 0);
                     var s = e.map.get(i.mergeItemId);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.mergeItemId, i);
                 }
@@ -10560,7 +10561,7 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.guessReward = r(a.guessReward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.guessReward = r(a.guessReward, [ 0, hr ], 0);
                     var s = e.map.get(i.ApexStage);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.ApexStage, i);
                 }
@@ -10602,7 +10603,7 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.taskReward = r(a.taskReward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.taskReward = r(a.taskReward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
@@ -10616,7 +10617,7 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.rankReward = r(a.rankReward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.rankReward = r(a.rankReward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
@@ -10630,27 +10631,13 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.buyPrice = r(a.buyPrice, [ 0, gr ], 0), i.buyReward = r(a.buyReward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.buyPrice = r(a.buyPrice, [ 0, hr ], 0), i.buyReward = r(a.buyReward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
         n.ApexShopConf = y;
-        var S = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.attrs = r(a.attrs, [ 0, pr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.ApexSupport = S;
         var C = function() {
             function e() {}
             return e.getById = function(t) {
@@ -10658,14 +10645,28 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.counterValue1 = r(a.counterValue1, [ 0, pr ], 0), i.counterValue2 = r(a.counterValue2, [ 0, pr ], 0), 
-                    i.baseAttribute = r(a.baseAttribute, [ 0, pr ], 0);
+                    Object.assign(i, a), i.attrs = r(a.attrs, [ 0, gr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.ApexFormation = C;
+        n.ApexSupport = C;
+        var S = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.counterValue1 = r(a.counterValue1, [ 0, gr ], 0), i.counterValue2 = r(a.counterValue2, [ 0, gr ], 0), 
+                    i.baseAttribute = r(a.baseAttribute, [ 0, gr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.ApexFormation = S;
         var A = function() {
             function e() {}
             return e.getById = function(t) {
@@ -10694,7 +10695,7 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.merchandise = r(a.merchandise, [ 0, gr ], 0);
+                    Object.assign(i, a), i.merchandise = r(a.merchandise, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
@@ -10708,7 +10709,7 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.merchandise = r(a.merchandise, [ 0, gr ], 0);
+                    Object.assign(i, a), i.merchandise = r(a.merchandise, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
@@ -10722,7 +10723,7 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.finalReward = r(a.finalReward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.finalReward = r(a.finalReward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
@@ -10785,7 +10786,7 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.attrs = r(a.attrs, [ 0, pr ], 0);
+                    Object.assign(i, a), i.attrs = r(a.attrs, [ 0, gr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
@@ -10799,7 +10800,7 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.orderAttr = r(a.orderAttr, [ 0, pr ], 0), i.orderCost = r(a.orderCost, [ gr ], 0);
+                    Object.assign(i, a), i.orderAttr = r(a.orderAttr, [ 0, gr ], 0), i.orderCost = r(a.orderCost, [ hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
@@ -10827,7 +10828,7 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.consumeItem = r(a.consumeItem, [ gr ], 0);
+                    Object.assign(i, a), i.consumeItem = r(a.consumeItem, [ hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
@@ -10855,7 +10856,7 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.reward = r(a.reward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.reward = r(a.reward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
@@ -11002,7 +11003,7 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.attrType = r(a.attrType, [ pr ], 0);
+                    Object.assign(i, a), i.attrType = r(a.attrType, [ gr ], 0);
                     var s = e.map.get(i.specialAttrId);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.specialAttrId, i);
                 }
@@ -11016,8 +11017,8 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.attr = r(a.attr, [ 0, pr ], 0), i.extraAttr = r(a.extraAttr, [ 0, pr ], 0), 
-                    i.otherItem = r(a.otherItem, [ 0, gr ], 0);
+                    Object.assign(i, a), i.attr = r(a.attr, [ 0, gr ], 0), i.extraAttr = r(a.extraAttr, [ 0, gr ], 0), 
+                    i.otherItem = r(a.otherItem, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
@@ -11045,7 +11046,7 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.taskReward = r(a.taskReward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.taskReward = r(a.taskReward, [ 0, hr ], 0);
                     var s = e.map.get(i.Id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.Id, i);
                 }
@@ -11073,7 +11074,7 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.attr = r(a.attr, [ 0, pr ], 0);
+                    Object.assign(i, a), i.attr = r(a.attr, [ 0, gr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
@@ -11087,7 +11088,7 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.privilegeReward = r(a.privilegeReward, [ gr ], 0);
+                    Object.assign(i, a), i.privilegeReward = r(a.privilegeReward, [ hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
@@ -11150,7 +11151,7 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.poolReward = r(a.poolReward, [ 0, gr ], 0), i.poolReward2 = r(a.poolReward2, [ 0, gr ], 0);
+                    Object.assign(i, a), i.poolReward = r(a.poolReward, [ 0, hr ], 0), i.poolReward2 = r(a.poolReward2, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
@@ -11164,7 +11165,7 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.finalReward = r(a.finalReward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.finalReward = r(a.finalReward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
@@ -11178,7 +11179,7 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.finalReward = r(a.finalReward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.finalReward = r(a.finalReward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
@@ -11192,7 +11193,7 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.finalReward = r(a.finalReward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.finalReward = r(a.finalReward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
@@ -11220,7 +11221,7 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.CarModifiedRewards = r(a.CarModifiedRewards, [ 0, gr ], 0);
+                    Object.assign(i, a), i.CarModifiedRewards = r(a.CarModifiedRewards, [ 0, hr ], 0);
                     var s = e.map.get(i.ID);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.ID, i);
                 }
@@ -11318,7 +11319,7 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.attrs = r(a.attrs, [ 0, pr ], 0);
+                    Object.assign(i, a), i.attrs = r(a.attrs, [ 0, gr ], 0);
                     var s = e.map.get(i.Id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.Id, i);
                 }
@@ -11346,28 +11347,28 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.taskReward = r(a.taskReward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.taskReward = r(a.taskReward, [ 0, hr ], 0);
                     var s = e.map.get(i.Id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.Id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
         n.PayLoadTasks = ye;
-        var Se = function() {
+        var Ce = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.shareReward = r(a.shareReward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.shareReward = r(a.shareReward, [ 0, hr ], 0);
                     var s = e.map.get(i.Id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.Id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.PayLoadTaskProgress = Se;
-        var Ce = function() {
+        n.PayLoadTaskProgress = Ce;
+        var Se = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -11380,7 +11381,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.LegionWarBossConf = Ce;
+        n.LegionWarBossConf = Se;
         var Ae = function() {
             function e() {}
             return e.getById = function(t) {
@@ -11388,7 +11389,7 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.firstReward = r(a.firstReward, [ 0, gr ], 0), i.blessReward = r(a.blessReward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.firstReward = r(a.firstReward, [ 0, hr ], 0), i.blessReward = r(a.blessReward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
@@ -11402,7 +11403,7 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.reward = r(a.reward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.reward = r(a.reward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
@@ -11528,7 +11529,7 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.killReward = r(a.killReward, [ 0, gr ], 0), i.weekReward = r(a.weekReward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.killReward = r(a.killReward, [ 0, hr ], 0), i.weekReward = r(a.weekReward, [ 0, hr ], 0);
                     var s = e.map.get(i.bossId);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.bossId, i);
                 }
@@ -11542,7 +11543,7 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.CompassReward = r(a.CompassReward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.CompassReward = r(a.CompassReward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
@@ -11556,7 +11557,7 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.itemBonus = r(a.itemBonus, [ 0, gr ], 0);
+                    Object.assign(i, a), i.itemBonus = r(a.itemBonus, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
@@ -11597,23 +11598,8 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.PetColorConf = Ue;
+        n.PetFestivalConf = Ue;
         var He = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.fragment = r(a.fragment, [ gr ], 0), i.bookAttrs = r(a.bookAttrs, [ 0, pr ], 0), 
-                    i.bookReward = r(a.bookReward, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.PetConf = He;
-        var ke = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -11626,22 +11612,36 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.PetLevelConf = ke;
-        var Fe = function() {
+        n.PetColorConf = He;
+        var ke = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.fragment = r(a.fragment, [ gr ], 0), i.starAttribute = r(a.starAttribute, [ 0, pr ], 0), 
-                    i.starSpecialAttribute = r(a.starSpecialAttribute, [ pr ], 0);
+                    Object.assign(i, a), i.fragment = r(a.fragment, [ hr ], 0), i.bookAttrs = r(a.bookAttrs, [ 0, gr ], 0), 
+                    i.bookReward = r(a.bookReward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.PetStarConf = Fe;
+        n.PetConf = ke;
+        var Fe = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
+                    var o = new e();
+                    Object.assign(o, t[r]);
+                    var i = e.map.get(o.id);
+                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.PetLevelConf = Fe;
         var je = function() {
             function e() {}
             return e.getById = function(t) {
@@ -11649,14 +11649,29 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.Cost = r(a.Cost, [ gr ], 0), i.orderCost = r(a.orderCost, [ gr ], 0);
+                    Object.assign(i, a), i.fragment = r(a.fragment, [ hr ], 0), i.starAttribute = r(a.starAttribute, [ 0, gr ], 0), 
+                    i.starSpecialAttribute = r(a.starSpecialAttribute, [ gr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.PetTalentConf = je;
+        n.PetStarConf = je;
         var Ke = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.Cost = r(a.Cost, [ hr ], 0), i.orderCost = r(a.orderCost, [ hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.PetTalentConf = Ke;
+        var Ve = function() {
             function e() {}
             return e.getByPetQuenchGroup = function(t) {
                 return e.map.get(t);
@@ -11669,21 +11684,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.PetQuenchAdditionConf = Ke;
-        var Ve = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
-                    var o = new e();
-                    Object.assign(o, t[r]);
-                    var i = e.map.get(o.id);
-                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.QuenchAdditionConf = Ve;
+        n.PetQuenchAdditionConf = Ve;
         var We = function() {
             function e() {}
             return e.getById = function(t) {
@@ -11697,7 +11698,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.PetAttrTypePoolConf = We;
+        n.QuenchAdditionConf = We;
         var Ye = function() {
             function e() {}
             return e.getById = function(t) {
@@ -11711,43 +11712,8 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.PetAttrRandPoolConf = Ye;
+        n.PetAttrTypePoolConf = Ye;
         var Qe = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.unlockCost = r(a.unlockCost, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.PetTilesConf = Qe;
-        var qe = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.ConsumeItem = r(a.ConsumeItem, [ gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.PetQuenchConsumeConf = qe;
-        var Xe = function() {
-            function e() {}
-            return e.decode = function(t) {
-                for (var n in e.config = new e(), t) e.config[n] = t[n];
-            }, e;
-        }();
-        n.PetPlayConstant = Xe;
-        var ze = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -11760,8 +11726,57 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.PetPlayBoardConf = ze;
+        n.PetAttrRandPoolConf = Qe;
+        var qe = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.unlockCost = r(a.unlockCost, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.PetTilesConf = qe;
+        var Xe = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.ConsumeItem = r(a.ConsumeItem, [ hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.PetQuenchConsumeConf = Xe;
+        var ze = function() {
+            function e() {}
+            return e.decode = function(t) {
+                for (var n in e.config = new e(), t) e.config[n] = t[n];
+            }, e;
+        }();
+        n.PetPlayConstant = ze;
         var Je = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
+                    var o = new e();
+                    Object.assign(o, t[r]);
+                    var i = e.map.get(o.id);
+                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.PetPlayBoardConf = Je;
+        var Ze = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -11774,28 +11789,14 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.PetPlayActiveTask = Je;
-        var Ze = function() {
+        n.PetPlayActiveTask = Ze;
+        var $e = function() {
             function e() {}
             return e.decode = function(t) {
                 for (var n in e.config = new e(), t) e.config[n] = t[n];
             }, e;
         }();
-        n.QuenchCarnivalConstant = Ze;
-        var $e = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.missionReward = r(a.missionReward, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.QuenchCarnivalMissionConf = $e;
+        n.QuenchCarnivalConstant = $e;
         var et = function() {
             function e() {}
             return e.getById = function(t) {
@@ -11803,13 +11804,13 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.itemBonus = r(a.itemBonus, [ 0, gr ], 0);
+                    Object.assign(i, a), i.missionReward = r(a.missionReward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.QuenchCarnivalLevelConf = et;
+        n.QuenchCarnivalMissionConf = et;
         var tt = function() {
             function e() {}
             return e.getById = function(t) {
@@ -11817,21 +11818,35 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.lotteryReward = r(a.lotteryReward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.itemBonus = r(a.itemBonus, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.QuenchLotteryRewardConf = tt;
+        n.QuenchCarnivalLevelConf = tt;
         var nt = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.lotteryReward = r(a.lotteryReward, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.QuenchLotteryRewardConf = nt;
+        var rt = function() {
             function e() {}
             return e.decode = function(t) {
                 for (var n in e.config = new e(), t) e.config[n] = t[n];
             }, e;
         }();
-        n.QuenchChargeConstant = nt;
-        var rt = function() {
+        n.QuenchChargeConstant = rt;
+        var ot = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -11844,21 +11859,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.QuenchChargeConf = rt;
-        var ot = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.missionReward = r(a.missionReward, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.QuenchChargeMissionConf = ot;
+        n.QuenchChargeConf = ot;
         var it = function() {
             function e() {}
             return e.getById = function(t) {
@@ -11866,15 +11867,29 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.attrs = r(a.attrs, [ 0, pr ], 0), i.attrsLimit = r(a.attrsLimit, [ 0, pr ], 0), 
-                    i.returnItem = r(a.returnItem, [ 0, gr ], 0);
+                    Object.assign(i, a), i.missionReward = r(a.missionReward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.SeasonArtifactConf = it;
+        n.QuenchChargeMissionConf = it;
         var at = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.attrs = r(a.attrs, [ 0, gr ], 0), i.attrsLimit = r(a.attrsLimit, [ 0, gr ], 0), 
+                    i.returnItem = r(a.returnItem, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.SeasonArtifactConf = at;
+        var st = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -11887,42 +11902,28 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.ArtifactDescConf = at;
-        var st = function() {
+        n.ArtifactDescConf = st;
+        var ct = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.lvReward = r(a.lvReward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.lvReward = r(a.lvReward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.SeasonLvRewardConf = st;
-        var ct = function() {
+        n.SeasonLvRewardConf = ct;
+        var ut = function() {
             function e() {}
             return e.decode = function(t) {
                 for (var n in e.config = new e(), t) e.config[n] = t[n];
             }, e;
         }();
-        n.SeasonRescueConstant = ct;
-        var ut = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.killReward = r(a.killReward, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.SeasonRescueMonster = ut;
+        n.SeasonRescueConstant = ut;
         var lt = function() {
             function e() {}
             return e.getById = function(t) {
@@ -11930,13 +11931,13 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.bossReward = r(a.bossReward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.killReward = r(a.killReward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.SeasonTowerConf = lt;
+        n.SeasonRescueMonster = lt;
         var ft = function() {
             function e() {}
             return e.getById = function(t) {
@@ -11944,13 +11945,13 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.towerReward = r(a.towerReward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.bossReward = r(a.bossReward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.SeasonTowerReward = ft;
+        n.SeasonTowerConf = ft;
         var dt = function() {
             function e() {}
             return e.getById = function(t) {
@@ -11958,27 +11959,27 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.dayReward = r(a.dayReward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.towerReward = r(a.towerReward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.SeasonTowerRankReward = dt;
+        n.SeasonTowerReward = dt;
         var pt = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
-                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
-                    var o = new e();
-                    Object.assign(o, t[r]);
-                    var i = e.map.get(o.id);
-                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.dayReward = r(a.dayReward, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.SeasonTowerRank = pt;
+        n.SeasonTowerRankReward = pt;
         var gt = function() {
             function e() {}
             return e.getById = function(t) {
@@ -11992,7 +11993,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.SkillEffectSort = gt;
+        n.SeasonTowerRank = gt;
         var ht = function() {
             function e() {}
             return e.getById = function(t) {
@@ -12006,15 +12007,8 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.SkyProConf = ht;
+        n.SkillEffectSort = ht;
         var _t = function() {
-            function e() {}
-            return e.decode = function(t) {
-                for (var n in e.config = new e(), t) e.config[n] = t[n];
-            }, e;
-        }();
-        n.SkyShopConstant = _t;
-        var mt = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -12027,29 +12021,50 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.SkyShopConf = mt;
+        n.SkyProConf = _t;
+        var mt = function() {
+            function e() {}
+            return e.decode = function(t) {
+                for (var n in e.config = new e(), t) e.config[n] = t[n];
+            }, e;
+        }();
+        n.SkyShopConstant = mt;
         var vt = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
+                    var o = new e();
+                    Object.assign(o, t[r]);
+                    var i = e.map.get(o.id);
+                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.SkyShopConf = vt;
+        var Et = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.attrs = r(a.attrs, [ 0, pr ], 0);
+                    Object.assign(i, a), i.attrs = r(a.attrs, [ 0, gr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.SkySkillConf = vt;
-        var Et = function() {
+        n.SkySkillConf = Et;
+        var yt = function() {
             function e() {}
             return e.decode = function(t) {
                 for (var n in e.config = new e(), t) e.config[n] = t[n];
             }, e;
         }();
-        n.TenDayConstantConf = Et;
-        var yt = function() {
+        n.TenDayConstantConf = yt;
+        var Ct = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -12062,7 +12077,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.TenDayActMapConf = yt;
+        n.TenDayActMapConf = Ct;
         var St = function() {
             function e() {}
             return e.getById = function(t) {
@@ -12077,20 +12092,6 @@ window.__require = function e(t, n, r) {
             }, e.list = [], e.map = new Map(), e;
         }();
         n.TenDayActConf = St;
-        var Ct = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.signReward = r(a.signReward, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.TenDayDailyConf = Ct;
         var At = function() {
             function e() {}
             return e.getById = function(t) {
@@ -12098,13 +12099,13 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.rewardItem = r(a.rewardItem, [ gr ], 0);
+                    Object.assign(i, a), i.signReward = r(a.signReward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.TenDayExchangeConf = At;
+        n.TenDayDailyConf = At;
         var Tt = function() {
             function e() {}
             return e.getById = function(t) {
@@ -12112,13 +12113,13 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.reward = r(a.reward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.rewardItem = r(a.rewardItem, [ hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.TenDayTaskConf = Tt;
+        n.TenDayExchangeConf = Tt;
         var Rt = function() {
             function e() {}
             return e.getById = function(t) {
@@ -12126,13 +12127,13 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.dayReward = r(a.dayReward, [ 0, gr ], 0), i.finalReward = r(a.finalReward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.reward = r(a.reward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.TenDayRankRewardConf = Rt;
+        n.TenDayTaskConf = Rt;
         var It = function() {
             function e() {}
             return e.getById = function(t) {
@@ -12140,49 +12141,63 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.merchandise = r(a.merchandise, [ 0, gr ], 0);
+                    Object.assign(i, a), i.dayReward = r(a.dayReward, [ 0, hr ], 0), i.finalReward = r(a.finalReward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.TenDayGiftConf = It;
+        n.TenDayRankRewardConf = It;
         var Ot = function() {
-            function e() {}
-            return e.getByActId = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.Reward = r(a.Reward, [ 0, gr ], 0);
-                    var s = e.map.get(i.actId);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.actId, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.TenDaySprintCarnivalConf = Ot;
-        var wt = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.Reward = r(a.Reward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.merchandise = r(a.merchandise, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.AccSprintConf = wt;
+        n.TenDayGiftConf = Ot;
+        var wt = function() {
+            function e() {}
+            return e.getByActId = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.Reward = r(a.Reward, [ 0, hr ], 0);
+                    var s = e.map.get(i.actId);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.actId, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.TenDaySprintCarnivalConf = wt;
         var bt = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.Reward = r(a.Reward, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.AccSprintConf = bt;
+        var Nt = function() {
             function e() {}
             return e.decode = function(t) {
                 for (var n in e.config = new e(), t) e.config[n] = t[n];
             }, e;
         }();
-        n.UnsealBaseConf = bt;
-        var Nt = function() {
+        n.UnsealBaseConf = Nt;
+        var Lt = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -12195,8 +12210,8 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.UnsealShowConf = Nt;
-        var Lt = function() {
+        n.UnsealShowConf = Lt;
+        var Mt = function() {
             function e() {}
             return e.getByActId = function(t) {
                 return e.map.get(t);
@@ -12209,26 +12224,26 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.UnsealEventTimeConf = Lt;
-        var Mt = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.reward = r(a.reward, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.UnsealCardConf = Mt;
+        n.UnsealEventTimeConf = Mt;
         var Pt = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.reward = r(a.reward, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.UnsealCardConf = Pt;
+        var Dt = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
                 for (var r in n || (e.list.length = 0, e.map.clear()), t) {
                     var o = new e();
                     Object.assign(o, t[r]);
@@ -12237,29 +12252,29 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.AchievementConf = Pt;
-        var Dt = function() {
+        n.AchievementConf = Dt;
+        var Bt = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.rewards = r(a.rewards, [ 0, gr ], 0);
+                    Object.assign(i, a), i.rewards = r(a.rewards, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.AchievementTaskList = Dt;
-        var Bt = function() {
+        n.AchievementTaskList = Bt;
+        var Gt = function() {
             function e() {}
             return e.decode = function(t) {
                 for (var n in e.config = new e(), t) e.config[n] = t[n];
             }, e;
         }();
-        n.BetBaseConf = Bt;
-        var Gt = function() {
+        n.BetBaseConf = Gt;
+        var xt = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -12272,35 +12287,21 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.BetFormationConf = Gt;
-        var xt = function() {
+        n.BetFormationConf = xt;
+        var Ut = function() {
             function e() {}
             return e.getByActId = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.reward = r(a.reward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.reward = r(a.reward, [ 0, hr ], 0);
                     var s = e.map.get(i.actId);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.actId, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.BetActivityTimeConf = xt;
-        var Ut = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.killReward = r(a.killReward, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.ActBossConf = Ut;
+        n.BetActivityTimeConf = Ut;
         var Ht = function() {
             function e() {}
             return e.getById = function(t) {
@@ -12308,27 +12309,27 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.killReward = r(a.killReward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.killReward = r(a.killReward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.ActHideBossConf = Ht;
+        n.ActBossConf = Ht;
         var kt = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
-                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
-                    var o = new e();
-                    Object.assign(o, t[r]);
-                    var i = e.map.get(o.id);
-                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.killReward = r(a.killReward, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.ActCardTowerConf = kt;
+        n.ActHideBossConf = kt;
         var Ft = function() {
             function e() {}
             return e.getById = function(t) {
@@ -12342,21 +12343,21 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.ActCardTowerShowConf = Ft;
+        n.ActCardTowerConf = Ft;
         var jt = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.reward = r(a.reward, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
+                    var o = new e();
+                    Object.assign(o, t[r]);
+                    var i = e.map.get(o.id);
+                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.ActCardTowerRewardConf = jt;
+        n.ActCardTowerShowConf = jt;
         var Kt = function() {
             function e() {}
             return e.getById = function(t) {
@@ -12364,13 +12365,13 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.reward = r(a.reward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.reward = r(a.reward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.ActCardTowerRankRewardConf = Kt;
+        n.ActCardTowerRewardConf = Kt;
         var Vt = function() {
             function e() {}
             return e.getById = function(t) {
@@ -12378,13 +12379,13 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.basisAttrs = r(a.basisAttrs, [ 0, pr ], 0);
+                    Object.assign(i, a), i.reward = r(a.reward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.ActCardTowerEquipConf = Vt;
+        n.ActCardTowerRankRewardConf = Vt;
         var Wt = function() {
             function e() {}
             return e.getById = function(t) {
@@ -12392,14 +12393,28 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.merchandise = r(a.merchandise, [ gr ], 0), i.condition = r(a.condition, [ 0, mr ], 0);
+                    Object.assign(i, a), i.basisAttrs = r(a.basisAttrs, [ 0, gr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.ActCardTowerShopConf = Wt;
+        n.ActCardTowerEquipConf = Wt;
         var Yt = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.merchandise = r(a.merchandise, [ hr ], 0), i.condition = r(a.condition, [ 0, vr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.ActCardTowerShopConf = Yt;
+        var Qt = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -12412,21 +12427,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.ActConstantConf = Yt;
-        var Qt = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.reward = r(a.reward, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.DragonBoatConf = Qt;
+        n.ActConstantConf = Qt;
         var qt = function() {
             function e() {}
             return e.getById = function(t) {
@@ -12434,13 +12435,13 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.reward = r(a.reward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.reward = r(a.reward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.DragonBoatLegionConf = qt;
+        n.DragonBoatConf = qt;
         var Xt = function() {
             function e() {}
             return e.getById = function(t) {
@@ -12448,14 +12449,13 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.ArenaBattlePassReward = r(a.ArenaBattlePassReward, [ 0, gr ], 0), 
-                    i.fuKaRewardDisplay = r(a.fuKaRewardDisplay, [ 0, gr ], 0);
+                    Object.assign(i, a), i.reward = r(a.reward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.ActFestivalConf = Xt;
+        n.DragonBoatLegionConf = Xt;
         var zt = function() {
             function e() {}
             return e.getById = function(t) {
@@ -12463,42 +12463,57 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.milestoneReward = r(a.milestoneReward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.ArenaBattlePassReward = r(a.ArenaBattlePassReward, [ 0, hr ], 0), 
+                    i.fuKaRewardDisplay = r(a.fuKaRewardDisplay, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.MilestoneRewardConf = zt;
+        n.ActFestivalConf = zt;
         var Jt = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
-                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
-                    var o = new e();
-                    Object.assign(o, t[r]);
-                    var i = e.map.get(o.id);
-                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.milestoneReward = r(a.milestoneReward, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.LotteryActConf = Jt;
+        n.MilestoneRewardConf = Jt;
         var Zt = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
+                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
+                    var o = new e();
+                    Object.assign(o, t[r]);
+                    var i = e.map.get(o.id);
+                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.LotteryActConf = Zt;
+        var $t = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.reward = r(a.reward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.reward = r(a.reward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.LotteryPackConf = Zt;
-        var $t = function() {
+        n.LotteryPackConf = $t;
+        var en = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -12511,21 +12526,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.LotteryRatioConf = $t;
-        var en = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.reward = r(a.reward, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.SkinGachaRewardConf = en;
+        n.LotteryRatioConf = en;
         var tn = function() {
             function e() {}
             return e.getById = function(t) {
@@ -12533,42 +12534,56 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.reward = r(a.reward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.reward = r(a.reward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.SkinGachaMilestoneRewarConf = tn;
+        n.SkinGachaRewardConf = tn;
         var nn = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
-                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
-                    var o = new e();
-                    Object.assign(o, t[r]);
-                    var i = e.map.get(o.id);
-                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.reward = r(a.reward, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.ExchangeActConf = nn;
+        n.SkinGachaMilestoneRewarConf = nn;
         var rn = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
+                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
+                    var o = new e();
+                    Object.assign(o, t[r]);
+                    var i = e.map.get(o.id);
+                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.ExchangeActConf = rn;
+        var on = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.merchandise = r(a.merchandise, [ 0, gr ], 0);
+                    Object.assign(i, a), i.merchandise = r(a.merchandise, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.ActMerchandiseConf = rn;
-        var on = function() {
+        n.ActMerchandiseConf = on;
+        var an = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -12581,21 +12596,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.BingoConf = on;
-        var an = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.lineReward = r(a.lineReward, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.BingoRewardConf = an;
+        n.BingoConf = an;
         var sn = function() {
             function e() {}
             return e.getById = function(t) {
@@ -12603,13 +12604,13 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.bingoReward = r(a.bingoReward, [ 0, gr ], 0), i.reward = r(a.reward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.lineReward = r(a.lineReward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.MineConf = sn;
+        n.BingoRewardConf = sn;
         var cn = function() {
             function e() {}
             return e.getById = function(t) {
@@ -12617,13 +12618,13 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.reward = r(a.reward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.bingoReward = r(a.bingoReward, [ 0, hr ], 0), i.reward = r(a.reward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.ProgressBarConf = cn;
+        n.MineConf = cn;
         var un = function() {
             function e() {}
             return e.getById = function(t) {
@@ -12631,13 +12632,13 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.fuKaReward = r(a.fuKaReward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.reward = r(a.reward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.FuKaActConf = un;
+        n.ProgressBarConf = un;
         var ln = function() {
             function e() {}
             return e.getById = function(t) {
@@ -12645,13 +12646,13 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.chargeReward = r(a.chargeReward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.fuKaReward = r(a.fuKaReward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.CumulativeChargeActConf = ln;
+        n.FuKaActConf = ln;
         var fn = function() {
             function e() {}
             return e.getById = function(t) {
@@ -12659,13 +12660,13 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.reward = r(a.reward, [ gr ], 0);
+                    Object.assign(i, a), i.chargeReward = r(a.chargeReward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.TreasureConf = fn;
+        n.CumulativeChargeActConf = fn;
         var dn = function() {
             function e() {}
             return e.getById = function(t) {
@@ -12673,14 +12674,13 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.bingoReward = r(a.bingoReward, [ gr ], 0), i.GoldenBoxReward = r(a.GoldenBoxReward, [ 0, gr ], 0), 
-                    i.reward = r(a.reward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.reward = r(a.reward, [ hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.MonopolyConf = dn;
+        n.TreasureConf = dn;
         var pn = function() {
             function e() {}
             return e.getById = function(t) {
@@ -12688,15 +12688,30 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.bingoReward = r(a.bingoReward, [ 0, gr ], 0), i.innerReward = r(a.innerReward, [ 0, gr ], 0), 
-                    i.middleReward = r(a.middleReward, [ 0, gr ], 0), i.outerReward = r(a.outerReward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.bingoReward = r(a.bingoReward, [ hr ], 0), i.GoldenBoxReward = r(a.GoldenBoxReward, [ 0, hr ], 0), 
+                    i.reward = r(a.reward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.EGameConf = pn;
+        n.MonopolyConf = pn;
         var gn = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.bingoReward = r(a.bingoReward, [ 0, hr ], 0), i.innerReward = r(a.innerReward, [ 0, hr ], 0), 
+                    i.middleReward = r(a.middleReward, [ 0, hr ], 0), i.outerReward = r(a.outerReward, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.EGameConf = gn;
+        var hn = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -12709,21 +12724,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.CheerConf = gn;
-        var hn = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.cheerReward = r(a.cheerReward, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.CheerRewardConf = hn;
+        n.CheerConf = hn;
         var _n = function() {
             function e() {}
             return e.getById = function(t) {
@@ -12731,14 +12732,28 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.fuKaRewardDisplay = r(a.fuKaRewardDisplay, [ gr ], 0), i.reward = r(a.reward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.cheerReward = r(a.cheerReward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.VoteConf = _n;
+        n.CheerRewardConf = _n;
         var mn = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.fuKaRewardDisplay = r(a.fuKaRewardDisplay, [ hr ], 0), i.reward = r(a.reward, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.VoteConf = mn;
+        var vn = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -12751,21 +12766,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.KillBossAchievementConf = mn;
-        var vn = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.condition = r(a.condition, [ 0, mr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.ActGmGroupConf = vn;
+        n.KillBossAchievementConf = vn;
         var En = function() {
             function e() {}
             return e.getById = function(t) {
@@ -12773,14 +12774,28 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.missionReward = r(a.missionReward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.condition = r(a.condition, [ 0, vr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.MissionConf = En;
+        n.ActGmGroupConf = En;
         var yn = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.missionReward = r(a.missionReward, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.MissionConf = yn;
+        var Cn = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -12793,7 +12808,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.ActMultiTowerConf = yn;
+        n.ActMultiTowerConf = Cn;
         var Sn = function() {
             function e() {}
             return e.getById = function(t) {
@@ -12808,7 +12823,7 @@ window.__require = function e(t, n, r) {
             }, e.list = [], e.map = new Map(), e;
         }();
         n.ActMultiTowerScheduleConf = Sn;
-        var Cn = function() {
+        var An = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -12821,22 +12836,22 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.ActMultiTowerShowConf = Cn;
-        var An = function() {
+        n.ActMultiTowerShowConf = An;
+        var Tn = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.reward = r(a.reward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.reward = r(a.reward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.ActMultiTowerLevelRewardConf = An;
-        var Tn = function() {
+        n.ActMultiTowerLevelRewardConf = Tn;
+        var Rn = function() {
             function e() {}
             return e.getByKey = function(t) {
                 return e.map.get(t);
@@ -12865,68 +12880,68 @@ window.__require = function e(t, n, r) {
             }, e.list = [], e.map = new Map(), e.sheetMap = new Map(), e.sheetList = new Map(), 
             e;
         }();
-        n.LanguageConf = Tn;
-        var Rn = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
-                    var o = new e();
-                    Object.assign(o, t[r]);
-                    var i = e.map.get(o.id);
-                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.ActMultiTowerEnhanceConf = Rn;
+        n.LanguageConf = Rn;
         var In = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.reward = r(a.reward, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
+                    var o = new e();
+                    Object.assign(o, t[r]);
+                    var i = e.map.get(o.id);
+                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.ActMultiTowerRewardConf = In;
+        n.ActMultiTowerEnhanceConf = In;
         var On = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
-                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
-                    var o = new e();
-                    Object.assign(o, t[r]);
-                    var i = e.map.get(o.id);
-                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.reward = r(a.reward, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.ActNoobConf = On;
+        n.ActMultiTowerRewardConf = On;
         var wn = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.reward = r(a.reward, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
+                    var o = new e();
+                    Object.assign(o, t[r]);
+                    var i = e.map.get(o.id);
+                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.NoobSign = wn;
+        n.ActNoobConf = wn;
         var bn = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.reward = r(a.reward, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.NoobSign = bn;
+        var Nn = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
                 for (var r in n || (e.list.length = 0, e.map.clear()), t) {
                     var o = new e();
                     Object.assign(o, t[r]);
@@ -12935,35 +12950,21 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.NoobMissionConf = bn;
-        var Nn = function() {
+        n.NoobMissionConf = Nn;
+        var Ln = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.reward = r(a.reward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.reward = r(a.reward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.NoobSubMissionConf = Nn;
-        var Ln = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
-                    var o = new e();
-                    Object.assign(o, t[r]);
-                    var i = e.map.get(o.id);
-                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.ActRogueLevelConf = Ln;
+        n.NoobSubMissionConf = Ln;
         var Mn = function() {
             function e() {}
             return e.getById = function(t) {
@@ -12977,21 +12978,21 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.ActRogueRowConf = Mn;
+        n.ActRogueLevelConf = Mn;
         var Pn = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.reward = r(a.reward, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
+                    var o = new e();
+                    Object.assign(o, t[r]);
+                    var i = e.map.get(o.id);
+                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.ActRogueRewardConf = Pn;
+        n.ActRogueRowConf = Pn;
         var Dn = function() {
             function e() {}
             return e.getById = function(t) {
@@ -12999,13 +13000,13 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.reward = r(a.reward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.reward = r(a.reward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.ActRogueRankRewardConf = Dn;
+        n.ActRogueRewardConf = Dn;
         var Bn = function() {
             function e() {}
             return e.getById = function(t) {
@@ -13013,42 +13014,28 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.basisAttrs = r(a.basisAttrs, [ 0, pr ], 0), i.basisAttrsFunc = r(a.basisAttrsFunc, [ 0, pr ], 0);
+                    Object.assign(i, a), i.reward = r(a.reward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.ActRogueArtifactConf = Bn;
+        n.ActRogueRankRewardConf = Bn;
         var Gn = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
-                    var o = new e();
-                    Object.assign(o, t[r]);
-                    var i = e.map.get(o.id);
-                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.ActRogueEquipConf = Gn;
-        var xn = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.basisAttrs = r(a.basisAttrs, [ 0, pr ], 0);
+                    Object.assign(i, a), i.basisAttrs = r(a.basisAttrs, [ 0, gr ], 0), i.basisAttrsFunc = r(a.basisAttrsFunc, [ 0, gr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.ActRogueEquipLevelConf = xn;
-        var Un = function() {
+        n.ActRogueArtifactConf = Gn;
+        var xn = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -13061,7 +13048,21 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.ActRogueConsumeConf = Un;
+        n.ActRogueEquipConf = xn;
+        var Un = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.basisAttrs = r(a.basisAttrs, [ 0, gr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.ActRogueEquipLevelConf = Un;
         var Hn = function() {
             function e() {}
             return e.getById = function(t) {
@@ -13075,7 +13076,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.ActRogueBuffConf = Hn;
+        n.ActRogueConsumeConf = Hn;
         var kn = function() {
             function e() {}
             return e.getById = function(t) {
@@ -13089,7 +13090,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.ActRogueDebuffConf = kn;
+        n.ActRogueBuffConf = kn;
         var Fn = function() {
             function e() {}
             return e.getById = function(t) {
@@ -13103,7 +13104,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.ActRogueBossConf = Fn;
+        n.ActRogueDebuffConf = Fn;
         var jn = function() {
             function e() {}
             return e.getById = function(t) {
@@ -13117,7 +13118,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.ActRogueMonsterConf = jn;
+        n.ActRogueBossConf = jn;
         var Kn = function() {
             function e() {}
             return e.getById = function(t) {
@@ -13131,7 +13132,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.ActRogueBookConf = Kn;
+        n.ActRogueMonsterConf = Kn;
         var Vn = function() {
             function e() {}
             return e.getById = function(t) {
@@ -13145,135 +13146,8 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.ActRogueBookColumnConf = Vn;
+        n.ActRogueBookConf = Vn;
         var Wn = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.collectReward = r(a.collectReward, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.ActRogueBookRewardConf = Wn;
-        var Yn = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.condition = r(a.condition, [ 0, mr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.ActivityConf = Yn;
-        var Qn = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.cardBenefit = r(a.cardBenefit, [ 0, tl ], 0), i.cardReward = r(a.cardReward, [ 0, gr ], 0), 
-                    i.cardRewardDaily = r(a.cardRewardDaily, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.CardConf = Qn;
-        var qn = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.merchandise = r(a.merchandise, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.DailyDealConf = qn;
-        var Xn = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.params = r(a.params, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.DayBuyConf = Xn;
-        var zn = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.condition = r(a.condition, [ 0, mr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.FundConf = zn;
-        var Jn = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.params = r(a.params, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.FundTaskConf = Jn;
-        var Zn = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.merchandise = r(a.merchandise, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.MerchandiseConf = Zn;
-        var $n = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.reward = r(a.reward, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.SignConf = $n;
-        var er = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -13286,7 +13160,134 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.AFKMapConf = er;
+        n.ActRogueBookColumnConf = Wn;
+        var Yn = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.collectReward = r(a.collectReward, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.ActRogueBookRewardConf = Yn;
+        var Qn = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.condition = r(a.condition, [ 0, vr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.ActivityConf = Qn;
+        var qn = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.cardBenefit = r(a.cardBenefit, [ 0, nl ], 0), i.cardReward = r(a.cardReward, [ 0, hr ], 0), 
+                    i.cardRewardDaily = r(a.cardRewardDaily, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.CardConf = qn;
+        var Xn = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.merchandise = r(a.merchandise, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.DailyDealConf = Xn;
+        var zn = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.params = r(a.params, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.DayBuyConf = zn;
+        var Jn = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.condition = r(a.condition, [ 0, vr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.FundConf = Jn;
+        var Zn = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.params = r(a.params, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.FundTaskConf = Zn;
+        var $n = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.merchandise = r(a.merchandise, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.MerchandiseConf = $n;
+        var er = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.reward = r(a.reward, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.SignConf = er;
         var tr = function() {
             function e() {}
             return e.getById = function(t) {
@@ -13300,7 +13301,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.ArenaRankConf = tr;
+        n.AFKMapConf = tr;
         var nr = function() {
             function e() {}
             return e.getById = function(t) {
@@ -13314,53 +13315,8 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.ArenaScore = nr;
+        n.ArenaRankConf = nr;
         var rr = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.dayExpReward = r(a.dayExpReward, [ 0, gr ], 0), i.weekExpReward = r(a.weekExpReward, [ 0, gr ], 0), 
-                    i.newDayReward = r(a.newDayReward, [ 0, gr ], 0), i.newWeekReward = r(a.newWeekReward, [ 0, gr ], 0), 
-                    i.dayReward = r(a.dayReward, [ 0, gr ], 0), i.weekReward = r(a.weekReward, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.ArenaGift = rr;
-        var or = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.cost = r(a.cost, [ gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.ArenaRefreshConf = or;
-        var ir = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.attrs = r(a.attrs, [ 0, pr ], 0), i.attrsLimit = r(a.attrsLimit, [ 0, pr ], 0), 
-                    i.returnItem = r(a.returnItem, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.ArtifactConf = ir;
-        var ar = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -13373,8 +13329,67 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.AttributeCompareConf = ar;
+        n.ArenaScore = rr;
+        var or = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.dayExpReward = r(a.dayExpReward, [ 0, hr ], 0), i.weekExpReward = r(a.weekExpReward, [ 0, hr ], 0), 
+                    i.newDayReward = r(a.newDayReward, [ 0, hr ], 0), i.newWeekReward = r(a.newWeekReward, [ 0, hr ], 0), 
+                    i.dayReward = r(a.dayReward, [ 0, hr ], 0), i.weekReward = r(a.weekReward, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.ArenaGift = or;
+        var ir = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.cost = r(a.cost, [ hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.ArenaRefreshConf = ir;
+        var ar = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.attrs = r(a.attrs, [ 0, gr ], 0), i.attrsLimit = r(a.attrsLimit, [ 0, gr ], 0), 
+                    i.returnItem = r(a.returnItem, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.ArtifactConf = ar;
         var sr = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
+                    var o = new e();
+                    Object.assign(o, t[r]);
+                    var i = e.map.get(o.id);
+                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.AttributeCompareConf = sr;
+        var cr = function() {
             function e() {}
             return e.getByKey = function(t) {
                 return e.map.get(t);
@@ -13387,26 +13402,26 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.AttributeLimitConf = sr;
-        var cr = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.attrs = r(a.attrs, [ 0, pr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.AuraConf = cr;
+        n.AttributeLimitConf = cr;
         var ur = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.attrs = r(a.attrs, [ 0, gr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.AuraConf = ur;
+        var lr = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
                 for (var r in n || (e.list.length = 0, e.map.clear()), t) {
                     var o = new e();
                     Object.assign(o, t[r]);
@@ -13415,36 +13430,22 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.AutoConf = ur;
-        var lr = function() {
+        n.AutoConf = lr;
+        var fr = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.attackCmds = r(a.attackCmds, [ 0, au ], 0), i.skillCmds = r(a.skillCmds, [ 0, au ], 0), 
-                    i.enterCmd = r(a.enterCmd, [ au ], 0), i.deadCmd = r(a.deadCmd, [ au ], 0);
+                    Object.assign(i, a), i.attackCmds = r(a.attackCmds, [ 0, su ], 0), i.skillCmds = r(a.skillCmds, [ 0, su ], 0), 
+                    i.enterCmd = r(a.enterCmd, [ su ], 0), i.deadCmd = r(a.deadCmd, [ su ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.AvatarConf = lr;
-        var fr = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
-                    var o = new e();
-                    Object.assign(o, t[r]);
-                    var i = e.map.get(o.id);
-                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.AvatarFrameConf = fr;
+        n.AvatarConf = fr;
         var dr = function() {
             function e() {}
             return e.getById = function(t) {
@@ -13458,35 +13459,49 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.BasePush = dr;
+        n.AvatarFrameConf = dr;
+        var pr = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
+                    var o = new e();
+                    Object.assign(o, t[r]);
+                    var i = e.map.get(o.id);
+                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.BasePush = pr;
         n.SkillLevelUpData = function() {};
-        var pr = function() {};
-        n.AttributeData = pr;
         var gr = function() {};
-        n.RewardData = gr;
+        n.AttributeData = gr;
         var hr = function() {};
-        n.PaymentData = hr;
+        n.RewardData = hr;
         var _r = function() {};
-        n.RewardInfo = _r;
+        n.PaymentData = _r;
         var mr = function() {};
-        n.ConditionData = mr;
+        n.RewardInfo = mr;
+        var vr = function() {};
+        n.ConditionData = vr;
         n.BattleMonsterData = function() {};
         n.BookActivateData = function() {};
         n.ComboActivateData = function() {};
-        var vr = function() {};
-        n.StarSpendPack = vr;
-        n.BundleData = function() {};
         var Er = function() {};
-        n.GuideAnim = Er;
+        n.StarSpendPack = Er;
+        n.BundleData = function() {};
         var yr = function() {};
-        n.JumpInfo = yr;
+        n.GuideAnim = yr;
+        var Cr = function() {};
+        n.JumpInfo = Cr;
         var Sr = function() {};
         n.BuffCommand = Sr;
-        var Cr = function() {};
-        n.LegionRewardData = Cr;
         var Ar = function() {};
-        n.GotoData = Ar;
-        var Tr = function() {
+        n.LegionRewardData = Ar;
+        var Tr = function() {};
+        n.GotoData = Tr;
+        var Rr = function() {
             function e() {}
             return e.getByFrom = function(t) {
                 return e.map.get(t);
@@ -13499,38 +13514,38 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.OppositeBattleAttributeKey = Tr;
-        var Rr = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
-                    var o = new e();
-                    Object.assign(o, t[r]);
-                    var i = e.map.get(o.id);
-                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.BattlePassBaseConf = Rr;
+        n.OppositeBattleAttributeKey = Rr;
         var Ir = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
+                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
+                    var o = new e();
+                    Object.assign(o, t[r]);
+                    var i = e.map.get(o.id);
+                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.BattlePassBaseConf = Ir;
+        var Or = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.freeReward = r(a.freeReward, [ 0, gr ], 0), i.payReward = r(a.payReward, [ 0, gr ], 0), 
-                    i.newFreeReward = r(a.newFreeReward, [ 0, gr ], 0), i.newPayReward = r(a.newPayReward, [ 0, gr ], 0), 
-                    i.payReward2 = r(a.payReward2, [ 0, gr ], 0);
+                    Object.assign(i, a), i.freeReward = r(a.freeReward, [ 0, hr ], 0), i.payReward = r(a.payReward, [ 0, hr ], 0), 
+                    i.newFreeReward = r(a.newFreeReward, [ 0, hr ], 0), i.newPayReward = r(a.newPayReward, [ 0, hr ], 0), 
+                    i.payReward2 = r(a.payReward2, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.BattlePassConf = Ir;
-        var Or = function() {
+        n.BattlePassConf = Or;
+        var wr = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -13543,21 +13558,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.BattlePassMissionConf = Or;
-        var wr = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.condition = r(a.condition, [ 0, mr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.BlackMarketConf = wr;
+        n.BattlePassMissionConf = wr;
         var br = function() {
             function e() {}
             return e.getById = function(t) {
@@ -13565,14 +13566,13 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.merchandise = r(a.merchandise, [ 0, gr ], 0), i.paymentMethod = r(a.paymentMethod, [ 0, hr ], 0), 
-                    i.condition = r(a.condition, [ 0, mr ], 0);
+                    Object.assign(i, a), i.condition = r(a.condition, [ 0, vr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.BlackMarketMerchandiseConf = br;
+        n.BlackMarketConf = br;
         var Nr = function() {
             function e() {}
             return e.getById = function(t) {
@@ -13580,16 +13580,31 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.benefit = r(a.benefit, [ 0, Lr ], 0);
+                    Object.assign(i, a), i.merchandise = r(a.merchandise, [ 0, hr ], 0), i.paymentMethod = r(a.paymentMethod, [ 0, _r ], 0), 
+                    i.condition = r(a.condition, [ 0, vr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.BlessingConf = Nr;
-        var Lr = function() {};
-        n.BlessingData = Lr;
-        var Mr = function() {
+        n.BlackMarketMerchandiseConf = Nr;
+        var Lr = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.benefit = r(a.benefit, [ 0, Mr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.BlessingConf = Lr;
+        var Mr = function() {};
+        n.BlessingData = Mr;
+        var Pr = function() {
             function e() {}
             return e.getByType = function(t) {
                 return e.map.get(t);
@@ -13602,8 +13617,8 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.BlessingSortConf = Mr;
-        var Pr = function() {
+        n.BlessingSortConf = Pr;
+        var Dr = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -13616,35 +13631,21 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.BookConf = Pr;
-        var Dr = function() {
+        n.BookConf = Dr;
+        var Br = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.itemBonus = r(a.itemBonus, [ 0, gr ], 0);
+                    Object.assign(i, a), i.itemBonus = r(a.itemBonus, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.BookStageConf = Dr;
-        var Br = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
-                    var o = new e();
-                    Object.assign(o, t[r]);
-                    var i = e.map.get(o.id);
-                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.BossInfoConfig = Br;
+        n.BookStageConf = Br;
         var Gr = function() {
             function e() {}
             return e.getById = function(t) {
@@ -13658,78 +13659,8 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.BossLoopConfig = Gr;
+        n.BossInfoConfig = Gr;
         var xr = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.bossReward = r(a.bossReward, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.BossRewardsConfig = xr;
-        var Ur = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.showReward = r(a.showReward, [ 0, 0, _r ], 0), i.helpReward = r(a.helpReward, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.BossTowerConf = Ur;
-        var Hr = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.helpRankReward = r(a.helpRankReward, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.BossHelpRankRewardConfig = Hr;
-        var kr = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.good = r(a.good, [ gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.BossTowerShopConf = kr;
-        var Fr = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.boxReward = r(a.boxReward, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.Bottle = Fr;
-        var jr = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -13742,7 +13673,77 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.BottlePool = jr;
+        n.BossLoopConfig = xr;
+        var Ur = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.bossReward = r(a.bossReward, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.BossRewardsConfig = Ur;
+        var Hr = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.showReward = r(a.showReward, [ 0, 0, mr ], 0), i.helpReward = r(a.helpReward, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.BossTowerConf = Hr;
+        var kr = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.helpRankReward = r(a.helpRankReward, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.BossHelpRankRewardConfig = kr;
+        var Fr = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.good = r(a.good, [ hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.BossTowerShopConf = Fr;
+        var jr = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.boxReward = r(a.boxReward, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.Bottle = jr;
         var Kr = function() {
             function e() {}
             return e.getById = function(t) {
@@ -13756,7 +13757,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.BottleTime = Kr;
+        n.BottlePool = Kr;
         var Vr = function() {
             function e() {}
             return e.getById = function(t) {
@@ -13770,7 +13771,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.BoxConf = Vr;
+        n.BottleTime = Vr;
         var Wr = function() {
             function e() {}
             return e.getById = function(t) {
@@ -13784,7 +13785,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.BoxStageConf = Wr;
+        n.BoxConf = Wr;
         var Yr = function() {
             function e() {}
             return e.getById = function(t) {
@@ -13798,7 +13799,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.BriefreportConf = Yr;
+        n.BoxStageConf = Yr;
         var Qr = function() {
             function e() {}
             return e.getById = function(t) {
@@ -13812,7 +13813,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.BulletConf = Qr;
+        n.BriefreportConf = Qr;
         var qr = function() {
             function e() {}
             return e.getById = function(t) {
@@ -13826,7 +13827,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.CalendarConf = qr;
+        n.BulletConf = qr;
         var Xr = function() {
             function e() {}
             return e.getById = function(t) {
@@ -13840,7 +13841,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.CalenderActIConf = Xr;
+        n.CalendarConf = Xr;
         var zr = function() {
             function e() {}
             return e.getById = function(t) {
@@ -13854,22 +13855,21 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.CalenderMonthConf = zr;
+        n.CalenderActIConf = zr;
         var Jr = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.condition = r(a.condition, [ 0, mr ], 0), i.collectReward = r(a.collectReward, [ 0, gr ], 0), 
-                    i.collectColorfulReward = r(a.collectColorfulReward, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
+                    var o = new e();
+                    Object.assign(o, t[r]);
+                    var i = e.map.get(o.id);
+                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.CardSeriesConf = Jr;
+        n.CalenderMonthConf = Jr;
         var Zr = function() {
             function e() {}
             return e.getById = function(t) {
@@ -13877,65 +13877,80 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.tradeType = r(a.tradeType, [ mr ], 0), i.rewards = r(a.rewards, [ 0, gr ], 0), 
-                    i.newRewards = r(a.newRewards, [ 0, 0, gr ], 0), i.newRewardsColor = r(a.newRewardsColor, [ 0, 0, gr ], 0);
+                    Object.assign(i, a), i.condition = r(a.condition, [ 0, vr ], 0), i.collectReward = r(a.collectReward, [ 0, hr ], 0), 
+                    i.collectColorfulReward = r(a.collectColorfulReward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.CardPackageConf = Zr;
+        n.CardSeriesConf = Zr;
         var $r = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
-                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
-                    var o = new e();
-                    Object.assign(o, t[r]);
-                    var i = e.map.get(o.id);
-                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.tradeType = r(a.tradeType, [ vr ], 0), i.rewards = r(a.rewards, [ 0, hr ], 0), 
+                    i.newRewards = r(a.newRewards, [ 0, 0, hr ], 0), i.newRewardsColor = r(a.newRewardsColor, [ 0, 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.CardDetailConf = $r;
+        n.CardPackageConf = $r;
         var eo = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.condition = r(a.condition, [ 0, mr ], 0), i.bossReward = r(a.bossReward, [ 0, gr ], 0), 
-                    i.unlockCost = r(a.unlockCost, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
+                    var o = new e();
+                    Object.assign(o, t[r]);
+                    var i = e.map.get(o.id);
+                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.CareerChallengeConf = eo;
+        n.CardDetailConf = eo;
         var to = function() {
-            function e() {}
-            return e.decode = function(t) {
-                for (var n in e.config = new e(), t) e.config[n] = t[n];
-            }, e;
-        }();
-        n.CareerChallengeConstantConf = to;
-        var no = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.params = r(a.params, [ 0, gr ], 0);
+                    Object.assign(i, a), i.condition = r(a.condition, [ 0, vr ], 0), i.bossReward = r(a.bossReward, [ 0, hr ], 0), 
+                    i.unlockCost = r(a.unlockCost, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.ChargePackConf = no;
+        n.CareerChallengeConf = to;
+        var no = function() {
+            function e() {}
+            return e.decode = function(t) {
+                for (var n in e.config = new e(), t) e.config[n] = t[n];
+            }, e;
+        }();
+        n.CareerChallengeConstantConf = no;
         var ro = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.params = r(a.params, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.ChargePackConf = ro;
+        var oo = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -13948,21 +13963,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.CharmConf = ro;
-        var oo = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.condition = r(a.condition, [ 0, mr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.CharmGift = oo;
+        n.CharmConf = oo;
         var io = function() {
             function e() {}
             return e.getById = function(t) {
@@ -13970,27 +13971,27 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.condition = r(a.condition, [ 0, mr ], 0), i.goto = r(a.goto, [ Ar ], 0);
+                    Object.assign(i, a), i.condition = r(a.condition, [ 0, vr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.CharmTask = io;
+        n.CharmGift = io;
         var ao = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
-                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
-                    var o = new e();
-                    Object.assign(o, t[r]);
-                    var i = e.map.get(o.id);
-                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.condition = r(a.condition, [ 0, vr ], 0), i.goto = r(a.goto, [ Tr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.ChatSensitiveConf = ao;
+        n.CharmTask = ao;
         var so = function() {
             function e() {}
             return e.getById = function(t) {
@@ -14004,7 +14005,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.ChatAlertConf = so;
+        n.ChatSensitiveConf = so;
         var co = function() {
             function e() {}
             return e.getById = function(t) {
@@ -14018,94 +14019,8 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.CoinGetConf = co;
+        n.ChatAlertConf = co;
         var uo = function() {
-            function e() {}
-            return e.decode = function(t) {
-                for (var n in e.config = new e(), t) e.config[n] = t[n];
-            }, e;
-        }();
-        n.CollectionConf = uo;
-        var lo = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.stageItemReward = r(a.stageItemReward, [ 0, gr ], 0), i.stageAttrReward = r(a.stageAttrReward, [ 0, pr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.CollectionStageConf = lo;
-        var fo = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.pointAttrReward = r(a.pointAttrReward, [ 0, 0, pr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.CollectionHeroConf = fo;
-        var po = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.stageItemReward = r(a.stageItemReward, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.CollectionSeriesConf = po;
-        var go = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.items = r(a.items, [ 0, ho ], 0), i.stageAttrReward = r(a.stageAttrReward, [ 0, 0, pr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.CollectionHeroSuitsConf = go;
-        var ho = function() {};
-        n.CollectionItem = ho;
-        var _o = function() {
-            function e() {}
-            return e.decode = function(t) {
-                for (var n in e.config = new e(), t) e.config[n] = t[n];
-            }, e;
-        }();
-        n.ConstantConf = _o;
-        var mo = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.merchandise = r(a.merchandise, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.CurrencyMarketConf = mo;
-        var vo = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -14118,7 +14033,93 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.CustomCardConf = vo;
+        n.CoinGetConf = uo;
+        var lo = function() {
+            function e() {}
+            return e.decode = function(t) {
+                for (var n in e.config = new e(), t) e.config[n] = t[n];
+            }, e;
+        }();
+        n.CollectionConf = lo;
+        var fo = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.stageItemReward = r(a.stageItemReward, [ 0, hr ], 0), i.stageAttrReward = r(a.stageAttrReward, [ 0, gr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.CollectionStageConf = fo;
+        var po = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.pointAttrReward = r(a.pointAttrReward, [ 0, 0, gr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.CollectionHeroConf = po;
+        var go = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.stageItemReward = r(a.stageItemReward, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.CollectionSeriesConf = go;
+        var ho = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.items = r(a.items, [ 0, _o ], 0), i.stageAttrReward = r(a.stageAttrReward, [ 0, 0, gr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.CollectionHeroSuitsConf = ho;
+        var _o = function() {};
+        n.CollectionItem = _o;
+        var mo = function() {
+            function e() {}
+            return e.decode = function(t) {
+                for (var n in e.config = new e(), t) e.config[n] = t[n];
+            }, e;
+        }();
+        n.ConstantConf = mo;
+        var vo = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.merchandise = r(a.merchandise, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.CurrencyMarketConf = vo;
         var Eo = function() {
             function e() {}
             return e.getById = function(t) {
@@ -14132,64 +14133,8 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.DailyTaskConf = Eo;
+        n.CustomCardConf = Eo;
         var yo = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.rewardPoints = r(a.rewardPoints, [ gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.DayLimitConf = yo;
-        var So = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.rewardPoints = r(a.rewardPoints, [ gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.WeekLimitConf = So;
-        var Co = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.guideAnim = r(a.guideAnim, [ 0, Er ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.DialogConf = Co;
-        var Ao = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.diamond = r(a.diamond, [ 0, gr ], 0), i.benefit = r(a.benefit, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.DiamondShopConf = Ao;
-        var To = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -14202,7 +14147,63 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.DingniuConstantConf = To;
+        n.DailyTaskConf = yo;
+        var Co = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.rewardPoints = r(a.rewardPoints, [ hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.DayLimitConf = Co;
+        var So = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.rewardPoints = r(a.rewardPoints, [ hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.WeekLimitConf = So;
+        var Ao = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.guideAnim = r(a.guideAnim, [ 0, yr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.DialogConf = Ao;
+        var To = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.diamond = r(a.diamond, [ 0, hr ], 0), i.benefit = r(a.benefit, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.DiamondShopConf = To;
         var Ro = function() {
             function e() {}
             return e.getById = function(t) {
@@ -14216,7 +14217,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.DingniuInConstantConf = Ro;
+        n.DingniuConstantConf = Ro;
         var Io = function() {
             function e() {}
             return e.getById = function(t) {
@@ -14230,7 +14231,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.DropDailyMail = Io;
+        n.DingniuInConstantConf = Io;
         var Oo = function() {
             function e() {}
             return e.getById = function(t) {
@@ -14244,36 +14245,8 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.DungeonConf = Oo;
+        n.DropDailyMail = Oo;
         var wo = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.merchantConf = r(a.merchantConf, [ 0, gr ], 0), i.price = r(a.price, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.DungeonMerchantConf = wo;
-        var bo = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.attrs = r(a.attrs, [ 0, pr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.DungeonItemConf = bo;
-        var No = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -14286,7 +14259,35 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.DungeonMonsterConf = No;
+        n.DungeonConf = wo;
+        var bo = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.merchantConf = r(a.merchantConf, [ 0, hr ], 0), i.price = r(a.price, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.DungeonMerchantConf = bo;
+        var No = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.attrs = r(a.attrs, [ 0, gr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.DungeonItemConf = No;
         var Lo = function() {
             function e() {}
             return e.getById = function(t) {
@@ -14300,7 +14301,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.EffectConf = Lo;
+        n.DungeonMonsterConf = Lo;
         var Mo = function() {
             function e() {}
             return e.getById = function(t) {
@@ -14314,7 +14315,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.EmojiConf = Mo;
+        n.EffectConf = Mo;
         var Po = function() {
             function e() {}
             return e.getById = function(t) {
@@ -14328,7 +14329,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.EquipConf = Po;
+        n.EmojiConf = Po;
         var Do = function() {
             function e() {}
             return e.getById = function(t) {
@@ -14342,7 +14343,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.EquipLvConf = Do;
+        n.EquipConf = Do;
         var Bo = function() {
             function e() {}
             return e.getById = function(t) {
@@ -14356,7 +14357,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.EquipLvSpend = Bo;
+        n.EquipLvConf = Bo;
         var Go = function() {
             function e() {}
             return e.getById = function(t) {
@@ -14370,7 +14371,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.EquipForgeSpend = Go;
+        n.EquipLvSpend = Go;
         var xo = function() {
             function e() {}
             return e.getById = function(t) {
@@ -14384,7 +14385,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.EquipmentConf = xo;
+        n.EquipForgeSpend = xo;
         var Uo = function() {
             function e() {}
             return e.getById = function(t) {
@@ -14398,70 +14399,70 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.EquipmentLvConf = Uo;
+        n.EquipmentConf = Uo;
         var Ho = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.setAttrs = r(a.setAttrs, [ 0, pr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
+                    var o = new e();
+                    Object.assign(o, t[r]);
+                    var i = e.map.get(o.id);
+                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.EquipmentSetConf = Ho;
+        n.EquipmentLvConf = Ho;
         var ko = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
-                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
-                    var o = new e();
-                    Object.assign(o, t[r]);
-                    var i = e.map.get(o.id);
-                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.EquipmentForgeSpend = ko;
-        var Fo = function() {
-            function e() {}
-            return e.decode = function(t) {
-                for (var n in e.config = new e(), t) e.config[n] = t[n];
-            }, e;
-        }();
-        n.EvoTowerConstant = Fo;
-        var jo = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
-                    var o = new e();
-                    Object.assign(o, t[r]);
-                    var i = e.map.get(o.id);
-                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.EvoTowerScheduleConf = jo;
-        var Ko = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.bossReward = r(a.bossReward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.setAttrs = r(a.setAttrs, [ 0, gr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.EvoTowerConf = Ko;
+        n.EquipmentSetConf = ko;
+        var Fo = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
+                    var o = new e();
+                    Object.assign(o, t[r]);
+                    var i = e.map.get(o.id);
+                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.EquipmentForgeSpend = Fo;
+        var jo = function() {
+            function e() {}
+            return e.decode = function(t) {
+                for (var n in e.config = new e(), t) e.config[n] = t[n];
+            }, e;
+        }();
+        n.EvoTowerConstant = jo;
+        var Ko = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
+                    var o = new e();
+                    Object.assign(o, t[r]);
+                    var i = e.map.get(o.id);
+                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.EvoTowerScheduleConf = Ko;
         var Vo = function() {
             function e() {}
             return e.getById = function(t) {
@@ -14469,13 +14470,13 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.attrReward = r(a.attrReward, [ 0, 0, pr ], 0);
-                    var s = e.map.get(i.Id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.Id, i);
+                    Object.assign(i, a), i.bossReward = r(a.bossReward, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.EvoTowerClubPrivilegeConf = Vo;
+        n.EvoTowerConf = Vo;
         var Wo = function() {
             function e() {}
             return e.getById = function(t) {
@@ -14483,14 +14484,28 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.towerReward = r(a.towerReward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.attrReward = r(a.attrReward, [ 0, 0, gr ], 0);
+                    var s = e.map.get(i.Id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.Id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.EvoTowerClubPrivilegeConf = Wo;
+        var Yo = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.towerReward = r(a.towerReward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.EvoTowerReward = Wo;
-        var Yo = function() {
+        n.EvoTowerReward = Yo;
+        var Qo = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -14503,21 +14518,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.EvoTowerStageConf = Yo;
-        var Qo = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.taskReward = r(a.taskReward, [ 0, gr ], 0);
-                    var s = e.map.get(i.Id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.Id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.EvoTowerTaskConf = Qo;
+        n.EvoTowerStageConf = Qo;
         var qo = function() {
             function e() {}
             return e.getById = function(t) {
@@ -14525,34 +14526,34 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.finalReward = r(a.finalReward, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                    Object.assign(i, a), i.taskReward = r(a.taskReward, [ 0, hr ], 0);
+                    var s = e.map.get(i.Id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.Id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.EvoTowerLegionRankReward = qo;
+        n.EvoTowerTaskConf = qo;
         var Xo = function() {
-            function e() {}
-            return e.decode = function(t) {
-                for (var n in e.config = new e(), t) e.config[n] = t[n];
-            }, e;
-        }();
-        n.EvoTowerGachaConstant = Xo;
-        var zo = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.reward = r(a.reward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.finalReward = r(a.finalReward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.EvoTowerGachaRewardConf = zo;
+        n.EvoTowerLegionRankReward = Xo;
+        var zo = function() {
+            function e() {}
+            return e.decode = function(t) {
+                for (var n in e.config = new e(), t) e.config[n] = t[n];
+            }, e;
+        }();
+        n.EvoTowerGachaConstant = zo;
         var Jo = function() {
             function e() {}
             return e.getById = function(t) {
@@ -14560,48 +14561,48 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.merchandise = r(a.merchandise, [ 0, gr ], 0);
+                    Object.assign(i, a), i.reward = r(a.reward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.EvoTowerGachaShop = Jo;
+        n.EvoTowerGachaRewardConf = Jo;
         var Zo = function() {
-            function e() {}
-            return e.decode = function(t) {
-                for (var n in e.config = new e(), t) e.config[n] = t[n];
-            }, e;
-        }();
-        n.EvoTowerShareConstant = Zo;
-        var $o = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.taskReward = r(a.taskReward, [ 0, gr ], 0);
-                    var s = e.map.get(i.Id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.Id, i);
+                    Object.assign(i, a), i.merchandise = r(a.merchandise, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.EvoTowerShareTasks = $o;
+        n.EvoTowerGachaShop = Zo;
+        var $o = function() {
+            function e() {}
+            return e.decode = function(t) {
+                for (var n in e.config = new e(), t) e.config[n] = t[n];
+            }, e;
+        }();
+        n.EvoTowerShareConstant = $o;
         var ei = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
-                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
-                    var o = new e();
-                    Object.assign(o, t[r]);
-                    var i = e.map.get(o.id);
-                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.taskReward = r(a.taskReward, [ 0, hr ], 0);
+                    var s = e.map.get(i.Id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.Id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.ExcelVer = ei;
+        n.EvoTowerShareTasks = ei;
         var ti = function() {
             function e() {}
             return e.getById = function(t) {
@@ -14615,8 +14616,22 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.FlyupTheme = ti;
+        n.ExcelVer = ti;
         var ni = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
+                    var o = new e();
+                    Object.assign(o, t[r]);
+                    var i = e.map.get(o.id);
+                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.FlyupTheme = ni;
+        var ri = function() {
             function e() {}
             return e.getByLowLimit = function(t) {
                 return e.map.get(t);
@@ -14629,8 +14644,8 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.FlyNumberFormatter = ni;
-        var ri = function() {
+        n.FlyNumberFormatter = ri;
+        var oi = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -14643,47 +14658,47 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.FlyNumberStyleSheet = ri;
-        var oi = function() {
+        n.FlyNumberStyleSheet = oi;
+        var ii = function() {
             function e() {}
             return e.decode = function(t) {
                 for (var n in e.config = new e(), t) e.config[n] = t[n];
             }, e;
         }();
-        n.FootballMatchConstantConf = oi;
-        var ii = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
-                    var o = new e();
-                    Object.assign(o, t[r]);
-                    var i = e.map.get(o.id);
-                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.FootballMatchScheduleConf = ii;
+        n.FootballMatchConstantConf = ii;
         var ai = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.weeklyScoreReward = r(a.weeklyScoreReward, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
+                    var o = new e();
+                    Object.assign(o, t[r]);
+                    var i = e.map.get(o.id);
+                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.WeeklyScoreConf = ai;
+        n.FootballMatchScheduleConf = ai;
         var si = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.weeklyScoreReward = r(a.weeklyScoreReward, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.WeeklyScoreConf = si;
+        var ci = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
                 for (var r in n || (e.list.length = 0, e.map.clear()), t) {
                     var o = new e();
                     Object.assign(o, t[r]);
@@ -14692,36 +14707,22 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.WeeklyRankShowConf = si;
-        var ci = function() {
+        n.WeeklyRankShowConf = ci;
+        var ui = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.attrValue1 = r(a.attrValue1, [ 0, pr ], 0), i.attrValue2 = r(a.attrValue2, [ 0, pr ], 0), 
-                    i.attrValue3 = r(a.attrValue3, [ 0, pr ], 0), i.attrValue4 = r(a.attrValue4, [ 0, pr ], 0);
+                    Object.assign(i, a), i.attrValue1 = r(a.attrValue1, [ 0, gr ], 0), i.attrValue2 = r(a.attrValue2, [ 0, gr ], 0), 
+                    i.attrValue3 = r(a.attrValue3, [ 0, gr ], 0), i.attrValue4 = r(a.attrValue4, [ 0, gr ], 0);
                     var s = e.map.get(i.Id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.Id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.FootballFormationConf = ci;
-        var ui = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
-                    var o = new e();
-                    Object.assign(o, t[r]);
-                    var i = e.map.get(o.id);
-                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.KnockoutStageGroupConf = ui;
+        n.FootballFormationConf = ui;
         var li = function() {
             function e() {}
             return e.getById = function(t) {
@@ -14735,7 +14736,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.FootballPlayerConf = li;
+        n.KnockoutStageGroupConf = li;
         var fi = function() {
             function e() {}
             return e.getById = function(t) {
@@ -14749,7 +14750,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.FootballMatchPicConf = fi;
+        n.FootballPlayerConf = fi;
         var di = function() {
             function e() {}
             return e.getById = function(t) {
@@ -14763,21 +14764,21 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.FormationConf = di;
+        n.FootballMatchPicConf = di;
         var pi = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.reward = r(a.reward, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
+                    var o = new e();
+                    Object.assign(o, t[r]);
+                    var i = e.map.get(o.id);
+                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.GachaRewardConf = pi;
+        n.FormationConf = pi;
         var gi = function() {
             function e() {}
             return e.getById = function(t) {
@@ -14785,13 +14786,13 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.reward = r(a.reward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.reward = r(a.reward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.GachaGroupConf = gi;
+        n.GachaRewardConf = gi;
         var hi = function() {
             function e() {}
             return e.getById = function(t) {
@@ -14799,35 +14800,28 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.reward = r(a.reward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.reward = r(a.reward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.GachaAccumRewardConf = hi;
+        n.GachaGroupConf = hi;
         var _i = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
-                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
-                    var o = new e();
-                    Object.assign(o, t[r]);
-                    var i = e.map.get(o.id);
-                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.reward = r(a.reward, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.GachaBox = _i;
+        n.GachaAccumRewardConf = _i;
         var mi = function() {
-            function e() {}
-            return e.decode = function(t) {
-                for (var n in e.config = new e(), t) e.config[n] = t[n];
-            }, e;
-        }();
-        n.GachaConstant = mi;
-        var vi = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -14840,7 +14834,14 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.GameCardTTConf = vi;
+        n.GachaBox = mi;
+        var vi = function() {
+            function e() {}
+            return e.decode = function(t) {
+                for (var n in e.config = new e(), t) e.config[n] = t[n];
+            }, e;
+        }();
+        n.GachaConstant = vi;
         var Ei = function() {
             function e() {}
             return e.getById = function(t) {
@@ -14854,7 +14855,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.TTSubscribeMsg = Ei;
+        n.GameCardTTConf = Ei;
         var yi = function() {
             function e() {}
             return e.getById = function(t) {
@@ -14868,22 +14869,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.GenieConf = yi;
-        var Si = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.condition = r(a.condition, [ 0, mr ], 0), i.bossReward = r(a.bossReward, [ 0, gr ], 0), 
-                    i.stayFixedReward = r(a.stayFixedReward, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.GenieLevelConf = Si;
+        n.TTSubscribeMsg = yi;
         var Ci = function() {
             function e() {}
             return e.getById = function(t) {
@@ -14897,36 +14883,23 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.GenieSweepConf = Ci;
+        n.GenieConf = Ci;
+        var Si = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.condition = r(a.condition, [ 0, vr ], 0), i.bossReward = r(a.bossReward, [ 0, hr ], 0), 
+                    i.stayFixedReward = r(a.stayFixedReward, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.GenieLevelConf = Si;
         var Ai = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.reward = r(a.reward, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.GlobalSignConf = Ai;
-        var Ti = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.reward = r(a.reward, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.SingleSignConf = Ti;
-        var Ri = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -14939,7 +14912,35 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.AutoAddConf = Ri;
+        n.GenieSweepConf = Ai;
+        var Ti = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.reward = r(a.reward, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.GlobalSignConf = Ti;
+        var Ri = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.reward = r(a.reward, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.SingleSignConf = Ri;
         var Ii = function() {
             function e() {}
             return e.getById = function(t) {
@@ -14953,7 +14954,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.GlobalSignGoalConf = Ii;
+        n.AutoAddConf = Ii;
         var Oi = function() {
             function e() {}
             return e.getById = function(t) {
@@ -14967,7 +14968,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.GuideConf = Oi;
+        n.GlobalSignGoalConf = Oi;
         var wi = function() {
             function e() {}
             return e.getById = function(t) {
@@ -14981,22 +14982,8 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.H5GiftConf = wi;
+        n.GuideConf = wi;
         var bi = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.awakeReward = r(a.awakeReward, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.HeroConf = bi;
-        var Ni = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -15009,7 +14996,21 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.HeroAttrConf = Ni;
+        n.H5GiftConf = bi;
+        var Ni = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.awakeReward = r(a.awakeReward, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.HeroConf = Ni;
         var Li = function() {
             function e() {}
             return e.getById = function(t) {
@@ -15023,7 +15024,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.HeroLvSpend = Li;
+        n.HeroAttrConf = Li;
         var Mi = function() {
             function e() {}
             return e.getById = function(t) {
@@ -15037,7 +15038,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.HeroLvLimit = Mi;
+        n.HeroLvSpend = Mi;
         var Pi = function() {
             function e() {}
             return e.getById = function(t) {
@@ -15051,7 +15052,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.HeroOrder = Pi;
+        n.HeroLvLimit = Pi;
         var Di = function() {
             function e() {}
             return e.getById = function(t) {
@@ -15065,29 +15066,8 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.HeroStarExt = Di;
+        n.HeroOrder = Di;
         var Bi = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.starSpendPack = r(a.starSpendPack, [ 0, vr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.HeroStarSpend = Bi;
-        var Gi = function() {
-            function e() {}
-            return e.decode = function(t) {
-                for (var n in e.config = new e(), t) e.config[n] = t[n];
-            }, e;
-        }();
-        n.HorseConstant = Gi;
-        var xi = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -15100,7 +15080,28 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.HorseScheduleConf = xi;
+        n.HeroStarExt = Bi;
+        var Gi = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.starSpendPack = r(a.starSpendPack, [ 0, Er ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.HeroStarSpend = Gi;
+        var xi = function() {
+            function e() {}
+            return e.decode = function(t) {
+                for (var n in e.config = new e(), t) e.config[n] = t[n];
+            }, e;
+        }();
+        n.HorseConstant = xi;
         var Ui = function() {
             function e() {}
             return e.getById = function(t) {
@@ -15114,7 +15115,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.HorseSubScheduleConf = Ui;
+        n.HorseScheduleConf = Ui;
         var Hi = function() {
             function e() {}
             return e.getById = function(t) {
@@ -15128,8 +15129,22 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.HorseProgressConf = Hi;
+        n.HorseSubScheduleConf = Hi;
         var ki = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
+                    var o = new e();
+                    Object.assign(o, t[r]);
+                    var i = e.map.get(o.id);
+                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.HorseProgressConf = ki;
+        var Fi = function() {
             function e() {}
             return e.getByID = function(t) {
                 return e.map.get(t);
@@ -15142,35 +15157,21 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.RandomHorseConf = ki;
-        var Fi = function() {
+        n.RandomHorseConf = Fi;
+        var ji = function() {
             function e() {}
             return e.getByMonsterGroupId = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.foldPackShow = r(a.foldPackShow, [ 0, _r ], 0), i.otherReward = r(a.otherReward, [ gr ], 0);
+                    Object.assign(i, a), i.foldPackShow = r(a.foldPackShow, [ 0, mr ], 0), i.otherReward = r(a.otherReward, [ hr ], 0);
                     var s = e.map.get(i.monsterGroupId);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.monsterGroupId, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.HorseBoxConf = Fi;
-        var ji = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.reward = r(a.reward, [ 0, gr ], 0), i.shareReward = r(a.shareReward, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.HorseLegionRewardConf = ji;
+        n.HorseBoxConf = ji;
         var Ki = function() {
             function e() {}
             return e.getById = function(t) {
@@ -15178,13 +15179,13 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.selfReward = r(a.selfReward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.reward = r(a.reward, [ 0, hr ], 0), i.shareReward = r(a.shareReward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.HorseSelfRewardConf = Ki;
+        n.HorseLegionRewardConf = Ki;
         var Vi = function() {
             function e() {}
             return e.getById = function(t) {
@@ -15192,14 +15193,28 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.merchandise = r(a.merchandise, [ 0, gr ], 0);
+                    Object.assign(i, a), i.selfReward = r(a.selfReward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.HorseMerchandiseConf = Vi;
+        n.HorseSelfRewardConf = Vi;
         var Wi = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.merchandise = r(a.merchandise, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.HorseMerchandiseConf = Wi;
+        var Yi = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -15212,8 +15227,8 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.HorseMatchingRule = Wi;
-        var Yi = function() {
+        n.HorseMatchingRule = Yi;
+        var Qi = function() {
             function e() {}
             return e.getByMapGroup = function(t) {
                 return e.map.get(t);
@@ -15226,21 +15241,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.HorseMapConf = Yi;
-        var Qi = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
-                    var o = new e();
-                    Object.assign(o, t[r]);
-                    var i = e.map.get(o.id);
-                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.HideQuenchPoint = Qi;
+        n.HorseMapConf = Qi;
         var qi = function() {
             function e() {}
             return e.getById = function(t) {
@@ -15254,21 +15255,21 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.Invite = qi;
+        n.HideQuenchPoint = qi;
         var Xi = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.priceCondition = r(a.priceCondition, [ 0, mr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
+                    var o = new e();
+                    Object.assign(o, t[r]);
+                    var i = e.map.get(o.id);
+                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.ItemConf = Xi;
+        n.Invite = Xi;
         var zi = function() {
             function e() {}
             return e.getById = function(t) {
@@ -15276,27 +15277,27 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.attrs = r(a.attrs, [ 0, pr ], 0);
+                    Object.assign(i, a), i.priceCondition = r(a.priceCondition, [ 0, vr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.ItemLegionConf = zi;
+        n.ItemConf = zi;
         var Ji = function() {
             function e() {}
-            return e.getByKey = function(t) {
+            return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
-                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
-                    var o = new e();
-                    Object.assign(o, t[r]);
-                    var i = e.map.get(o.key);
-                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.key, o);
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.attrs = r(a.attrs, [ 0, gr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.ErrocodeLanguageConf = Ji;
+        n.ItemLegionConf = Ji;
         var Zi = function() {
             function e() {}
             return e.getByKey = function(t) {
@@ -15310,7 +15311,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.LoadingLanguageConf = Zi;
+        n.ErrocodeLanguageConf = Zi;
         var $i = function() {
             function e() {}
             return e.getByKey = function(t) {
@@ -15324,21 +15325,21 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.MailLanguageConf = $i;
+        n.LoadingLanguageConf = $i;
         var ea = function() {
             function e() {}
-            return e.getById = function(t) {
+            return e.getByKey = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
                 for (var r in n || (e.list.length = 0, e.map.clear()), t) {
                     var o = new e();
                     Object.assign(o, t[r]);
-                    var i = e.map.get(o.id);
-                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
+                    var i = e.map.get(o.key);
+                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.key, o);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.IosPrice = ea;
+        n.MailLanguageConf = ea;
         var ta = function() {
             function e() {}
             return e.getById = function(t) {
@@ -15352,35 +15353,35 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.GooglePrice = ta;
+        n.IosPrice = ta;
         var na = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
+                    var o = new e();
+                    Object.assign(o, t[r]);
+                    var i = e.map.get(o.id);
+                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.GooglePrice = na;
+        var ra = function() {
             function e() {}
             return e.getByLegionBossId = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.legionBossReward = r(a.legionBossReward, [ 0, gr ], 0), i.killReward = r(a.killReward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.legionBossReward = r(a.legionBossReward, [ 0, hr ], 0), i.killReward = r(a.killReward, [ 0, hr ], 0);
                     var s = e.map.get(i.legionBossId);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.legionBossId, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.LegionBossConf = na;
-        var ra = function() {
-            function e() {}
-            return e.getByID = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.rankReward = r(a.rankReward, [ 0, gr ], 0);
-                    var s = e.map.get(i.ID);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.ID, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.LegionBossRewardConf = ra;
+        n.LegionBossConf = ra;
         var oa = function() {
             function e() {}
             return e.getByID = function(t) {
@@ -15388,14 +15389,28 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.rankReward = r(a.rankReward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.rankReward = r(a.rankReward, [ 0, hr ], 0);
                     var s = e.map.get(i.ID);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.ID, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.LegionBossDailyRewardConf = oa;
+        n.LegionBossRewardConf = oa;
         var ia = function() {
+            function e() {}
+            return e.getByID = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.rankReward = r(a.rankReward, [ 0, hr ], 0);
+                    var s = e.map.get(i.ID);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.ID, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.LegionBossDailyRewardConf = ia;
+        var aa = function() {
             function e() {}
             return e.getByFightId = function(t) {
                 return e.map.get(t);
@@ -15408,8 +15423,8 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.LegionBossCostConf = ia;
-        var aa = function() {
+        n.LegionBossCostConf = aa;
+        var sa = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -15422,28 +15437,14 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.LegionCupConf = aa;
-        var sa = function() {
+        n.LegionCupConf = sa;
+        var ca = function() {
             function e() {}
             return e.decode = function(t) {
                 for (var n in e.config = new e(), t) e.config[n] = t[n];
             }, e;
         }();
-        n.LegionLeagePointConf = sa;
-        var ca = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.reward = r(a.reward, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.LegionLeagueCheerConf = ca;
+        n.LegionLeagePointConf = ca;
         var ua = function() {
             function e() {}
             return e.getById = function(t) {
@@ -15451,13 +15452,13 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.reward = r(a.reward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.reward = r(a.reward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.LegionLeagueSeasonCheerConf = ua;
+        n.LegionLeagueCheerConf = ua;
         var la = function() {
             function e() {}
             return e.getById = function(t) {
@@ -15465,13 +15466,13 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.reward = r(a.reward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.reward = r(a.reward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.LegionLeagueRewardConf = la;
+        n.LegionLeagueSeasonCheerConf = la;
         var fa = function() {
             function e() {}
             return e.getById = function(t) {
@@ -15479,27 +15480,27 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.reward = r(a.reward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.reward = r(a.reward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.LegionWarFinalRewardConf = fa;
+        n.LegionLeagueRewardConf = fa;
         var da = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
-                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
-                    var o = new e();
-                    Object.assign(o, t[r]);
-                    var i = e.map.get(o.id);
-                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.reward = r(a.reward, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.LegionLeagueConf = da;
+        n.LegionWarFinalRewardConf = da;
         var pa = function() {
             function e() {}
             return e.getById = function(t) {
@@ -15513,22 +15514,8 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.LegionLeagueSessionConf = pa;
+        n.LegionLeagueConf = pa;
         var ga = function() {
-            function e() {}
-            return e.getByLegionLevel = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
-                    var o = new e();
-                    Object.assign(o, t[r]);
-                    var i = e.map.get(o.legionLevel);
-                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.legionLevel, o);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.LegionLevelConf = ga;
-        var ha = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -15541,7 +15528,21 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.LegionMarqueeConf = ha;
+        n.LegionLeagueSessionConf = ga;
+        var ha = function() {
+            function e() {}
+            return e.getByLegionLevel = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
+                    var o = new e();
+                    Object.assign(o, t[r]);
+                    var i = e.map.get(o.legionLevel);
+                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.legionLevel, o);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.LegionLevelConf = ha;
         var _a = function() {
             function e() {}
             return e.getById = function(t) {
@@ -15555,7 +15556,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.RankRangeConf = _a;
+        n.LegionMarqueeConf = _a;
         var ma = function() {
             function e() {}
             return e.getById = function(t) {
@@ -15569,7 +15570,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.MatchZoneTypeConf = ma;
+        n.RankRangeConf = ma;
         var va = function() {
             function e() {}
             return e.getById = function(t) {
@@ -15583,7 +15584,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.LegionNameplateConf = va;
+        n.MatchZoneTypeConf = va;
         var Ea = function() {
             function e() {}
             return e.getById = function(t) {
@@ -15597,7 +15598,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.LegionRankConf = Ea;
+        n.LegionNameplateConf = Ea;
         var ya = function() {
             function e() {}
             return e.getById = function(t) {
@@ -15611,7 +15612,21 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.LegionRankConstantConf = ya;
+        n.LegionRankConf = ya;
+        var Ca = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
+                    var o = new e();
+                    Object.assign(o, t[r]);
+                    var i = e.map.get(o.id);
+                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.LegionRankConstantConf = Ca;
         var Sa = function() {
             function e() {}
             return e.getById = function(t) {
@@ -15626,22 +15641,22 @@ window.__require = function e(t, n, r) {
             }, e.list = [], e.map = new Map(), e;
         }();
         n.LegionPointConf = Sa;
-        var Ca = function() {
+        var Aa = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.clubReward = r(a.clubReward, [ 0, gr ], 0), i.clubWinReward = r(a.clubWinReward, [ 0, gr ], 0), 
-                    i.rankReward = r(a.rankReward, [ 0, gr ], 0), i.KingReward = r(a.KingReward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.clubReward = r(a.clubReward, [ 0, hr ], 0), i.clubWinReward = r(a.clubWinReward, [ 0, hr ], 0), 
+                    i.rankReward = r(a.rankReward, [ 0, hr ], 0), i.KingReward = r(a.KingReward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.LegionRankRewardConf = Ca;
-        var Aa = function() {
+        n.LegionRankRewardConf = Aa;
+        var Ta = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -15654,21 +15669,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.LegionRankVersusConf = Aa;
-        var Ta = function() {
-            function e() {}
-            return e.getByID = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
-                    var o = new e();
-                    Object.assign(o, t[r]);
-                    var i = e.map.get(o.ID);
-                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.ID, o);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.ResearchConf = Ta;
+        n.LegionRankVersusConf = Ta;
         var Ra = function() {
             function e() {}
             return e.getByID = function(t) {
@@ -15682,21 +15683,21 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.LegionResearchConf = Ra;
+        n.ResearchConf = Ra;
         var Ia = function() {
             function e() {}
-            return e.getById = function(t) {
+            return e.getByID = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.good = r(a.good, [ gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
+                    var o = new e();
+                    Object.assign(o, t[r]);
+                    var i = e.map.get(o.ID);
+                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.ID, o);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.LegionStoreConf = Ia;
+        n.LegionResearchConf = Ia;
         var Oa = function() {
             function e() {}
             return e.getById = function(t) {
@@ -15704,27 +15705,27 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.good_limit = r(a.good_limit, [ Cr ], 0), i.good_forever = r(a.good_forever, [ Cr ], 0);
+                    Object.assign(i, a), i.good = r(a.good, [ hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.LegionSkinStoreConf = Oa;
+        n.LegionStoreConf = Oa;
         var wa = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
-                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
-                    var o = new e();
-                    Object.assign(o, t[r]);
-                    var i = e.map.get(o.id);
-                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.good_limit = r(a.good_limit, [ Ar ], 0), i.good_forever = r(a.good_forever, [ Ar ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.TagConf = wa;
+        n.LegionSkinStoreConf = wa;
         var ba = function() {
             function e() {}
             return e.getById = function(t) {
@@ -15738,7 +15739,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.TagConditionConf = ba;
+        n.TagConf = ba;
         var Na = function() {
             function e() {}
             return e.getById = function(t) {
@@ -15752,7 +15753,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.LegionWarConstantConf = Na;
+        n.TagConditionConf = Na;
         var La = function() {
             function e() {}
             return e.getById = function(t) {
@@ -15766,7 +15767,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.AirshipConf = La;
+        n.LegionWarConstantConf = La;
         var Ma = function() {
             function e() {}
             return e.getById = function(t) {
@@ -15780,22 +15781,8 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.MultiKillConf = Ma;
+        n.AirshipConf = Ma;
         var Pa = function() {
-            function e() {}
-            return e.getByMonth = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
-                    var o = new e();
-                    Object.assign(o, t[r]);
-                    var i = e.map.get(o.month);
-                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.month, o);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.LegionWarLanguageConf = Pa;
-        var Da = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -15808,7 +15795,21 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.LegionWarMapConf = Da;
+        n.MultiKillConf = Pa;
+        var Da = function() {
+            function e() {}
+            return e.getByMonth = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
+                    var o = new e();
+                    Object.assign(o, t[r]);
+                    var i = e.map.get(o.month);
+                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.month, o);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.LegionWarLanguageConf = Da;
         var Ba = function() {
             function e() {}
             return e.getById = function(t) {
@@ -15822,7 +15823,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.LegionWarMapTypeMappingConf = Ba;
+        n.LegionWarMapConf = Ba;
         var Ga = function() {
             function e() {}
             return e.getById = function(t) {
@@ -15836,7 +15837,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.LegionWarMedallionConf = Ga;
+        n.LegionWarMapTypeMappingConf = Ga;
         var xa = function() {
             function e() {}
             return e.getById = function(t) {
@@ -15850,106 +15851,8 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.WarRewardPageConf = xa;
+        n.LegionWarMedallionConf = xa;
         var Ua = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.reward = r(a.reward, [ 0, gr ], 0), i.LegionReward = r(a.LegionReward, [ 0, Cr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.LegionWarRewardConf = Ua;
-        var Ha = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.reward = r(a.reward, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.LegionWarKillRewardConf = Ha;
-        var ka = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.reward = r(a.reward, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.SeasonLegionWarSkyRewardConf = ka;
-        var Fa = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.reward = r(a.reward, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.LegionWarSkyRewardConf = Fa;
-        var ja = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.reward = r(a.reward, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.LegionWarSkyKillRewardConf = ja;
-        var Ka = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.LegionReward = r(a.LegionReward, [ 0, Cr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.LegionWarGuildRewardConf = Ka;
-        var Va = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.betReward = r(a.betReward, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.LegionScheduleConf = Va;
-        var Wa = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -15962,7 +15865,105 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.SeasonLegionScheduleConf = Wa;
+        n.WarRewardPageConf = Ua;
+        var Ha = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.reward = r(a.reward, [ 0, hr ], 0), i.LegionReward = r(a.LegionReward, [ 0, Ar ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.LegionWarRewardConf = Ha;
+        var ka = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.reward = r(a.reward, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.LegionWarKillRewardConf = ka;
+        var Fa = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.reward = r(a.reward, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.SeasonLegionWarSkyRewardConf = Fa;
+        var ja = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.reward = r(a.reward, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.LegionWarSkyRewardConf = ja;
+        var Ka = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.reward = r(a.reward, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.LegionWarSkyKillRewardConf = Ka;
+        var Va = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.LegionReward = r(a.LegionReward, [ 0, Ar ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.LegionWarGuildRewardConf = Va;
+        var Wa = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.betReward = r(a.betReward, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.LegionScheduleConf = Wa;
         var Ya = function() {
             function e() {}
             return e.getById = function(t) {
@@ -15976,7 +15977,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.SeasonLegionLeagueSessionConf = Ya;
+        n.SeasonLegionScheduleConf = Ya;
         var Qa = function() {
             function e() {}
             return e.getById = function(t) {
@@ -15990,7 +15991,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.LevelConf = Qa;
+        n.SeasonLegionLeagueSessionConf = Qa;
         var qa = function() {
             function e() {}
             return e.getById = function(t) {
@@ -16004,7 +16005,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.ChapterConf = qa;
+        n.LevelConf = qa;
         var Xa = function() {
             function e() {}
             return e.getById = function(t) {
@@ -16018,7 +16019,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.LevelWeaponConf = Xa;
+        n.ChapterConf = Xa;
         var za = function() {
             function e() {}
             return e.getById = function(t) {
@@ -16032,22 +16033,8 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.LevelWeaponSkillConf = za;
+        n.LevelWeaponConf = za;
         var Ja = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.rewardWight = r(a.rewardWight, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.LevelWeaponDropConf = Ja;
-        var Za = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -16060,7 +16047,21 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.ActLevelConf = Za;
+        n.LevelWeaponSkillConf = Ja;
+        var Za = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.rewardWight = r(a.rewardWight, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.LevelWeaponDropConf = Za;
         var $a = function() {
             function e() {}
             return e.getById = function(t) {
@@ -16074,29 +16075,8 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.ActGuideConf = $a;
+        n.ActLevelConf = $a;
         var es = function() {
-            function e() {}
-            return e.getByType = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.condition = r(a.condition, [ 0, mr ], 0);
-                    var s = e.map.get(i.type);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.type, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.ActModuleConditionConf = es;
-        var ts = function() {
-            function e() {}
-            return e.decode = function(t) {
-                for (var n in e.config = new e(), t) e.config[n] = t[n];
-            }, e;
-        }();
-        n.ActLevelConstant = ts;
-        var ns = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -16109,21 +16089,42 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.LordLvConf = ns;
+        n.ActGuideConf = es;
+        var ts = function() {
+            function e() {}
+            return e.getByType = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.condition = r(a.condition, [ 0, vr ], 0);
+                    var s = e.map.get(i.type);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.type, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.ActModuleConditionConf = ts;
+        var ns = function() {
+            function e() {}
+            return e.decode = function(t) {
+                for (var n in e.config = new e(), t) e.config[n] = t[n];
+            }, e;
+        }();
+        n.ActLevelConstant = ns;
         var rs = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.conditionType = r(a.conditionType, [ 0, mr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
+                    var o = new e();
+                    Object.assign(o, t[r]);
+                    var i = e.map.get(o.id);
+                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.LordLvLimitConf = rs;
+        n.LordLvConf = rs;
         var os = function() {
             function e() {}
             return e.getById = function(t) {
@@ -16131,27 +16132,27 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.condition = r(a.condition, [ 0, mr ], 0);
+                    Object.assign(i, a), i.conditionType = r(a.conditionType, [ 0, vr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.LordOrderConf = os;
+        n.LordLvLimitConf = os;
         var is = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
-                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
-                    var o = new e();
-                    Object.assign(o, t[r]);
-                    var i = e.map.get(o.id);
-                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.condition = r(a.condition, [ 0, vr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.LordSkinConf = is;
+        n.LordOrderConf = is;
         var as = function() {
             function e() {}
             return e.getById = function(t) {
@@ -16165,36 +16166,8 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.ProfileCardConf = as;
+        n.LordSkinConf = as;
         var ss = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.unlockCost = r(a.unlockCost, [ gr ], 0), i.condition = r(a.condition, [ 0, mr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.WeaponConf = ss;
-        var cs = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.activeCost = r(a.activeCost, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.WeaponActiveConf = cs;
-        var us = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -16207,7 +16180,35 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.WeaponPassiveConf = us;
+        n.ProfileCardConf = ss;
+        var cs = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.unlockCost = r(a.unlockCost, [ hr ], 0), i.condition = r(a.condition, [ 0, vr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.WeaponConf = cs;
+        var us = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.activeCost = r(a.activeCost, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.WeaponActiveConf = us;
         var ls = function() {
             function e() {}
             return e.getById = function(t) {
@@ -16221,64 +16222,8 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.MapConf = ls;
+        n.WeaponPassiveConf = ls;
         var fs = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.attrs = r(a.attrs, [ 0, pr ], 0), i.attrs_out = r(a.attrs_out, [ 0, pr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.MedallionConf = fs;
-        var ds = function() {
-            function e() {}
-            return e.getByType = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.condition = r(a.condition, [ 0, mr ], 0);
-                    var s = e.map.get(i.type);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.type, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.ModuleConf = ds;
-        var ps = function() {
-            function e() {}
-            return e.getByType = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.condition = r(a.condition, [ 0, mr ], 0);
-                    var s = e.map.get(i.type);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.type, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.SubModConf = ps;
-        var gs = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.attrs = r(a.attrs, [ 0, pr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.MonsterConf = gs;
-        var hs = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -16291,21 +16236,77 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.LevelCoeffConf = hs;
-        var _s = function() {
+        n.MapConf = fs;
+        var ds = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.condition = r(a.condition, [ 0, mr ], 0), i.jumpInfo = r(a.jumpInfo, [ yr ], 0);
+                    Object.assign(i, a), i.attrs = r(a.attrs, [ 0, gr ], 0), i.attrs_out = r(a.attrs_out, [ 0, gr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.MonthActivity = _s;
+        n.MedallionConf = ds;
+        var ps = function() {
+            function e() {}
+            return e.getByType = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.condition = r(a.condition, [ 0, vr ], 0);
+                    var s = e.map.get(i.type);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.type, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.ModuleConf = ps;
+        var gs = function() {
+            function e() {}
+            return e.getByType = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.condition = r(a.condition, [ 0, vr ], 0);
+                    var s = e.map.get(i.type);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.type, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.SubModConf = gs;
+        var hs = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.attrs = r(a.attrs, [ 0, gr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.MonsterConf = hs;
+        var _s = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
+                    var o = new e();
+                    Object.assign(o, t[r]);
+                    var i = e.map.get(o.id);
+                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.LevelCoeffConf = _s;
         var ms = function() {
             function e() {}
             return e.getById = function(t) {
@@ -16313,34 +16314,34 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.giftMonth = r(a.giftMonth, [ 0, gr ], 0);
+                    Object.assign(i, a), i.condition = r(a.condition, [ 0, vr ], 0), i.jumpInfo = r(a.jumpInfo, [ Cr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.MonthActivityConf = ms;
+        n.MonthActivity = ms;
         var vs = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.giftMonth = r(a.giftMonth, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.MonthActivityConf = vs;
+        var Es = function() {
             function e() {}
             return e.decode = function(t) {
                 for (var n in e.config = new e(), t) e.config[n] = t[n];
             }, e;
         }();
-        n.MoonConstant = vs;
-        var Es = function() {
-            function e() {}
-            return e.getByRabbitId = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
-                    var o = new e();
-                    Object.assign(o, t[r]);
-                    var i = e.map.get(o.rabbitId);
-                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.rabbitId, o);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.MoonRabbitConf = Es;
+        n.MoonConstant = Es;
         var ys = function() {
             function e() {}
             return e.getByRabbitId = function(t) {
@@ -16354,7 +16355,21 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.MoonRabbitMonsterConf = ys;
+        n.MoonRabbitConf = ys;
+        var Cs = function() {
+            function e() {}
+            return e.getByRabbitId = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
+                    var o = new e();
+                    Object.assign(o, t[r]);
+                    var i = e.map.get(o.rabbitId);
+                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.rabbitId, o);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.MoonRabbitMonsterConf = Cs;
         var Ss = function() {
             function e() {}
             return e.getByMonsterGroupId = function(t) {
@@ -16362,14 +16377,14 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.foldPackShow = r(a.foldPackShow, [ 0, _r ], 0), i.otherReward = r(a.otherReward, [ gr ], 0);
+                    Object.assign(i, a), i.foldPackShow = r(a.foldPackShow, [ 0, mr ], 0), i.otherReward = r(a.otherReward, [ hr ], 0);
                     var s = e.map.get(i.monsterGroupId);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.monsterGroupId, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
         n.RabbitBoxConf = Ss;
-        var Cs = function() {
+        var As = function() {
             function e() {}
             return e.getByTreeId = function(t) {
                 return e.map.get(t);
@@ -16382,8 +16397,8 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.MoonTreeConf = Cs;
-        var As = function() {
+        n.MoonTreeConf = As;
+        var Ts = function() {
             function e() {}
             return e.getByGateId = function(t) {
                 return e.map.get(t);
@@ -16396,21 +16411,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.TeleportConf = As;
-        var Ts = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.merchandise = r(a.merchandise, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.MoonMerchandiseConf = Ts;
+        n.TeleportConf = Ts;
         var Rs = function() {
             function e() {}
             return e.getById = function(t) {
@@ -16418,13 +16419,13 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.reward = r(a.reward, [ 0, gr ], 0), i.shareReward = r(a.shareReward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.merchandise = r(a.merchandise, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.MoonLegionRewardConf = Rs;
+        n.MoonMerchandiseConf = Rs;
         var Is = function() {
             function e() {}
             return e.getById = function(t) {
@@ -16432,27 +16433,27 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.selfReward = r(a.selfReward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.reward = r(a.reward, [ 0, hr ], 0), i.shareReward = r(a.shareReward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.MoonSelfRewardConf = Is;
+        n.MoonLegionRewardConf = Is;
         var Os = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
-                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
-                    var o = new e();
-                    Object.assign(o, t[r]);
-                    var i = e.map.get(o.id);
-                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.selfReward = r(a.selfReward, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.MoonScheduleConf = Os;
+        n.MoonSelfRewardConf = Os;
         var ws = function() {
             function e() {}
             return e.getById = function(t) {
@@ -16466,7 +16467,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.MoonSubScheduleConf = ws;
+        n.MoonScheduleConf = ws;
         var bs = function() {
             function e() {}
             return e.getById = function(t) {
@@ -16480,15 +16481,8 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.LegionGroupConf = bs;
+        n.MoonSubScheduleConf = bs;
         var Ns = function() {
-            function e() {}
-            return e.decode = function(t) {
-                for (var n in e.config = new e(), t) e.config[n] = t[n];
-            }, e;
-        }();
-        n.NightMareRaceConstant = Ns;
-        var Ls = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -16501,8 +16495,29 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.NightMareRaceConf = Ls;
+        n.LegionGroupConf = Ns;
+        var Ls = function() {
+            function e() {}
+            return e.decode = function(t) {
+                for (var n in e.config = new e(), t) e.config[n] = t[n];
+            }, e;
+        }();
+        n.NightMareRaceConstant = Ls;
         var Ms = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
+                    var o = new e();
+                    Object.assign(o, t[r]);
+                    var i = e.map.get(o.id);
+                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.NightMareRaceConf = Ms;
+        var Ps = function() {
             function e() {}
             return e.getByBossId = function(t) {
                 return e.map.get(t);
@@ -16515,21 +16530,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.NightMareRaceMonsterConf = Ms;
-        var Ps = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.changedAttributes = r(a.changedAttributes, [ 0, pr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.NightMareRaceBattleBuffConf = Ps;
+        n.NightMareRaceMonsterConf = Ps;
         var Ds = function() {
             function e() {}
             return e.getById = function(t) {
@@ -16537,13 +16538,13 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.finalReward = r(a.finalReward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.changedAttributes = r(a.changedAttributes, [ 0, gr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.NightMareRaceRankRewardConf = Ds;
+        n.NightMareRaceBattleBuffConf = Ds;
         var Bs = function() {
             function e() {}
             return e.getById = function(t) {
@@ -16551,21 +16552,35 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.taskReward = r(a.taskReward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.finalReward = r(a.finalReward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.NightMareRaceTaskRewardConf = Bs;
+        n.NightMareRaceRankRewardConf = Bs;
         var Gs = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.taskReward = r(a.taskReward, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.NightMareRaceTaskRewardConf = Gs;
+        var xs = function() {
             function e() {}
             return e.decode = function(t) {
                 for (var n in e.config = new e(), t) e.config[n] = t[n];
             }, e;
         }();
-        n.NightMareStarConstant = Gs;
-        var xs = function() {
+        n.NightMareStarConstant = xs;
+        var Us = function() {
             function e() {}
             return e.getByBossId = function(t) {
                 return e.map.get(t);
@@ -16578,21 +16593,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.NightMareStarConf = xs;
-        var Us = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.itemBonus = r(a.itemBonus, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.NightMareStarBookConf = Us;
+        n.NightMareStarConf = Us;
         var Hs = function() {
             function e() {}
             return e.getById = function(t) {
@@ -16600,13 +16601,13 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.reward = r(a.reward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.itemBonus = r(a.itemBonus, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.NightMareStarWheelConf = Hs;
+        n.NightMareStarBookConf = Hs;
         var ks = function() {
             function e() {}
             return e.getById = function(t) {
@@ -16614,64 +16615,28 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.itemBonus = r(a.itemBonus, [ 0, gr ], 0);
+                    Object.assign(i, a), i.reward = r(a.reward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.NightMareGroupStarRewardConf = ks;
+        n.NightMareStarWheelConf = ks;
         var Fs = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
-                    var o = new e();
-                    Object.assign(o, t[r]);
-                    var i = e.map.get(o.id);
-                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.OtherItemConf = Fs;
-        var js = function() {
-            function e() {}
-            return e.decode = function(t) {
-                for (var n in e.config = new e(), t) e.config[n] = t[n];
-            }, e;
-        }();
-        n.OverviewConstant = js;
-        var Ks = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
-                    var o = new e();
-                    Object.assign(o, t[r]);
-                    var i = e.map.get(o.id);
-                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.OverviewConf = Ks;
-        var Vs = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.diamondPackRewardWeight = r(a.diamondPackRewardWeight, [ 0, gr ], 0), 
-                    i.packShow = r(a.packShow, [ 0, gr ], 0), i.foldPackShow = r(a.foldPackShow, [ 0, _r ], 0);
+                    Object.assign(i, a), i.itemBonus = r(a.itemBonus, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.PackConf = Vs;
-        var Ws = function() {
+        n.NightMareGroupStarRewardConf = Fs;
+        var js = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -16684,7 +16649,43 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.PaoMaDengConf = Ws;
+        n.OtherItemConf = js;
+        var Ks = function() {
+            function e() {}
+            return e.decode = function(t) {
+                for (var n in e.config = new e(), t) e.config[n] = t[n];
+            }, e;
+        }();
+        n.OverviewConstant = Ks;
+        var Vs = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
+                    var o = new e();
+                    Object.assign(o, t[r]);
+                    var i = e.map.get(o.id);
+                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.OverviewConf = Vs;
+        var Ws = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.diamondPackRewardWeight = r(a.diamondPackRewardWeight, [ 0, hr ], 0), 
+                    i.packShow = r(a.packShow, [ 0, hr ], 0), i.foldPackShow = r(a.foldPackShow, [ 0, mr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.PackConf = Ws;
         var Ys = function() {
             function e() {}
             return e.getById = function(t) {
@@ -16698,7 +16699,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.BattleReward = Ys;
+        n.PaoMaDengConf = Ys;
         var Qs = function() {
             function e() {}
             return e.getById = function(t) {
@@ -16712,22 +16713,36 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.PeakRecord = Qs;
+        n.BattleReward = Qs;
         var qs = function() {
             function e() {}
-            return e.decode = function(t) {
-                for (var n in e.config = new e(), t) e.config[n] = t[n];
-            }, e;
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
+                    var o = new e();
+                    Object.assign(o, t[r]);
+                    var i = e.map.get(o.id);
+                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
+                }
+            }, e.list = [], e.map = new Map(), e;
         }();
-        n.PeakRecordConf = qs;
+        n.PeakRecord = qs;
         var Xs = function() {
             function e() {}
             return e.decode = function(t) {
                 for (var n in e.config = new e(), t) e.config[n] = t[n];
             }, e;
         }();
-        n.PearlConstant = Xs;
+        n.PeakRecordConf = Xs;
         var zs = function() {
+            function e() {}
+            return e.decode = function(t) {
+                for (var n in e.config = new e(), t) e.config[n] = t[n];
+            }, e;
+        }();
+        n.PearlConstant = zs;
+        var Js = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -16740,35 +16755,21 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.PearlRandConf = zs;
-        var Js = function() {
+        n.PearlRandConf = Js;
+        var Zs = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.return = r(a.return, [ 0, gr ], 0);
+                    Object.assign(i, a), i.return = r(a.return, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.PearlColorConf = Js;
-        var Zs = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
-                    var o = new e();
-                    Object.assign(o, t[r]);
-                    var i = e.map.get(o.id);
-                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.PearlAttrConf = Zs;
+        n.PearlColorConf = Zs;
         var $s = function() {
             function e() {}
             return e.getById = function(t) {
@@ -16782,66 +16783,8 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.PearlSkillPoolConf = $s;
+        n.PearlAttrConf = $s;
         var ec = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.merchandise = r(a.merchandise, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.PrisonConf = ec;
-        var tc = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.benefit = r(a.benefit, [ 0, nc ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.PrivilegeConf = tc;
-        var nc = function() {};
-        n.PrivilegeData = nc;
-        var rc = function() {
-            function e() {}
-            return e.getByType = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
-                    var o = new e();
-                    Object.assign(o, t[r]);
-                    var i = e.map.get(o.type);
-                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.type, o);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.PrivilegeSortConf = rc;
-        var oc = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.stayFixedReward = r(a.stayFixedReward, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.PushList = oc;
-        var ic = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -16854,7 +16797,65 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.PVPMapConf = ic;
+        n.PearlSkillPoolConf = ec;
+        var tc = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.merchandise = r(a.merchandise, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.PrisonConf = tc;
+        var nc = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.benefit = r(a.benefit, [ 0, rc ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.PrivilegeConf = nc;
+        var rc = function() {};
+        n.PrivilegeData = rc;
+        var oc = function() {
+            function e() {}
+            return e.getByType = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
+                    var o = new e();
+                    Object.assign(o, t[r]);
+                    var i = e.map.get(o.type);
+                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.type, o);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.PrivilegeSortConf = oc;
+        var ic = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.stayFixedReward = r(a.stayFixedReward, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.PushList = ic;
         var ac = function() {
             function e() {}
             return e.getById = function(t) {
@@ -16868,7 +16869,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.QualitySelectionConf = ac;
+        n.PVPMapConf = ac;
         var sc = function() {
             function e() {}
             return e.getById = function(t) {
@@ -16882,7 +16883,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.QuenchConf = sc;
+        n.QualitySelectionConf = sc;
         var uc = function() {
             function e() {}
             return e.getById = function(t) {
@@ -16896,7 +16897,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.QuenchAttrConf = uc;
+        n.QuenchConf = uc;
         var lc = function() {
             function e() {}
             return e.getById = function(t) {
@@ -16910,36 +16911,8 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.QuenchBuffConf = lc;
+        n.QuenchAttrConf = lc;
         var fc = function() {
-            function e() {}
-            return e.getByAttr = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
-                    var o = new e();
-                    Object.assign(o, t[r]);
-                    var i = e.map.get(o.attr);
-                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.attr, o);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.QuenchBuffFloatConf = fc;
-        var dc = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.Reward = r(a.Reward, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.QuenchRewardConf = dc;
-        var pc = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -16952,7 +16925,35 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.Recover = pc;
+        n.QuenchBuffConf = fc;
+        var dc = function() {
+            function e() {}
+            return e.getByAttr = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
+                    var o = new e();
+                    Object.assign(o, t[r]);
+                    var i = e.map.get(o.attr);
+                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.attr, o);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.QuenchBuffFloatConf = dc;
+        var pc = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.Reward = r(a.Reward, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.QuenchRewardConf = pc;
         var gc = function() {
             function e() {}
             return e.getById = function(t) {
@@ -16966,7 +16967,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.RegressionRuleConf = gc;
+        n.Recover = gc;
         var hc = function() {
             function e() {}
             return e.getById = function(t) {
@@ -16980,58 +16981,8 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.ResourcePath = hc;
+        n.RegressionRuleConf = hc;
         var _c = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.CompassReward = r(a.CompassReward, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.ReturnGachaConf = _c;
-        var mc = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.reward = r(a.reward, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.ReturnMissionConf = mc;
-        var vc = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.merchandise = r(a.merchandise, [ 0, gr ], 0), i.merchandiseExtra = r(a.merchandiseExtra, [ 0, gr ], 0), 
-                    i.condition = r(a.condition, [ 0, mr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.RollUpPackConf = vc;
-        var Ec = function() {
-            function e() {}
-            return e.decode = function(t) {
-                for (var n in e.config = new e(), t) e.config[n] = t[n];
-            }, e;
-        }();
-        n.RoomConstant = Ec;
-        var yc = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -17044,7 +16995,71 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.RoomSettingsConf = yc;
+        n.ResourcePath = _c;
+        var mc = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.CompassReward = r(a.CompassReward, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.ReturnGachaConf = mc;
+        var vc = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.reward = r(a.reward, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.ReturnMissionConf = vc;
+        var Ec = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.merchandise = r(a.merchandise, [ 0, hr ], 0), i.merchandiseExtra = r(a.merchandiseExtra, [ 0, hr ], 0), 
+                    i.condition = r(a.condition, [ 0, vr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.RollUpPackConf = Ec;
+        var yc = function() {
+            function e() {}
+            return e.decode = function(t) {
+                for (var n in e.config = new e(), t) e.config[n] = t[n];
+            }, e;
+        }();
+        n.RoomConstant = yc;
+        var Cc = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
+                    var o = new e();
+                    Object.assign(o, t[r]);
+                    var i = e.map.get(o.id);
+                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.RoomSettingsConf = Cc;
         var Sc = function() {
             function e() {}
             return e.getById = function(t) {
@@ -17059,20 +17074,6 @@ window.__require = function e(t, n, r) {
             }, e.list = [], e.map = new Map(), e;
         }();
         n.AdvanceRoomSettingsConf = Sc;
-        var Cc = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
-                    var o = new e();
-                    Object.assign(o, t[r]);
-                    var i = e.map.get(o.id);
-                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.MatchRoomSettingsConf = Cc;
         var Ac = function() {
             function e() {}
             return e.getById = function(t) {
@@ -17086,22 +17087,8 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.FightRoomSettingsConf = Ac;
+        n.MatchRoomSettingsConf = Ac;
         var Tc = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.merchandise = r(a.merchandise, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.RoomMerchandiseConf = Tc;
-        var Rc = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -17114,7 +17101,21 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.RoomNightmareMonster = Rc;
+        n.FightRoomSettingsConf = Tc;
+        var Rc = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.merchandise = r(a.merchandise, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.RoomMerchandiseConf = Rc;
         var Ic = function() {
             function e() {}
             return e.getById = function(t) {
@@ -17128,7 +17129,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.RobotSettingsConf = Ic;
+        n.RoomNightmareMonster = Ic;
         var Oc = function() {
             function e() {}
             return e.getById = function(t) {
@@ -17142,7 +17143,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.RoomTheme = Oc;
+        n.RobotSettingsConf = Oc;
         var wc = function() {
             function e() {}
             return e.getById = function(t) {
@@ -17156,7 +17157,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.RoomFightColumnTimeConf = wc;
+        n.RoomTheme = wc;
         var bc = function() {
             function e() {}
             return e.getById = function(t) {
@@ -17170,29 +17171,8 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.RoomFightRoundConf = bc;
+        n.RoomFightColumnTimeConf = bc;
         var Nc = function() {
-            function e() {}
-            return e.decode = function(t) {
-                for (var n in e.config = new e(), t) e.config[n] = t[n];
-            }, e;
-        }();
-        n.SeasonArenaConstant = Nc;
-        var Lc = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.dayReward = r(a.dayReward, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.SeasonArenaReward = Lc;
-        var Mc = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -17205,7 +17185,28 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.SeasonArenaRank = Mc;
+        n.RoomFightRoundConf = Nc;
+        var Lc = function() {
+            function e() {}
+            return e.decode = function(t) {
+                for (var n in e.config = new e(), t) e.config[n] = t[n];
+            }, e;
+        }();
+        n.SeasonArenaConstant = Lc;
+        var Mc = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.dayReward = r(a.dayReward, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.SeasonArenaReward = Mc;
         var Pc = function() {
             function e() {}
             return e.getById = function(t) {
@@ -17219,21 +17220,21 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.SeasonBattlePassBaseConf = Pc;
+        n.SeasonArenaRank = Pc;
         var Dc = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.freeReward = r(a.freeReward, [ 0, gr ], 0), i.payReward = r(a.payReward, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
+                    var o = new e();
+                    Object.assign(o, t[r]);
+                    var i = e.map.get(o.id);
+                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.SeasonBattlePassReward = Dc;
+        n.SeasonBattlePassBaseConf = Dc;
         var Bc = function() {
             function e() {}
             return e.getById = function(t) {
@@ -17241,42 +17242,56 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.merchandise = r(a.merchandise, [ 0, gr ], 0);
+                    Object.assign(i, a), i.freeReward = r(a.freeReward, [ 0, hr ], 0), i.payReward = r(a.payReward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.SeasonMerchandiseConf = Bc;
+        n.SeasonBattlePassReward = Bc;
         var Gc = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
-                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
-                    var o = new e();
-                    Object.assign(o, t[r]);
-                    var i = e.map.get(o.id);
-                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.merchandise = r(a.merchandise, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.SeasonHeroBookConf = Gc;
+        n.SeasonMerchandiseConf = Gc;
         var xc = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
+                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
+                    var o = new e();
+                    Object.assign(o, t[r]);
+                    var i = e.map.get(o.id);
+                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.SeasonHeroBookConf = xc;
+        var Uc = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.heroBookAttr = r(a.heroBookAttr, [ 0, pr ], 0);
+                    Object.assign(i, a), i.heroBookAttr = r(a.heroBookAttr, [ 0, gr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.SeasonHeroArrt = xc;
-        var Uc = function() {
+        n.SeasonHeroArrt = Uc;
+        var Hc = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -17289,21 +17304,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.GemstoneRandConf = Uc;
-        var Hc = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.attrs = r(a.attrs, [ 0, pr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.GemstoneAttrConf = Hc;
+        n.GemstoneRandConf = Hc;
         var kc = function() {
             function e() {}
             return e.getById = function(t) {
@@ -17311,27 +17312,27 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.awakeReward = r(a.awakeReward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.attrs = r(a.attrs, [ 0, gr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.SeasonHeroConf = kc;
+        n.GemstoneAttrConf = kc;
         var Fc = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
-                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
-                    var o = new e();
-                    Object.assign(o, t[r]);
-                    var i = e.map.get(o.id);
-                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.awakeReward = r(a.awakeReward, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.HeroConditionConf = Fc;
+        n.SeasonHeroConf = Fc;
         var jc = function() {
             function e() {}
             return e.getById = function(t) {
@@ -17345,7 +17346,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.SeasonLevel = jc;
+        n.HeroConditionConf = jc;
         var Kc = function() {
             function e() {}
             return e.getById = function(t) {
@@ -17359,7 +17360,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.LevelLimitConf = Kc;
+        n.SeasonLevel = Kc;
         var Vc = function() {
             function e() {}
             return e.getById = function(t) {
@@ -17373,7 +17374,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.SeasonLordOrderConf = Vc;
+        n.LevelLimitConf = Vc;
         var Wc = function() {
             function e() {}
             return e.getById = function(t) {
@@ -17387,7 +17388,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.SeasonRankListConf = Wc;
+        n.SeasonLordOrderConf = Wc;
         var Yc = function() {
             function e() {}
             return e.getById = function(t) {
@@ -17401,7 +17402,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.SeasonResearchConf = Yc;
+        n.SeasonRankListConf = Yc;
         var Qc = function() {
             function e() {}
             return e.getById = function(t) {
@@ -17415,7 +17416,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.SeasonGuideConf = Qc;
+        n.SeasonResearchConf = Qc;
         var qc = function() {
             function e() {}
             return e.getById = function(t) {
@@ -17429,7 +17430,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.ServerNameConf = qc;
+        n.SeasonGuideConf = qc;
         var Xc = function() {
             function e() {}
             return e.getById = function(t) {
@@ -17443,66 +17444,8 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.BigServerConf = Xc;
+        n.ServerNameConf = Xc;
         var zc = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.reward = r(a.reward, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.SevenDayConf = zc;
-        var Jc = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.animations = r(a.animations, [ 0, Zc ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.SkeletonConf = Jc;
-        var Zc = function() {};
-        n.AnimationClipData = Zc;
-        var $c = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.attrs = r(a.attrs, [ 0, pr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.SkillSchemeConf = $c;
-        var eu = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.changeAttribute = r(a.changeAttribute, [ pr ], 0), i.command = r(a.command, [ Sr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.BuffConf = eu;
-        var tu = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -17515,7 +17458,65 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.BuffRewriteConf = tu;
+        n.BigServerConf = zc;
+        var Jc = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.reward = r(a.reward, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.SevenDayConf = Jc;
+        var Zc = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.animations = r(a.animations, [ 0, $c ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.SkeletonConf = Zc;
+        var $c = function() {};
+        n.AnimationClipData = $c;
+        var eu = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.attrs = r(a.attrs, [ 0, gr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.SkillSchemeConf = eu;
+        var tu = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.changeAttribute = r(a.changeAttribute, [ gr ], 0), i.command = r(a.command, [ Sr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.BuffConf = tu;
         var nu = function() {
             function e() {}
             return e.getById = function(t) {
@@ -17529,44 +17530,8 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.SkillDynamicConf = nu;
+        n.BuffRewriteConf = nu;
         var ru = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.effectList = r(a.effectList, [ 0, iu ], 0), i.triggerConditions = r(a.triggerConditions, [ 0, su ], 0), 
-                    i.actionList = r(a.actionList, [ 0, au ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.SkillConf = ru;
-        var ou = function() {
-            function e() {}
-            return e.getByIconName = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
-                    var o = new e();
-                    Object.assign(o, t[r]);
-                    var i = e.map.get(o.iconName);
-                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.iconName, o);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.BuffLayer = ou;
-        var iu = function() {};
-        n.SkillEffectData = iu;
-        n.SkillParams = function() {};
-        var au = function() {};
-        n.ComandParams = au;
-        var su = function() {};
-        n.TriggerCondition = su;
-        var cu = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -17579,7 +17544,43 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.PetActiveSkillConf = cu;
+        n.SkillDynamicConf = ru;
+        var ou = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.effectList = r(a.effectList, [ 0, au ], 0), i.triggerConditions = r(a.triggerConditions, [ 0, cu ], 0), 
+                    i.actionList = r(a.actionList, [ 0, su ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.SkillConf = ou;
+        var iu = function() {
+            function e() {}
+            return e.getByIconName = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
+                    var o = new e();
+                    Object.assign(o, t[r]);
+                    var i = e.map.get(o.iconName);
+                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.iconName, o);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.BuffLayer = iu;
+        var au = function() {};
+        n.SkillEffectData = au;
+        n.SkillParams = function() {};
+        var su = function() {};
+        n.ComandParams = su;
+        var cu = function() {};
+        n.TriggerCondition = cu;
         var uu = function() {
             function e() {}
             return e.getById = function(t) {
@@ -17593,7 +17594,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.PetPassiveSkillConf = uu;
+        n.PetActiveSkillConf = uu;
         var lu = function() {
             function e() {}
             return e.getById = function(t) {
@@ -17607,8 +17608,22 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.SkillSchemeMemoConf = lu;
+        n.PetPassiveSkillConf = lu;
         var fu = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
+                    var o = new e();
+                    Object.assign(o, t[r]);
+                    var i = e.map.get(o.id);
+                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.SkillSchemeMemoConf = fu;
+        var du = function() {
             function e() {}
             return e.getByStorageId = function(t) {
                 return e.map.get(t);
@@ -17621,36 +17636,36 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.SkillStorageConf = fu;
-        var du = function() {
+        n.SkillStorageConf = du;
+        var pu = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.attrs = r(a.attrs, [ 0, pr ], 0);
+                    Object.assign(i, a), i.attrs = r(a.attrs, [ 0, gr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.SkinConf = du;
-        var pu = function() {
+        n.SkinConf = pu;
+        var gu = function() {
             function e() {}
             return e.getByID = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.condition = r(a.condition, [ 0, mr ], 0), i.foldPackShow = r(a.foldPackShow, [ 0, _r ], 0);
+                    Object.assign(i, a), i.condition = r(a.condition, [ 0, vr ], 0), i.foldPackShow = r(a.foldPackShow, [ 0, mr ], 0);
                     var s = e.map.get(i.ID);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.ID, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.SkyMapConf = pu;
-        var gu = function() {
+        n.SkyMapConf = gu;
+        var hu = function() {
             function e() {}
             return e.getByID = function(t) {
                 return e.map.get(t);
@@ -17663,29 +17678,29 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.SkyBuildingConf = gu;
-        var hu = function() {
+        n.SkyBuildingConf = hu;
+        var _u = function() {
             function e() {}
             return e.decode = function(t) {
                 for (var n in e.config = new e(), t) e.config[n] = t[n];
             }, e;
         }();
-        n.SkyConstant = hu;
-        var _u = function() {
+        n.SkyConstant = _u;
+        var mu = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.otherReward = r(a.otherReward, [ gr ], 0);
+                    Object.assign(i, a), i.otherReward = r(a.otherReward, [ hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.SkyLevel = _u;
-        var mu = function() {
+        n.SkyLevel = mu;
+        var vu = function() {
             function e() {}
             return e.getByMonsterGroupId = function(t) {
                 return e.map.get(t);
@@ -17698,21 +17713,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.SkyMonster = mu;
-        var vu = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.condition = r(a.condition, [ 0, gr ], 0), i.reward = r(a.reward, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.SkyBoss = vu;
+        n.SkyMonster = vu;
         var Eu = function() {
             function e() {}
             return e.getById = function(t) {
@@ -17720,13 +17721,13 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.qualificationReward = r(a.qualificationReward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.condition = r(a.condition, [ 0, hr ], 0), i.reward = r(a.reward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.SkyBuildingBoss = Eu;
+        n.SkyBoss = Eu;
         var yu = function() {
             function e() {}
             return e.getById = function(t) {
@@ -17734,27 +17735,13 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.rankingReward = r(a.rankingReward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.qualificationReward = r(a.qualificationReward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.SkyBuildingReward = yu;
-        var Su = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.fuKaRewardDisplay = r(a.fuKaRewardDisplay, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.SpringActConf = Su;
+        n.SkyBuildingBoss = yu;
         var Cu = function() {
             function e() {}
             return e.getById = function(t) {
@@ -17762,42 +17749,70 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.fuKaReward = r(a.fuKaReward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.rankingReward = r(a.rankingReward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.FuKaConf = Cu;
+        n.SkyBuildingReward = Cu;
+        var Su = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.fuKaRewardDisplay = r(a.fuKaRewardDisplay, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.SpringActConf = Su;
         var Au = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
-                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
-                    var o = new e();
-                    Object.assign(o, t[r]);
-                    var i = e.map.get(o.id);
-                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.fuKaReward = r(a.fuKaReward, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.ExchangeConf = Au;
+        n.FuKaConf = Au;
         var Tu = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
+                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
+                    var o = new e();
+                    Object.assign(o, t[r]);
+                    var i = e.map.get(o.id);
+                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.ExchangeConf = Tu;
+        var Ru = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.chargeReward = r(a.chargeReward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.chargeReward = r(a.chargeReward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.CumulativeChargeConf = Tu;
-        var Ru = function() {
+        n.CumulativeChargeConf = Ru;
+        var Iu = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -17810,21 +17825,7 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.StayBuyTimeConf = Ru;
-        var Iu = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.stayFixedReward = r(a.stayFixedReward, [ 0, gr ], 0), i.curRandReward = r(a.curRandReward, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.StayRewardConf = Iu;
+        n.StayBuyTimeConf = Iu;
         var Ou = function() {
             function e() {}
             return e.getById = function(t) {
@@ -17832,13 +17833,13 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.reward = r(a.reward, [ gr ], 0), i.nextRandReward = r(a.nextRandReward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.stayFixedReward = r(a.stayFixedReward, [ 0, hr ], 0), i.curRandReward = r(a.curRandReward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.StayRewardOrderConf = Ou;
+        n.StayRewardConf = Ou;
         var wu = function() {
             function e() {}
             return e.getById = function(t) {
@@ -17846,13 +17847,13 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.condition = r(a.condition, [ 0, mr ], 0);
+                    Object.assign(i, a), i.reward = r(a.reward, [ hr ], 0), i.nextRandReward = r(a.nextRandReward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.StoreConf = wu;
+        n.StayRewardOrderConf = wu;
         var bu = function() {
             function e() {}
             return e.getById = function(t) {
@@ -17860,27 +17861,27 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.merchandise = r(a.merchandise, [ 0, gr ], 0), i.condition = r(a.condition, [ 0, mr ], 0);
+                    Object.assign(i, a), i.condition = r(a.condition, [ 0, vr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.GoodsConf = bu;
+        n.StoreConf = bu;
         var Nu = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
-                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
-                    var o = new e();
-                    Object.assign(o, t[r]);
-                    var i = e.map.get(o.id);
-                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.merchandise = r(a.merchandise, [ 0, hr ], 0), i.condition = r(a.condition, [ 0, vr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.StudyConf = Nu;
+        n.GoodsConf = Nu;
         var Lu = function() {
             function e() {}
             return e.getById = function(t) {
@@ -17894,140 +17895,140 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.StudyClothesConf = Lu;
+        n.StudyConf = Lu;
         var Mu = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.reward = r(a.reward, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
+                    var o = new e();
+                    Object.assign(o, t[r]);
+                    var i = e.map.get(o.id);
+                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.StudyRewardConf = Mu;
+        n.StudyClothesConf = Mu;
         var Pu = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
-                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
-                    var o = new e();
-                    Object.assign(o, t[r]);
-                    var i = e.map.get(o.id);
-                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.reward = r(a.reward, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.StudyActConf = Pu;
+        n.StudyRewardConf = Pu;
         var Du = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.params = r(a.params, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
+                    var o = new e();
+                    Object.assign(o, t[r]);
+                    var i = e.map.get(o.id);
+                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.TaskConf = Du;
+        n.StudyActConf = Du;
         var Bu = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
-                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
-                    var o = new e();
-                    Object.assign(o, t[r]);
-                    var i = e.map.get(o.id);
-                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.TestConf = Bu;
-        var Gu = function() {
-            function e() {}
-            return e.decode = function(t) {
-                for (var n in e.config = new e(), t) e.config[n] = t[n];
-            }, e;
-        }();
-        n.LocalConf = Gu;
-        var xu = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
-                    var o = new e();
-                    Object.assign(o, t[r]);
-                    var i = e.map.get(o.id);
-                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.TokenPackBulkConf = xu;
-        var Uu = function() {
-            function e() {}
-            return e.getByID = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
-                    var o = new e();
-                    Object.assign(o, t[r]);
-                    var i = e.map.get(o.ID);
-                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.ID, o);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.TournamentConf = Uu;
-        var Hu = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
-                    var o = new e();
-                    Object.assign(o, t[r]);
-                    var i = e.map.get(o.id);
-                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.TournamentScheduleConf = Hu;
-        var ku = function() {
-            function e() {}
-            return e.getByID = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
-                    var o = new e();
-                    Object.assign(o, t[r]);
-                    var i = e.map.get(o.ID);
-                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.ID, o);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.TournamentActConf = ku;
-        var Fu = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.merchandise = r(a.merchandise, [ 0, gr ], 0);
+                    Object.assign(i, a), i.params = r(a.params, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.TournamentShopConf = Fu;
+        n.TaskConf = Bu;
+        var Gu = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
+                    var o = new e();
+                    Object.assign(o, t[r]);
+                    var i = e.map.get(o.id);
+                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.TestConf = Gu;
+        var xu = function() {
+            function e() {}
+            return e.decode = function(t) {
+                for (var n in e.config = new e(), t) e.config[n] = t[n];
+            }, e;
+        }();
+        n.LocalConf = xu;
+        var Uu = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
+                    var o = new e();
+                    Object.assign(o, t[r]);
+                    var i = e.map.get(o.id);
+                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.TokenPackBulkConf = Uu;
+        var Hu = function() {
+            function e() {}
+            return e.getByID = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
+                    var o = new e();
+                    Object.assign(o, t[r]);
+                    var i = e.map.get(o.ID);
+                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.ID, o);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.TournamentConf = Hu;
+        var ku = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
+                    var o = new e();
+                    Object.assign(o, t[r]);
+                    var i = e.map.get(o.id);
+                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.TournamentScheduleConf = ku;
+        var Fu = function() {
+            function e() {}
+            return e.getByID = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
+                    var o = new e();
+                    Object.assign(o, t[r]);
+                    var i = e.map.get(o.ID);
+                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.ID, o);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.TournamentActConf = Fu;
         var ju = function() {
             function e() {}
             return e.getById = function(t) {
@@ -18035,14 +18036,28 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.reward = r(a.reward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.merchandise = r(a.merchandise, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.TournamentRewardConf = ju;
+        n.TournamentShopConf = ju;
         var Ku = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.reward = r(a.reward, [ 0, hr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.TournamentRewardConf = Ku;
+        var Vu = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -18055,42 +18070,28 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.TournamentMatchConf = Ku;
-        var Vu = function() {
+        n.TournamentMatchConf = Vu;
+        var Wu = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.attrs = r(a.attrs, [ 0, pr ], 0);
+                    Object.assign(i, a), i.attrs = r(a.attrs, [ 0, gr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.TournamentExtraAttr = Vu;
-        var Wu = function() {
+        n.TournamentExtraAttr = Wu;
+        var Yu = function() {
             function e() {}
             return e.decode = function(t) {
                 for (var n in e.config = new e(), t) e.config[n] = t[n];
             }, e;
         }();
-        n.TournamentConstant = Wu;
-        var Yu = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
-                    var i = new e(), a = t[o];
-                    Object.assign(i, a), i.bossReward = r(a.bossReward, [ 0, gr ], 0);
-                    var s = e.map.get(i.id);
-                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.TowerConf = Yu;
+        n.TournamentConstant = Yu;
         var Qu = function() {
             function e() {}
             return e.getById = function(t) {
@@ -18098,42 +18099,28 @@ window.__require = function e(t, n, r) {
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.towerReward = r(a.towerReward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.bossReward = r(a.bossReward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.TowerReward = Qu;
+        n.TowerConf = Qu;
         var qu = function() {
-            function e() {}
-            return e.getById = function(t) {
-                return e.map.get(t);
-            }, e.decode = function(t, n) {
-                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
-                    var o = new e();
-                    Object.assign(o, t[r]);
-                    var i = e.map.get(o.id);
-                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
-                }
-            }, e.list = [], e.map = new Map(), e;
-        }();
-        n.TowerStageConf = qu;
-        var Xu = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.trumpAttr = r(a.trumpAttr, [ 0, pr ], 0);
+                    Object.assign(i, a), i.towerReward = r(a.towerReward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.TrumpConf = Xu;
-        var zu = function() {
+        n.TowerReward = qu;
+        var Xu = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -18146,8 +18133,36 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.TrumpTypeConf = zu;
+        n.TowerStageConf = Xu;
+        var zu = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var o in n || (e.list.length = 0, e.map.clear()), t) {
+                    var i = new e(), a = t[o];
+                    Object.assign(i, a), i.trumpAttr = r(a.trumpAttr, [ 0, gr ], 0);
+                    var s = e.map.get(i.id);
+                    s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.TrumpConf = zu;
         var Ju = function() {
+            function e() {}
+            return e.getById = function(t) {
+                return e.map.get(t);
+            }, e.decode = function(t, n) {
+                for (var r in n || (e.list.length = 0, e.map.clear()), t) {
+                    var o = new e();
+                    Object.assign(o, t[r]);
+                    var i = e.map.get(o.id);
+                    i && n ? e.list[i._idx] = o : o._idx = e.list.push(o) - 1, e.map.set(o.id, o);
+                }
+            }, e.list = [], e.map = new Map(), e;
+        }();
+        n.TrumpTypeConf = Ju;
+        var Zu = function() {
             function e() {}
             return e.getByTrumpQuality = function(t) {
                 return e.map.get(t);
@@ -18160,8 +18175,8 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.TrumpRankConf = Ju;
-        var Zu = function() {
+        n.TrumpRankConf = Zu;
+        var $u = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
@@ -18174,30 +18189,30 @@ window.__require = function e(t, n, r) {
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.TrumpCostConf = Zu;
-        var $u = function() {
+        n.TrumpCostConf = $u;
+        var el = function() {
             function e() {}
             return e.decode = function(t) {
                 for (var n in e.config = new e(), t) e.config[n] = t[n];
             }, e;
         }();
-        n.VersionConf = $u;
-        var el = function() {
+        n.VersionConf = el;
+        var tl = function() {
             function e() {}
             return e.getById = function(t) {
                 return e.map.get(t);
             }, e.decode = function(t, n) {
                 for (var o in n || (e.list.length = 0, e.map.clear()), t) {
                     var i = new e(), a = t[o];
-                    Object.assign(i, a), i.vipBenefit = r(a.vipBenefit, [ 0, tl ], 0), i.vipReward = r(a.vipReward, [ 0, gr ], 0);
+                    Object.assign(i, a), i.vipBenefit = r(a.vipBenefit, [ 0, nl ], 0), i.vipReward = r(a.vipReward, [ 0, hr ], 0);
                     var s = e.map.get(i.id);
                     s && n ? e.list[s._idx] = i : i._idx = e.list.push(i) - 1, e.map.set(i.id, i);
                 }
             }, e.list = [], e.map = new Map(), e;
         }();
-        n.VipConf = el;
-        var tl = function() {};
-        n.BenefitData = tl, n.decodeConfig = function(e, t) {
+        n.VipConf = tl;
+        var nl = function() {};
+        n.BenefitData = nl, n.decodeConfig = function(e, t) {
             for (var n in void 0 === t && (t = !1), e) "ActMergeConstant" === n && o.decode(e[n]), 
             "ActMergeBoardConf" === n && i.decode(e[n], t), "ActMergeProgressConf" === n && a.decode(e[n], t), 
             "ActMergeItemCostProgressConf" === n && s.decode(e[n], t), "ActMergeTilesConf" === n && c.decode(e[n], t), 
@@ -18207,7 +18222,7 @@ window.__require = function e(t, n, r) {
             "ApexStageConf" === n && h.decode(e[n], t), "ApexTeamMatchConf" === n && _.decode(e[n], t), 
             "ApexKoMatchConf" === n && m.decode(e[n], t), "ApexTaskConf" === n && v.decode(e[n], t), 
             "ApexRankRewardConf" === n && E.decode(e[n], t), "ApexShopConf" === n && y.decode(e[n], t), 
-            "ApexSupport" === n && S.decode(e[n], t), "ApexFormation" === n && C.decode(e[n], t), 
+            "ApexSupport" === n && C.decode(e[n], t), "ApexFormation" === n && S.decode(e[n], t), 
             "ApexHelp" === n && A.decode(e[n], t), "CollectionGiftPackConstant" === n && T.decode(e[n]), 
             "CollectionGiftPackConf" === n && R.decode(e[n], t), "CollectionExchangeShopConf" === n && I.decode(e[n], t), 
             "CollectionRankReward" === n && O.decode(e[n], t), "FragmentSynthesisConf" === n && w.decode(e[n], t), 
@@ -18234,7 +18249,7 @@ window.__require = function e(t, n, r) {
             "PayLoadConstant" === n && he.decode(e[n]), "PayLoadScheduleConf" === n && _e.decode(e[n], t), 
             "PayLoadMap" === n && me.decode(e[n], t), "PayLoadItem" === n && ve.decode(e[n], t), 
             "PayLoadPathConf" === n && Ee.decode(e[n], t), "PayLoadTasks" === n && ye.decode(e[n], t), 
-            "PayLoadTaskProgress" === n && Se.decode(e[n], t), "LegionWarBossConf" === n && Ce.decode(e[n], t), 
+            "PayLoadTaskProgress" === n && Ce.decode(e[n], t), "LegionWarBossConf" === n && Se.decode(e[n], t), 
             "LegionWarBuildingConf" === n && Ae.decode(e[n], t), "LegionWarCheerConf" === n && Te.decode(e[n], t), 
             "LegionWarCityConf" === n && Re.decode(e[n], t), "LegionWarPointConf" === n && Ie.decode(e[n], t), 
             "LegionWarPreConf" === n && Oe.decode(e[n], t), "LegionWarRankConf" === n && we.decode(e[n], t), 
@@ -18242,248 +18257,249 @@ window.__require = function e(t, n, r) {
             "MatchTeam" === n && Le.decode(e[n], t), "NightMare" === n && Me.decode(e[n], t), 
             "NightMareMonster" === n && Pe.decode(e[n], t), "CompassReward" === n && De.decode(e[n], t), 
             "NightMareBook" === n && Be.decode(e[n], t), "PetConstant" === n && Ge.decode(e[n]), 
-            "PetEggConf" === n && xe.decode(e[n], t), "PetColorConf" === n && Ue.decode(e[n], t), 
-            "PetConf" === n && He.decode(e[n], t), "PetLevelConf" === n && ke.decode(e[n], t), 
-            "PetStarConf" === n && Fe.decode(e[n], t), "PetTalentConf" === n && je.decode(e[n], t), 
-            "PetQuenchAdditionConf" === n && Ke.decode(e[n], t), "QuenchAdditionConf" === n && Ve.decode(e[n], t), 
-            "PetAttrTypePoolConf" === n && We.decode(e[n], t), "PetAttrRandPoolConf" === n && Ye.decode(e[n], t), 
-            "PetTilesConf" === n && Qe.decode(e[n], t), "PetQuenchConsumeConf" === n && qe.decode(e[n], t), 
-            "PetPlayConstant" === n && Xe.decode(e[n]), "PetPlayBoardConf" === n && ze.decode(e[n], t), 
-            "PetPlayActiveTask" === n && Je.decode(e[n], t), "QuenchCarnivalConstant" === n && Ze.decode(e[n]), 
-            "QuenchCarnivalMissionConf" === n && $e.decode(e[n], t), "QuenchCarnivalLevelConf" === n && et.decode(e[n], t), 
-            "QuenchLotteryRewardConf" === n && tt.decode(e[n], t), "QuenchChargeConstant" === n && nt.decode(e[n]), 
-            "QuenchChargeConf" === n && rt.decode(e[n], t), "QuenchChargeMissionConf" === n && ot.decode(e[n], t), 
-            "SeasonArtifactConf" === n && it.decode(e[n], t), "ArtifactDescConf" === n && at.decode(e[n], t), 
-            "SeasonLvRewardConf" === n && st.decode(e[n], t), "SeasonRescueConstant" === n && ct.decode(e[n]), 
-            "SeasonRescueMonster" === n && ut.decode(e[n], t), "SeasonTowerConf" === n && lt.decode(e[n], t), 
-            "SeasonTowerReward" === n && ft.decode(e[n], t), "SeasonTowerRankReward" === n && dt.decode(e[n], t), 
-            "seasonTowerRank" === n && pt.decode(e[n], t), "SkillEffectSort" === n && gt.decode(e[n], t), 
-            "SkyProConf" === n && ht.decode(e[n], t), "SkyShopConstant" === n && _t.decode(e[n]), 
-            "SkyShopConf" === n && mt.decode(e[n], t), "SkySkillConf" === n && vt.decode(e[n], t), 
-            "TenDayConstantConf" === n && Et.decode(e[n]), "TenDayActMapConf" === n && yt.decode(e[n], t), 
-            "TenDayActConf" === n && St.decode(e[n], t), "TenDayDailyConf" === n && Ct.decode(e[n], t), 
-            "TenDayExchangeConf" === n && At.decode(e[n], t), "TenDayTaskConf" === n && Tt.decode(e[n], t), 
-            "TenDayRankRewardConf" === n && Rt.decode(e[n], t), "TenDayGiftConf" === n && It.decode(e[n], t), 
-            "TenDaySprintCarnivalConf" === n && Ot.decode(e[n], t), "AccSprintConf" === n && wt.decode(e[n], t), 
-            "UnsealBaseConf" === n && bt.decode(e[n]), "UnsealShowConf" === n && Nt.decode(e[n], t), 
-            "UnsealEventTimeConf" === n && Lt.decode(e[n], t), "UnsealCardConf" === n && Mt.decode(e[n], t), 
-            "AchievementConf" === n && Pt.decode(e[n], t), "AchievementTaskList" === n && Dt.decode(e[n], t), 
-            "BetBaseConf" === n && Bt.decode(e[n]), "BetFormationConf" === n && Gt.decode(e[n], t), 
-            "BetActivityTimeConf" === n && xt.decode(e[n], t), "ActBossConf" === n && Ut.decode(e[n], t), 
-            "ActHideBossConf" === n && Ht.decode(e[n], t), "ActCardTowerConf" === n && kt.decode(e[n], t), 
-            "ActCardTowerShowConf" === n && Ft.decode(e[n], t), "ActCardTowerRewardConf" === n && jt.decode(e[n], t), 
-            "ActCardTowerRankRewardConf" === n && Kt.decode(e[n], t), "ActCardTowerEquipConf" === n && Vt.decode(e[n], t), 
-            "ActCardTowerShopConf" === n && Wt.decode(e[n], t), "actConstantConf" === n && Yt.decode(e[n], t), 
-            "DragonBoatConf" === n && Qt.decode(e[n], t), "DragonBoatLegionConf" === n && qt.decode(e[n], t), 
-            "ActFestivalConf" === n && Xt.decode(e[n], t), "MilestoneRewardConf" === n && zt.decode(e[n], t), 
-            "LotteryActConf" === n && Jt.decode(e[n], t), "LotteryPackConf" === n && Zt.decode(e[n], t), 
-            "LotteryRatioConf" === n && $t.decode(e[n], t), "SkinGachaRewardConf" === n && en.decode(e[n], t), 
-            "SkinGachaMilestoneRewarConf" === n && tn.decode(e[n], t), "ExchangeActConf" === n && nn.decode(e[n], t), 
-            "ActMerchandiseConf" === n && rn.decode(e[n], t), "BingoConf" === n && on.decode(e[n], t), 
-            "BingoRewardConf" === n && an.decode(e[n], t), "MineConf" === n && sn.decode(e[n], t), 
-            "ProgressBarConf" === n && cn.decode(e[n], t), "FuKaActConf" === n && un.decode(e[n], t), 
-            "CumulativeChargeActConf" === n && ln.decode(e[n], t), "TreasureConf" === n && fn.decode(e[n], t), 
-            "MonopolyConf" === n && dn.decode(e[n], t), "EGameConf" === n && pn.decode(e[n], t), 
-            "CheerConf" === n && gn.decode(e[n], t), "CheerRewardConf" === n && hn.decode(e[n], t), 
-            "VoteConf" === n && _n.decode(e[n], t), "KillBossAchievementConf" === n && mn.decode(e[n], t), 
-            "actGmGroupConf" === n && vn.decode(e[n], t), "MissionConf" === n && En.decode(e[n], t), 
-            "ActMultiTowerConf" === n && yn.decode(e[n], t), "ActMultiTowerScheduleConf" === n && Sn.decode(e[n], t), 
-            "ActMultiTowerShowConf" === n && Cn.decode(e[n], t), "ActMultiTowerLevelRewardConf" === n && An.decode(e[n], t), 
-            "LanguageConf" === n && Tn.decode(e[n], t), "ActMultiTowerEnhanceConf" === n && Rn.decode(e[n], t), 
-            "ActMultiTowerRewardConf" === n && In.decode(e[n], t), "actNoobConf" === n && On.decode(e[n], t), 
-            "NoobSign" === n && wn.decode(e[n], t), "NoobMissionConf" === n && bn.decode(e[n], t), 
-            "NoobSubMissionConf" === n && Nn.decode(e[n], t), "ActRogueLevelConf" === n && Ln.decode(e[n], t), 
-            "ActRogueRowConf" === n && Mn.decode(e[n], t), "ActRogueRewardConf" === n && Pn.decode(e[n], t), 
-            "ActRogueRankRewardConf" === n && Dn.decode(e[n], t), "ActRogueArtifactConf" === n && Bn.decode(e[n], t), 
-            "ActRogueEquipConf" === n && Gn.decode(e[n], t), "ActRogueEquipLevelConf" === n && xn.decode(e[n], t), 
-            "ActRogueConsumeConf" === n && Un.decode(e[n], t), "ActRogueBuffConf" === n && Hn.decode(e[n], t), 
-            "ActRogueDebuffConf" === n && kn.decode(e[n], t), "ActRogueBossConf" === n && Fn.decode(e[n], t), 
-            "ActRogueMonsterConf" === n && jn.decode(e[n], t), "ActRogueBookConf" === n && Kn.decode(e[n], t), 
-            "ActRogueBookColumnConf" === n && Vn.decode(e[n], t), "ActRogueBookRewardConf" === n && Wn.decode(e[n], t), 
-            "ActivityConf" === n && Yn.decode(e[n], t), "CardConf" === n && Qn.decode(e[n], t), 
-            "DailyDealConf" === n && qn.decode(e[n], t), "DayBuyConf" === n && Xn.decode(e[n], t), 
-            "FundConf" === n && zn.decode(e[n], t), "FundTaskConf" === n && Jn.decode(e[n], t), 
-            "MerchandiseConf" === n && Zn.decode(e[n], t), "SignConf" === n && $n.decode(e[n], t), 
-            "AFKMapConf" === n && er.decode(e[n], t), "ArenaRankConf" === n && tr.decode(e[n], t), 
-            "ArenaScore" === n && nr.decode(e[n], t), "ArenaGift" === n && rr.decode(e[n], t), 
-            "ArenaRefreshConf" === n && or.decode(e[n], t), "ArtifactConf" === n && ir.decode(e[n], t), 
-            "attributeCompareConf" === n && ar.decode(e[n], t), "AttributeLimitConf" === n && sr.decode(e[n], t), 
-            "AuraConf" === n && cr.decode(e[n], t), "AutoConf" === n && ur.decode(e[n], t), 
-            "AvatarConf" === n && lr.decode(e[n], t), "AvatarFrameConf" === n && fr.decode(e[n], t), 
-            "BasePush" === n && dr.decode(e[n], t), "OppositeBattleAttributeKey" === n && Tr.decode(e[n], t), 
-            "BattlePassBaseConf" === n && Rr.decode(e[n], t), "BattlePassConf" === n && Ir.decode(e[n], t), 
-            "BattlePassMissionConf" === n && Or.decode(e[n], t), "blackMarketConf" === n && wr.decode(e[n], t), 
-            "blackMarketMerchandiseConf" === n && br.decode(e[n], t), "BlessingConf" === n && Nr.decode(e[n], t), 
-            "BlessingSortConf" === n && Mr.decode(e[n], t), "BookConf" === n && Pr.decode(e[n], t), 
-            "BookStageConf" === n && Dr.decode(e[n], t), "BossInfoConfig" === n && Br.decode(e[n], t), 
-            "BossLoopConfig" === n && Gr.decode(e[n], t), "BossRewardsConfig" === n && xr.decode(e[n], t), 
-            "BossTowerConf" === n && Ur.decode(e[n], t), "BossHelpRankRewardConfig" === n && Hr.decode(e[n], t), 
-            "BossTowerShopConf" === n && kr.decode(e[n], t), "Bottle" === n && Fr.decode(e[n], t), 
-            "BottlePool" === n && jr.decode(e[n], t), "BottleTime" === n && Kr.decode(e[n], t), 
-            "BoxConf" === n && Vr.decode(e[n], t), "BoxStageConf" === n && Wr.decode(e[n], t), 
-            "BriefreportConf" === n && Yr.decode(e[n], t), "BulletConf" === n && Qr.decode(e[n], t), 
-            "CalendarConf" === n && qr.decode(e[n], t), "CalenderActIConf" === n && Xr.decode(e[n], t), 
-            "CalenderMonthConf" === n && zr.decode(e[n], t), "CardSeriesConf" === n && Jr.decode(e[n], t), 
-            "CardPackageConf" === n && Zr.decode(e[n], t), "CardDetailConf" === n && $r.decode(e[n], t), 
-            "CareerChallengeConf" === n && eo.decode(e[n], t), "CareerChallengeConstantConf" === n && to.decode(e[n]), 
-            "ChargePackConf" === n && no.decode(e[n], t), "CharmConf" === n && ro.decode(e[n], t), 
-            "CharmGift" === n && oo.decode(e[n], t), "CharmTask" === n && io.decode(e[n], t), 
-            "ChatSensitiveConf" === n && ao.decode(e[n], t), "ChatAlertConf" === n && so.decode(e[n], t), 
-            "CoinGetConf" === n && co.decode(e[n], t), "CollectionConf" === n && uo.decode(e[n]), 
-            "CollectionStageConf" === n && lo.decode(e[n], t), "CollectionHeroConf" === n && fo.decode(e[n], t), 
-            "CollectionSeriesConf" === n && po.decode(e[n], t), "CollectionHeroSuitsConf" === n && go.decode(e[n], t), 
-            "ConstantConf" === n && _o.decode(e[n]), "CurrencyMarketConf" === n && mo.decode(e[n], t), 
-            "CustomCardConf" === n && vo.decode(e[n], t), "DailyTaskConf" === n && Eo.decode(e[n], t), 
-            "DayLimitConf" === n && yo.decode(e[n], t), "WeekLimitConf" === n && So.decode(e[n], t), 
-            "DialogConf" === n && Co.decode(e[n], t), "DiamondShopConf" === n && Ao.decode(e[n], t), 
-            "DingniuConstantConf" === n && To.decode(e[n], t), "DingniuInConstantConf" === n && Ro.decode(e[n], t), 
-            "DropDailyMail" === n && Io.decode(e[n], t), "DungeonConf" === n && Oo.decode(e[n], t), 
-            "DungeonMerchantConf" === n && wo.decode(e[n], t), "DungeonItemConf" === n && bo.decode(e[n], t), 
-            "DungeonMonsterConf" === n && No.decode(e[n], t), "EffectConf" === n && Lo.decode(e[n], t), 
-            "emojiConf" === n && Mo.decode(e[n], t), "EquipConf" === n && Po.decode(e[n], t), 
-            "EquipLvConf" === n && Do.decode(e[n], t), "EquipLvSpend" === n && Bo.decode(e[n], t), 
-            "EquipForgeSpend" === n && Go.decode(e[n], t), "EquipmentConf" === n && xo.decode(e[n], t), 
-            "EquipmentLvConf" === n && Uo.decode(e[n], t), "EquipmentSetConf" === n && Ho.decode(e[n], t), 
-            "EquipmentForgeSpend" === n && ko.decode(e[n], t), "EvoTowerConstant" === n && Fo.decode(e[n]), 
-            "EvoTowerScheduleConf" === n && jo.decode(e[n], t), "EvoTowerConf" === n && Ko.decode(e[n], t), 
-            "EvoTowerClubPrivilegeConf" === n && Vo.decode(e[n], t), "EvoTowerReward" === n && Wo.decode(e[n], t), 
-            "EvoTowerStageConf" === n && Yo.decode(e[n], t), "EvoTowerTaskConf" === n && Qo.decode(e[n], t), 
-            "EvoTowerLegionRankReward" === n && qo.decode(e[n], t), "EvoTowerGachaConstant" === n && Xo.decode(e[n]), 
-            "EvoTowerGachaRewardConf" === n && zo.decode(e[n], t), "EvoTowerGachaShop" === n && Jo.decode(e[n], t), 
-            "EvoTowerShareConstant" === n && Zo.decode(e[n]), "EvoTowerShareTasks" === n && $o.decode(e[n], t), 
-            "ExcelVer" === n && ei.decode(e[n], t), "FlyupTheme" === n && ti.decode(e[n], t), 
-            "FlyNumberFormatter" === n && ni.decode(e[n], t), "FlyNumberStyleSheet" === n && ri.decode(e[n], t), 
-            "FootballMatchConstantConf" === n && oi.decode(e[n]), "FootballMatchScheduleConf" === n && ii.decode(e[n], t), 
-            "WeeklyScoreConf" === n && ai.decode(e[n], t), "WeeklyRankShowConf" === n && si.decode(e[n], t), 
-            "FootballFormationConf" === n && ci.decode(e[n], t), "KnockoutStageGroupConf" === n && ui.decode(e[n], t), 
-            "FootballPlayerConf" === n && li.decode(e[n], t), "FootballMatchPicConf" === n && fi.decode(e[n], t), 
-            "formationConf" === n && di.decode(e[n], t), "GachaRewardConf" === n && pi.decode(e[n], t), 
-            "GachaGroupConf" === n && gi.decode(e[n], t), "GachaAccumRewardConf" === n && hi.decode(e[n], t), 
-            "GachaBox" === n && _i.decode(e[n], t), "GachaConstant" === n && mi.decode(e[n]), 
-            "GameCardTTConf" === n && vi.decode(e[n], t), "TTSubscribeMsg" === n && Ei.decode(e[n], t), 
-            "genieConf" === n && yi.decode(e[n], t), "genieLevelConf" === n && Si.decode(e[n], t), 
-            "genieSweepConf" === n && Ci.decode(e[n], t), "GlobalSignConf" === n && Ai.decode(e[n], t), 
-            "SingleSignConf" === n && Ti.decode(e[n], t), "AutoAddConf" === n && Ri.decode(e[n], t), 
-            "GlobalSignGoalConf" === n && Ii.decode(e[n], t), "GuideConf" === n && Oi.decode(e[n], t), 
-            "h5GiftConf" === n && wi.decode(e[n], t), "HeroConf" === n && bi.decode(e[n], t), 
-            "HeroAttrConf" === n && Ni.decode(e[n], t), "HeroLvSpend" === n && Li.decode(e[n], t), 
-            "HeroLvLimit" === n && Mi.decode(e[n], t), "HeroOrder" === n && Pi.decode(e[n], t), 
-            "HeroStarExt" === n && Di.decode(e[n], t), "HeroStarSpend" === n && Bi.decode(e[n], t), 
-            "HorseConstant" === n && Gi.decode(e[n]), "HorseScheduleConf" === n && xi.decode(e[n], t), 
-            "HorseSubScheduleConf" === n && Ui.decode(e[n], t), "HorseProgressConf" === n && Hi.decode(e[n], t), 
-            "RandomHorseConf" === n && ki.decode(e[n], t), "HorseBoxConf" === n && Fi.decode(e[n], t), 
-            "HorseLegionRewardConf" === n && ji.decode(e[n], t), "HorseSelfRewardConf" === n && Ki.decode(e[n], t), 
-            "HorseMerchandiseConf" === n && Vi.decode(e[n], t), "HorseMatchingRule" === n && Wi.decode(e[n], t), 
-            "HorseMapConf" === n && Yi.decode(e[n], t), "HideQuenchPoint" === n && Qi.decode(e[n], t), 
-            "invite" === n && qi.decode(e[n], t), "ItemConf" === n && Xi.decode(e[n], t), "ItemLegionConf" === n && zi.decode(e[n], t), 
-            "ErrocodeLanguageConf" === n && Ji.decode(e[n], t), "LoadingLanguageConf" === n && Zi.decode(e[n], t), 
-            "MailLanguageConf" === n && $i.decode(e[n], t), "IosPrice" === n && ea.decode(e[n], t), 
-            "GooglePrice" === n && ta.decode(e[n], t), "LegionBossConf" === n && na.decode(e[n], t), 
-            "LegionBossRewardConf" === n && ra.decode(e[n], t), "LegionBossDailyRewardConf" === n && oa.decode(e[n], t), 
-            "LegionBossCostConf" === n && ia.decode(e[n], t), "legionCupConf" === n && aa.decode(e[n], t), 
-            "LegionLeagePointConf" === n && sa.decode(e[n]), "LegionLeagueCheerConf" === n && ca.decode(e[n], t), 
-            "LegionLeagueSeasonCheerConf" === n && ua.decode(e[n], t), "LegionLeagueRewardConf" === n && la.decode(e[n], t), 
-            "LegionWarFinalRewardConf" === n && fa.decode(e[n], t), "LegionLeagueConf" === n && da.decode(e[n], t), 
-            "LegionLeagueSessionConf" === n && pa.decode(e[n], t), "LegionLevelConf" === n && ga.decode(e[n], t), 
-            "LegionMarqueeConf" === n && ha.decode(e[n], t), "rankRangeConf" === n && _a.decode(e[n], t), 
-            "matchZoneTypeConf" === n && ma.decode(e[n], t), "legionNameplateConf" === n && va.decode(e[n], t), 
-            "LegionRankConf" === n && Ea.decode(e[n], t), "LegionRankConstantConf" === n && ya.decode(e[n], t), 
-            "LegionPointConf" === n && Sa.decode(e[n], t), "LegionRankRewardConf" === n && Ca.decode(e[n], t), 
-            "LegionRankVersusConf" === n && Aa.decode(e[n], t), "ResearchConf" === n && Ta.decode(e[n], t), 
-            "LegionResearchConf" === n && Ra.decode(e[n], t), "LegionStoreConf" === n && Ia.decode(e[n], t), 
-            "LegionSkinStoreConf" === n && Oa.decode(e[n], t), "TagConf" === n && wa.decode(e[n], t), 
-            "TagConditionConf" === n && ba.decode(e[n], t), "LegionWarConstantConf" === n && Na.decode(e[n], t), 
-            "AirshipConf" === n && La.decode(e[n], t), "MultiKillConf" === n && Ma.decode(e[n], t), 
-            "LegionWarLanguageConf" === n && Pa.decode(e[n], t), "LegionWarMapConf" === n && Da.decode(e[n], t), 
-            "LegionWarMapTypeMappingConf" === n && Ba.decode(e[n], t), "LegionWarMedallionConf" === n && Ga.decode(e[n], t), 
-            "WarRewardPageConf" === n && xa.decode(e[n], t), "LegionWarRewardConf" === n && Ua.decode(e[n], t), 
-            "LegionWarKillRewardConf" === n && Ha.decode(e[n], t), "SeasonLegionWarSkyRewardConf" === n && ka.decode(e[n], t), 
-            "LegionWarSkyRewardConf" === n && Fa.decode(e[n], t), "LegionWarSkyKillRewardConf" === n && ja.decode(e[n], t), 
-            "LegionWarGuildRewardConf" === n && Ka.decode(e[n], t), "LegionScheduleConf" === n && Va.decode(e[n], t), 
-            "SeasonLegionScheduleConf" === n && Wa.decode(e[n], t), "SeasonLegionLeagueSessionConf" === n && Ya.decode(e[n], t), 
-            "LevelConf" === n && Qa.decode(e[n], t), "ChapterConf" === n && qa.decode(e[n], t), 
-            "LevelWeaponConf" === n && Xa.decode(e[n], t), "LevelWeaponSkillConf" === n && za.decode(e[n], t), 
-            "LevelWeaponDropConf" === n && Ja.decode(e[n], t), "ActLevelConf" === n && Za.decode(e[n], t), 
-            "ActGuideConf" === n && $a.decode(e[n], t), "ActModuleConditionConf" === n && es.decode(e[n], t), 
-            "ActLevelConstant" === n && ts.decode(e[n]), "LordLvConf" === n && ns.decode(e[n], t), 
-            "LordLvLimitConf" === n && rs.decode(e[n], t), "LordOrderConf" === n && os.decode(e[n], t), 
-            "LordSkinConf" === n && is.decode(e[n], t), "ProfileCardConf" === n && as.decode(e[n], t), 
-            "WeaponConf" === n && ss.decode(e[n], t), "WeaponActiveConf" === n && cs.decode(e[n], t), 
-            "WeaponPassiveConf" === n && us.decode(e[n], t), "MapConf" === n && ls.decode(e[n], t), 
-            "MedallionConf" === n && fs.decode(e[n], t), "ModuleConf" === n && ds.decode(e[n], t), 
-            "SubModConf" === n && ps.decode(e[n], t), "MonsterConf" === n && gs.decode(e[n], t), 
-            "LevelCoeffConf" === n && hs.decode(e[n], t), "MonthActivity" === n && _s.decode(e[n], t), 
-            "MonthActivityConf" === n && ms.decode(e[n], t), "MoonConstant" === n && vs.decode(e[n]), 
-            "MoonRabbitConf" === n && Es.decode(e[n], t), "MoonRabbitMonsterConf" === n && ys.decode(e[n], t), 
-            "RabbitBoxConf" === n && Ss.decode(e[n], t), "MoonTreeConf" === n && Cs.decode(e[n], t), 
-            "TeleportConf" === n && As.decode(e[n], t), "MoonMerchandiseConf" === n && Ts.decode(e[n], t), 
-            "MoonLegionRewardConf" === n && Rs.decode(e[n], t), "MoonSelfRewardConf" === n && Is.decode(e[n], t), 
-            "MoonScheduleConf" === n && Os.decode(e[n], t), "MoonSubScheduleConf" === n && ws.decode(e[n], t), 
-            "LegionGroupConf" === n && bs.decode(e[n], t), "NightMareRaceConstant" === n && Ns.decode(e[n]), 
-            "NightMareRaceConf" === n && Ls.decode(e[n], t), "NightMareRaceMonsterConf" === n && Ms.decode(e[n], t), 
-            "NightMareRaceBattleBuffConf" === n && Ps.decode(e[n], t), "NightMareRaceRankRewardConf" === n && Ds.decode(e[n], t), 
-            "NightMareRaceTaskRewardConf" === n && Bs.decode(e[n], t), "NightMareStarConstant" === n && Gs.decode(e[n]), 
-            "NightMareStarConf" === n && xs.decode(e[n], t), "NightMareStarBookConf" === n && Us.decode(e[n], t), 
-            "NightMareStarWheelConf" === n && Hs.decode(e[n], t), "NightMareGroupStarRewardConf" === n && ks.decode(e[n], t), 
-            "OtherItemConf" === n && Fs.decode(e[n], t), "OverviewConstant" === n && js.decode(e[n]), 
-            "OverviewConf" === n && Ks.decode(e[n], t), "PackConf" === n && Vs.decode(e[n], t), 
-            "PaoMaDengConf" === n && Ws.decode(e[n], t), "BattleReward" === n && Ys.decode(e[n], t), 
-            "PeakRecord" === n && Qs.decode(e[n], t), "PeakRecordConf" === n && qs.decode(e[n]), 
-            "pearlConstant" === n && Xs.decode(e[n]), "pearlRandConf" === n && zs.decode(e[n], t), 
-            "pearlColorConf" === n && Js.decode(e[n], t), "pearlAttrConf" === n && Zs.decode(e[n], t), 
-            "pearlSkillPoolConf" === n && $s.decode(e[n], t), "prisonConf" === n && ec.decode(e[n], t), 
-            "PrivilegeConf" === n && tc.decode(e[n], t), "PrivilegeSortConf" === n && rc.decode(e[n], t), 
-            "PushList" === n && oc.decode(e[n], t), "PVPMapConf" === n && ic.decode(e[n], t), 
-            "QualitySelectionConf" === n && ac.decode(e[n], t), "QuenchConf" === n && sc.decode(e[n], t), 
-            "QuenchAttrConf" === n && uc.decode(e[n], t), "QuenchBuffConf" === n && lc.decode(e[n], t), 
-            "QuenchBuffFloatConf" === n && fc.decode(e[n], t), "QuenchRewardConf" === n && dc.decode(e[n], t), 
-            "Recover" === n && pc.decode(e[n], t), "RegressionRuleConf" === n && gc.decode(e[n], t), 
-            "ResourcePath" === n && hc.decode(e[n], t), "ReturnGachaConf" === n && _c.decode(e[n], t), 
-            "ReturnMissionConf" === n && mc.decode(e[n], t), "RollUpPackConf" === n && vc.decode(e[n], t), 
-            "RoomConstant" === n && Ec.decode(e[n]), "RoomSettingsConf" === n && yc.decode(e[n], t), 
-            "AdvanceRoomSettingsConf" === n && Sc.decode(e[n], t), "MatchRoomSettingsConf" === n && Cc.decode(e[n], t), 
-            "FightRoomSettingsConf" === n && Ac.decode(e[n], t), "RoomMerchandiseConf" === n && Tc.decode(e[n], t), 
-            "RoomNightmareMonster" === n && Rc.decode(e[n], t), "RobotSettingsConf" === n && Ic.decode(e[n], t), 
-            "RoomTheme" === n && Oc.decode(e[n], t), "RoomFightColumnTimeConf" === n && wc.decode(e[n], t), 
-            "RoomFightRoundConf" === n && bc.decode(e[n], t), "seasonArenaConstant" === n && Nc.decode(e[n]), 
-            "seasonArenaReward" === n && Lc.decode(e[n], t), "seasonArenaRank" === n && Mc.decode(e[n], t), 
-            "seasonBattlePassBaseConf" === n && Pc.decode(e[n], t), "seasonBattlePassReward" === n && Dc.decode(e[n], t), 
-            "seasonMerchandiseConf" === n && Bc.decode(e[n], t), "seasonHeroBookConf" === n && Gc.decode(e[n], t), 
-            "seasonHeroArrt" === n && xc.decode(e[n], t), "gemstoneRandConf" === n && Uc.decode(e[n], t), 
-            "gemstoneAttrConf" === n && Hc.decode(e[n], t), "SeasonHeroConf" === n && kc.decode(e[n], t), 
-            "HeroConditionConf" === n && Fc.decode(e[n], t), "SeasonLevel" === n && jc.decode(e[n], t), 
-            "LevelLimitConf" === n && Kc.decode(e[n], t), "seasonLordOrderConf" === n && Vc.decode(e[n], t), 
-            "SeasonRankListConf" === n && Wc.decode(e[n], t), "seasonResearchConf" === n && Yc.decode(e[n], t), 
-            "SeasonGuideConf" === n && Qc.decode(e[n], t), "serverNameConf" === n && qc.decode(e[n], t), 
-            "bigServerConf" === n && Xc.decode(e[n], t), "SevenDayConf" === n && zc.decode(e[n], t), 
-            "SkeletonConf" === n && Jc.decode(e[n], t), "SkillSchemeConf" === n && $c.decode(e[n], t), 
-            "BuffConf" === n && eu.decode(e[n], t), "BuffRewriteConf" === n && tu.decode(e[n], t), 
-            "SkillDynamicConf" === n && nu.decode(e[n], t), "SkillConf" === n && ru.decode(e[n], t), 
-            "BuffLayer" === n && ou.decode(e[n], t), "PetActiveSkillConf" === n && cu.decode(e[n], t), 
-            "PetPassiveSkillConf" === n && uu.decode(e[n], t), "SkillSchemeMemoConf" === n && lu.decode(e[n], t), 
-            "SkillStorageConf" === n && fu.decode(e[n], t), "SkinConf" === n && du.decode(e[n], t), 
-            "SkyMapConf" === n && pu.decode(e[n], t), "SkyBuildingConf" === n && gu.decode(e[n], t), 
-            "SkyConstant" === n && hu.decode(e[n]), "SkyLevel" === n && _u.decode(e[n], t), 
-            "SkyMonster" === n && mu.decode(e[n], t), "SkyBoss" === n && vu.decode(e[n], t), 
-            "SkyBuildingBoss" === n && Eu.decode(e[n], t), "SkyBuildingReward" === n && yu.decode(e[n], t), 
-            "SpringActConf" === n && Su.decode(e[n], t), "FuKaConf" === n && Cu.decode(e[n], t), 
-            "ExchangeConf" === n && Au.decode(e[n], t), "CumulativeChargeConf" === n && Tu.decode(e[n], t), 
-            "StayBuyTimeConf" === n && Ru.decode(e[n], t), "StayRewardConf" === n && Iu.decode(e[n], t), 
-            "StayRewardOrderConf" === n && Ou.decode(e[n], t), "StoreConf" === n && wu.decode(e[n], t), 
-            "GoodsConf" === n && bu.decode(e[n], t), "StudyConf" === n && Nu.decode(e[n], t), 
-            "StudyClothesConf" === n && Lu.decode(e[n], t), "StudyRewardConf" === n && Mu.decode(e[n], t), 
-            "StudyActConf" === n && Pu.decode(e[n], t), "TaskConf" === n && Du.decode(e[n], t), 
-            "TestConf" === n && Bu.decode(e[n], t), "LocalConf" === n && Gu.decode(e[n]), "tokenPackBulkConf" === n && xu.decode(e[n], t), 
-            "TournamentConf" === n && Uu.decode(e[n], t), "TournamentScheduleConf" === n && Hu.decode(e[n], t), 
-            "TournamentActConf" === n && ku.decode(e[n], t), "TournamentShopConf" === n && Fu.decode(e[n], t), 
-            "TournamentRewardConf" === n && ju.decode(e[n], t), "TournamentMatchConf" === n && Ku.decode(e[n], t), 
-            "TournamentExtraAttr" === n && Vu.decode(e[n], t), "TournamentConstant" === n && Wu.decode(e[n]), 
-            "TowerConf" === n && Yu.decode(e[n], t), "TowerReward" === n && Qu.decode(e[n], t), 
-            "TowerStageConf" === n && qu.decode(e[n], t), "TrumpConf" === n && Xu.decode(e[n], t), 
-            "TrumpTypeConf" === n && zu.decode(e[n], t), "TrumpRankConf" === n && Ju.decode(e[n], t), 
-            "TrumpCostConf" === n && Zu.decode(e[n], t), "VersionConf" === n && $u.decode(e[n]), 
-            "VipConf" === n && el.decode(e[n], t);
-        }, n.configList = [ "ActMergeConstant", "ActMergeBoardConf", "ActMergeProgressConf", "ActMergeItemCostProgressConf", "ActMergeTilesConf", "ActMergeBoxConf", "ActMergeItemConf", "ActMergeItemGroupConf", "ApexConstantConf", "ApexSeasonConf", "ApexScheduleConf", "ApexStageConf", "ApexTeamMatchConf", "ApexKoMatchConf", "ApexTaskConf", "ApexRankRewardConf", "ApexShopConf", "ApexSupport", "ApexFormation", "ApexHelp", "CollectionGiftPackConstant", "CollectionGiftPackConf", "CollectionExchangeShopConf", "CollectionRankReward", "FragmentSynthesisConf", "GoodsList", "HolyBeastConstant", "HolyBeastBaseConf", "HolyBeastSkillConf", "HolyBeastOrderConf", "HolyBeastTextureConf", "HolyBeastExchangeConf", "HorseproAttrConf", "InvitationCodeReward", "StateConf", "LeagueGroupConf", "LeagueSeasonGroupConf", "LegacyConstant", "LegacyScheduleConf", "LegacyConf", "LegacyCreateLevelConf", "LegacyDreamDustConf", "LegacyAttrWeightPoolConf", "LegacyExtraAttrWeightPoolConf", "LegacySpecialAttrConf", "LegacyShopConf", "LegacyGiftConf", "LegacyTasks", "LegacyGiftTaskConf", "LegacyBoss", "LegacyChargeReward", "CarConstantConf", "CarLegion", "CarQuality", "FreeCar", "PaidCar", "CarLegionRankReward", "CarPersonalDayRankReward", "CarPersonalPhaseRankReward", "CarModified", "CarModifiedRewards", "LegionCodeConstant", "LegionCodeConf", "LegionMemberCodeConf", "LegionLeagueMarqueeConf", "PayLoadConstant", "PayLoadScheduleConf", "PayLoadMap", "PayLoadItem", "PayLoadPathConf", "PayLoadTasks", "PayLoadTaskProgress", "LegionWarBossConf", "LegionWarBuildingConf", "LegionWarCheerConf", "LegionWarCityConf", "LegionWarPointConf", "LegionWarPreConf", "LegionWarRankConf", "LegionWarThirdPointConf", "LiveEventConf", "MatchTeam", "NightMare", "NightMareMonster", "CompassReward", "NightMareBook", "PetConstant", "PetEggConf", "PetColorConf", "PetConf", "PetLevelConf", "PetStarConf", "PetTalentConf", "PetQuenchAdditionConf", "QuenchAdditionConf", "PetAttrTypePoolConf", "PetAttrRandPoolConf", "PetTilesConf", "PetQuenchConsumeConf", "PetPlayConstant", "PetPlayBoardConf", "PetPlayActiveTask", "QuenchCarnivalConstant", "QuenchCarnivalMissionConf", "QuenchCarnivalLevelConf", "QuenchLotteryRewardConf", "QuenchChargeConstant", "QuenchChargeConf", "QuenchChargeMissionConf", "SeasonArtifactConf", "ArtifactDescConf", "SeasonLvRewardConf", "SeasonRescueConstant", "SeasonRescueMonster", "SeasonTowerConf", "SeasonTowerReward", "SeasonTowerRankReward", "seasonTowerRank", "SkillEffectSort", "SkyProConf", "SkyShopConstant", "SkyShopConf", "SkySkillConf", "TenDayConstantConf", "TenDayActMapConf", "TenDayActConf", "TenDayDailyConf", "TenDayExchangeConf", "TenDayTaskConf", "TenDayRankRewardConf", "TenDayGiftConf", "TenDaySprintCarnivalConf", "AccSprintConf", "UnsealBaseConf", "UnsealShowConf", "UnsealEventTimeConf", "UnsealCardConf", "AchievementConf", "AchievementTaskList", "BetBaseConf", "BetFormationConf", "BetActivityTimeConf", "ActBossConf", "ActHideBossConf", "ActCardTowerConf", "ActCardTowerShowConf", "ActCardTowerRewardConf", "ActCardTowerRankRewardConf", "ActCardTowerEquipConf", "ActCardTowerShopConf", "actConstantConf", "DragonBoatConf", "DragonBoatLegionConf", "ActFestivalConf", "MilestoneRewardConf", "LotteryActConf", "LotteryPackConf", "LotteryRatioConf", "SkinGachaRewardConf", "SkinGachaMilestoneRewarConf", "ExchangeActConf", "ActMerchandiseConf", "BingoConf", "BingoRewardConf", "MineConf", "ProgressBarConf", "FuKaActConf", "CumulativeChargeActConf", "TreasureConf", "MonopolyConf", "EGameConf", "CheerConf", "CheerRewardConf", "VoteConf", "KillBossAchievementConf", "actGmGroupConf", "MissionConf", "ActMultiTowerConf", "ActMultiTowerScheduleConf", "ActMultiTowerShowConf", "ActMultiTowerLevelRewardConf", "LanguageConf", "ActMultiTowerEnhanceConf", "ActMultiTowerRewardConf", "actNoobConf", "NoobSign", "NoobMissionConf", "NoobSubMissionConf", "ActRogueLevelConf", "ActRogueRowConf", "ActRogueRewardConf", "ActRogueRankRewardConf", "ActRogueArtifactConf", "ActRogueEquipConf", "ActRogueEquipLevelConf", "ActRogueConsumeConf", "ActRogueBuffConf", "ActRogueDebuffConf", "ActRogueBossConf", "ActRogueMonsterConf", "ActRogueBookConf", "ActRogueBookColumnConf", "ActRogueBookRewardConf", "ActivityConf", "CardConf", "DailyDealConf", "DayBuyConf", "FundConf", "FundTaskConf", "MerchandiseConf", "SignConf", "AFKMapConf", "ArenaRankConf", "ArenaScore", "ArenaGift", "ArenaRefreshConf", "ArtifactConf", "attributeCompareConf", "AttributeLimitConf", "AuraConf", "AutoConf", "AvatarConf", "AvatarFrameConf", "BasePush", "SkillLevelUpData", "AttributeData", "RewardData", "PaymentData", "RewardInfo", "ConditionData", "BattleMonsterData", "BookActivateData", "ComboActivateData", "StarSpendPack", "BundleData", "GuideAnim", "JumpInfo", "BuffCommand", "LegionRewardData", "GotoData", "OppositeBattleAttributeKey", "BattlePassBaseConf", "BattlePassConf", "BattlePassMissionConf", "blackMarketConf", "blackMarketMerchandiseConf", "BlessingConf", "BlessingData", "BlessingSortConf", "BookConf", "BookStageConf", "BossInfoConfig", "BossLoopConfig", "BossRewardsConfig", "BossTowerConf", "BossHelpRankRewardConfig", "BossTowerShopConf", "Bottle", "BottlePool", "BottleTime", "BoxConf", "BoxStageConf", "BriefreportConf", "BulletConf", "CalendarConf", "CalenderActIConf", "CalenderMonthConf", "CardSeriesConf", "CardPackageConf", "CardDetailConf", "CareerChallengeConf", "CareerChallengeConstantConf", "ChargePackConf", "CharmConf", "CharmGift", "CharmTask", "ChatSensitiveConf", "ChatAlertConf", "CoinGetConf", "CollectionConf", "CollectionStageConf", "CollectionHeroConf", "CollectionSeriesConf", "CollectionHeroSuitsConf", "CollectionItem", "ConstantConf", "CurrencyMarketConf", "CustomCardConf", "DailyTaskConf", "DayLimitConf", "WeekLimitConf", "DialogConf", "DiamondShopConf", "DingniuConstantConf", "DingniuInConstantConf", "DropDailyMail", "DungeonConf", "DungeonMerchantConf", "DungeonItemConf", "DungeonMonsterConf", "EffectConf", "emojiConf", "EquipConf", "EquipLvConf", "EquipLvSpend", "EquipForgeSpend", "EquipmentConf", "EquipmentLvConf", "EquipmentSetConf", "EquipmentForgeSpend", "EvoTowerConstant", "EvoTowerScheduleConf", "EvoTowerConf", "EvoTowerClubPrivilegeConf", "EvoTowerReward", "EvoTowerStageConf", "EvoTowerTaskConf", "EvoTowerLegionRankReward", "EvoTowerGachaConstant", "EvoTowerGachaRewardConf", "EvoTowerGachaShop", "EvoTowerShareConstant", "EvoTowerShareTasks", "ExcelVer", "FlyupTheme", "FlyNumberFormatter", "FlyNumberStyleSheet", "FootballMatchConstantConf", "FootballMatchScheduleConf", "WeeklyScoreConf", "WeeklyRankShowConf", "FootballFormationConf", "KnockoutStageGroupConf", "FootballPlayerConf", "FootballMatchPicConf", "formationConf", "GachaRewardConf", "GachaGroupConf", "GachaAccumRewardConf", "GachaBox", "GachaConstant", "GameCardTTConf", "TTSubscribeMsg", "genieConf", "genieLevelConf", "genieSweepConf", "GlobalSignConf", "SingleSignConf", "AutoAddConf", "GlobalSignGoalConf", "GuideConf", "h5GiftConf", "HeroConf", "HeroAttrConf", "HeroLvSpend", "HeroLvLimit", "HeroOrder", "HeroStarExt", "HeroStarSpend", "HorseConstant", "HorseScheduleConf", "HorseSubScheduleConf", "HorseProgressConf", "RandomHorseConf", "HorseBoxConf", "HorseLegionRewardConf", "HorseSelfRewardConf", "HorseMerchandiseConf", "HorseMatchingRule", "HorseMapConf", "HideQuenchPoint", "invite", "ItemConf", "ItemLegionConf", "ErrocodeLanguageConf", "LoadingLanguageConf", "MailLanguageConf", "IosPrice", "GooglePrice", "LegionBossConf", "LegionBossRewardConf", "LegionBossDailyRewardConf", "LegionBossCostConf", "legionCupConf", "LegionLeagePointConf", "LegionLeagueCheerConf", "LegionLeagueSeasonCheerConf", "LegionLeagueRewardConf", "LegionWarFinalRewardConf", "LegionLeagueConf", "LegionLeagueSessionConf", "LegionLevelConf", "LegionMarqueeConf", "rankRangeConf", "matchZoneTypeConf", "legionNameplateConf", "LegionRankConf", "LegionRankConstantConf", "LegionPointConf", "LegionRankRewardConf", "LegionRankVersusConf", "ResearchConf", "LegionResearchConf", "LegionStoreConf", "LegionSkinStoreConf", "TagConf", "TagConditionConf", "LegionWarConstantConf", "AirshipConf", "MultiKillConf", "LegionWarLanguageConf", "LegionWarMapConf", "LegionWarMapTypeMappingConf", "LegionWarMedallionConf", "WarRewardPageConf", "LegionWarRewardConf", "LegionWarKillRewardConf", "SeasonLegionWarSkyRewardConf", "LegionWarSkyRewardConf", "LegionWarSkyKillRewardConf", "LegionWarGuildRewardConf", "LegionScheduleConf", "SeasonLegionScheduleConf", "SeasonLegionLeagueSessionConf", "LevelConf", "ChapterConf", "LevelWeaponConf", "LevelWeaponSkillConf", "LevelWeaponDropConf", "ActLevelConf", "ActGuideConf", "ActModuleConditionConf", "ActLevelConstant", "LordLvConf", "LordLvLimitConf", "LordOrderConf", "LordSkinConf", "ProfileCardConf", "WeaponConf", "WeaponActiveConf", "WeaponPassiveConf", "MapConf", "MedallionConf", "ModuleConf", "SubModConf", "MonsterConf", "LevelCoeffConf", "MonthActivity", "MonthActivityConf", "MoonConstant", "MoonRabbitConf", "MoonRabbitMonsterConf", "RabbitBoxConf", "MoonTreeConf", "TeleportConf", "MoonMerchandiseConf", "MoonLegionRewardConf", "MoonSelfRewardConf", "MoonScheduleConf", "MoonSubScheduleConf", "LegionGroupConf", "NightMareRaceConstant", "NightMareRaceConf", "NightMareRaceMonsterConf", "NightMareRaceBattleBuffConf", "NightMareRaceRankRewardConf", "NightMareRaceTaskRewardConf", "NightMareStarConstant", "NightMareStarConf", "NightMareStarBookConf", "NightMareStarWheelConf", "NightMareGroupStarRewardConf", "OtherItemConf", "OverviewConstant", "OverviewConf", "PackConf", "PaoMaDengConf", "BattleReward", "PeakRecord", "PeakRecordConf", "pearlConstant", "pearlRandConf", "pearlColorConf", "pearlAttrConf", "pearlSkillPoolConf", "prisonConf", "PrivilegeConf", "PrivilegeData", "PrivilegeSortConf", "PushList", "PVPMapConf", "QualitySelectionConf", "QuenchConf", "QuenchAttrConf", "QuenchBuffConf", "QuenchBuffFloatConf", "QuenchRewardConf", "Recover", "RegressionRuleConf", "ResourcePath", "ReturnGachaConf", "ReturnMissionConf", "RollUpPackConf", "RoomConstant", "RoomSettingsConf", "AdvanceRoomSettingsConf", "MatchRoomSettingsConf", "FightRoomSettingsConf", "RoomMerchandiseConf", "RoomNightmareMonster", "RobotSettingsConf", "RoomTheme", "RoomFightColumnTimeConf", "RoomFightRoundConf", "seasonArenaConstant", "seasonArenaReward", "seasonArenaRank", "seasonBattlePassBaseConf", "seasonBattlePassReward", "seasonMerchandiseConf", "seasonHeroBookConf", "seasonHeroArrt", "gemstoneRandConf", "gemstoneAttrConf", "SeasonHeroConf", "HeroConditionConf", "SeasonLevel", "LevelLimitConf", "seasonLordOrderConf", "SeasonRankListConf", "seasonResearchConf", "SeasonGuideConf", "serverNameConf", "bigServerConf", "SevenDayConf", "SkeletonConf", "AnimationClipData", "SkillSchemeConf", "BuffConf", "BuffRewriteConf", "SkillDynamicConf", "SkillConf", "BuffLayer", "SkillEffectData", "SkillParams", "ComandParams", "TriggerCondition", "PetActiveSkillConf", "PetPassiveSkillConf", "SkillSchemeMemoConf", "SkillStorageConf", "SkinConf", "SkyMapConf", "SkyBuildingConf", "SkyConstant", "SkyLevel", "SkyMonster", "SkyBoss", "SkyBuildingBoss", "SkyBuildingReward", "SpringActConf", "FuKaConf", "ExchangeConf", "CumulativeChargeConf", "StayBuyTimeConf", "StayRewardConf", "StayRewardOrderConf", "StoreConf", "GoodsConf", "StudyConf", "StudyClothesConf", "StudyRewardConf", "StudyActConf", "TaskConf", "TestConf", "LocalConf", "tokenPackBulkConf", "TournamentConf", "TournamentScheduleConf", "TournamentActConf", "TournamentShopConf", "TournamentRewardConf", "TournamentMatchConf", "TournamentExtraAttr", "TournamentConstant", "TowerConf", "TowerReward", "TowerStageConf", "TrumpConf", "TrumpTypeConf", "TrumpRankConf", "TrumpCostConf", "VersionConf", "VipConf", "BenefitData" ], 
+            "PetEggConf" === n && xe.decode(e[n], t), "PetFestivalConf" === n && Ue.decode(e[n], t), 
+            "PetColorConf" === n && He.decode(e[n], t), "PetConf" === n && ke.decode(e[n], t), 
+            "PetLevelConf" === n && Fe.decode(e[n], t), "PetStarConf" === n && je.decode(e[n], t), 
+            "PetTalentConf" === n && Ke.decode(e[n], t), "PetQuenchAdditionConf" === n && Ve.decode(e[n], t), 
+            "QuenchAdditionConf" === n && We.decode(e[n], t), "PetAttrTypePoolConf" === n && Ye.decode(e[n], t), 
+            "PetAttrRandPoolConf" === n && Qe.decode(e[n], t), "PetTilesConf" === n && qe.decode(e[n], t), 
+            "PetQuenchConsumeConf" === n && Xe.decode(e[n], t), "PetPlayConstant" === n && ze.decode(e[n]), 
+            "PetPlayBoardConf" === n && Je.decode(e[n], t), "PetPlayActiveTask" === n && Ze.decode(e[n], t), 
+            "QuenchCarnivalConstant" === n && $e.decode(e[n]), "QuenchCarnivalMissionConf" === n && et.decode(e[n], t), 
+            "QuenchCarnivalLevelConf" === n && tt.decode(e[n], t), "QuenchLotteryRewardConf" === n && nt.decode(e[n], t), 
+            "QuenchChargeConstant" === n && rt.decode(e[n]), "QuenchChargeConf" === n && ot.decode(e[n], t), 
+            "QuenchChargeMissionConf" === n && it.decode(e[n], t), "SeasonArtifactConf" === n && at.decode(e[n], t), 
+            "ArtifactDescConf" === n && st.decode(e[n], t), "SeasonLvRewardConf" === n && ct.decode(e[n], t), 
+            "SeasonRescueConstant" === n && ut.decode(e[n]), "SeasonRescueMonster" === n && lt.decode(e[n], t), 
+            "SeasonTowerConf" === n && ft.decode(e[n], t), "SeasonTowerReward" === n && dt.decode(e[n], t), 
+            "SeasonTowerRankReward" === n && pt.decode(e[n], t), "seasonTowerRank" === n && gt.decode(e[n], t), 
+            "SkillEffectSort" === n && ht.decode(e[n], t), "SkyProConf" === n && _t.decode(e[n], t), 
+            "SkyShopConstant" === n && mt.decode(e[n]), "SkyShopConf" === n && vt.decode(e[n], t), 
+            "SkySkillConf" === n && Et.decode(e[n], t), "TenDayConstantConf" === n && yt.decode(e[n]), 
+            "TenDayActMapConf" === n && Ct.decode(e[n], t), "TenDayActConf" === n && St.decode(e[n], t), 
+            "TenDayDailyConf" === n && At.decode(e[n], t), "TenDayExchangeConf" === n && Tt.decode(e[n], t), 
+            "TenDayTaskConf" === n && Rt.decode(e[n], t), "TenDayRankRewardConf" === n && It.decode(e[n], t), 
+            "TenDayGiftConf" === n && Ot.decode(e[n], t), "TenDaySprintCarnivalConf" === n && wt.decode(e[n], t), 
+            "AccSprintConf" === n && bt.decode(e[n], t), "UnsealBaseConf" === n && Nt.decode(e[n]), 
+            "UnsealShowConf" === n && Lt.decode(e[n], t), "UnsealEventTimeConf" === n && Mt.decode(e[n], t), 
+            "UnsealCardConf" === n && Pt.decode(e[n], t), "AchievementConf" === n && Dt.decode(e[n], t), 
+            "AchievementTaskList" === n && Bt.decode(e[n], t), "BetBaseConf" === n && Gt.decode(e[n]), 
+            "BetFormationConf" === n && xt.decode(e[n], t), "BetActivityTimeConf" === n && Ut.decode(e[n], t), 
+            "ActBossConf" === n && Ht.decode(e[n], t), "ActHideBossConf" === n && kt.decode(e[n], t), 
+            "ActCardTowerConf" === n && Ft.decode(e[n], t), "ActCardTowerShowConf" === n && jt.decode(e[n], t), 
+            "ActCardTowerRewardConf" === n && Kt.decode(e[n], t), "ActCardTowerRankRewardConf" === n && Vt.decode(e[n], t), 
+            "ActCardTowerEquipConf" === n && Wt.decode(e[n], t), "ActCardTowerShopConf" === n && Yt.decode(e[n], t), 
+            "actConstantConf" === n && Qt.decode(e[n], t), "DragonBoatConf" === n && qt.decode(e[n], t), 
+            "DragonBoatLegionConf" === n && Xt.decode(e[n], t), "ActFestivalConf" === n && zt.decode(e[n], t), 
+            "MilestoneRewardConf" === n && Jt.decode(e[n], t), "LotteryActConf" === n && Zt.decode(e[n], t), 
+            "LotteryPackConf" === n && $t.decode(e[n], t), "LotteryRatioConf" === n && en.decode(e[n], t), 
+            "SkinGachaRewardConf" === n && tn.decode(e[n], t), "SkinGachaMilestoneRewarConf" === n && nn.decode(e[n], t), 
+            "ExchangeActConf" === n && rn.decode(e[n], t), "ActMerchandiseConf" === n && on.decode(e[n], t), 
+            "BingoConf" === n && an.decode(e[n], t), "BingoRewardConf" === n && sn.decode(e[n], t), 
+            "MineConf" === n && cn.decode(e[n], t), "ProgressBarConf" === n && un.decode(e[n], t), 
+            "FuKaActConf" === n && ln.decode(e[n], t), "CumulativeChargeActConf" === n && fn.decode(e[n], t), 
+            "TreasureConf" === n && dn.decode(e[n], t), "MonopolyConf" === n && pn.decode(e[n], t), 
+            "EGameConf" === n && gn.decode(e[n], t), "CheerConf" === n && hn.decode(e[n], t), 
+            "CheerRewardConf" === n && _n.decode(e[n], t), "VoteConf" === n && mn.decode(e[n], t), 
+            "KillBossAchievementConf" === n && vn.decode(e[n], t), "actGmGroupConf" === n && En.decode(e[n], t), 
+            "MissionConf" === n && yn.decode(e[n], t), "ActMultiTowerConf" === n && Cn.decode(e[n], t), 
+            "ActMultiTowerScheduleConf" === n && Sn.decode(e[n], t), "ActMultiTowerShowConf" === n && An.decode(e[n], t), 
+            "ActMultiTowerLevelRewardConf" === n && Tn.decode(e[n], t), "LanguageConf" === n && Rn.decode(e[n], t), 
+            "ActMultiTowerEnhanceConf" === n && In.decode(e[n], t), "ActMultiTowerRewardConf" === n && On.decode(e[n], t), 
+            "actNoobConf" === n && wn.decode(e[n], t), "NoobSign" === n && bn.decode(e[n], t), 
+            "NoobMissionConf" === n && Nn.decode(e[n], t), "NoobSubMissionConf" === n && Ln.decode(e[n], t), 
+            "ActRogueLevelConf" === n && Mn.decode(e[n], t), "ActRogueRowConf" === n && Pn.decode(e[n], t), 
+            "ActRogueRewardConf" === n && Dn.decode(e[n], t), "ActRogueRankRewardConf" === n && Bn.decode(e[n], t), 
+            "ActRogueArtifactConf" === n && Gn.decode(e[n], t), "ActRogueEquipConf" === n && xn.decode(e[n], t), 
+            "ActRogueEquipLevelConf" === n && Un.decode(e[n], t), "ActRogueConsumeConf" === n && Hn.decode(e[n], t), 
+            "ActRogueBuffConf" === n && kn.decode(e[n], t), "ActRogueDebuffConf" === n && Fn.decode(e[n], t), 
+            "ActRogueBossConf" === n && jn.decode(e[n], t), "ActRogueMonsterConf" === n && Kn.decode(e[n], t), 
+            "ActRogueBookConf" === n && Vn.decode(e[n], t), "ActRogueBookColumnConf" === n && Wn.decode(e[n], t), 
+            "ActRogueBookRewardConf" === n && Yn.decode(e[n], t), "ActivityConf" === n && Qn.decode(e[n], t), 
+            "CardConf" === n && qn.decode(e[n], t), "DailyDealConf" === n && Xn.decode(e[n], t), 
+            "DayBuyConf" === n && zn.decode(e[n], t), "FundConf" === n && Jn.decode(e[n], t), 
+            "FundTaskConf" === n && Zn.decode(e[n], t), "MerchandiseConf" === n && $n.decode(e[n], t), 
+            "SignConf" === n && er.decode(e[n], t), "AFKMapConf" === n && tr.decode(e[n], t), 
+            "ArenaRankConf" === n && nr.decode(e[n], t), "ArenaScore" === n && rr.decode(e[n], t), 
+            "ArenaGift" === n && or.decode(e[n], t), "ArenaRefreshConf" === n && ir.decode(e[n], t), 
+            "ArtifactConf" === n && ar.decode(e[n], t), "attributeCompareConf" === n && sr.decode(e[n], t), 
+            "AttributeLimitConf" === n && cr.decode(e[n], t), "AuraConf" === n && ur.decode(e[n], t), 
+            "AutoConf" === n && lr.decode(e[n], t), "AvatarConf" === n && fr.decode(e[n], t), 
+            "AvatarFrameConf" === n && dr.decode(e[n], t), "BasePush" === n && pr.decode(e[n], t), 
+            "OppositeBattleAttributeKey" === n && Rr.decode(e[n], t), "BattlePassBaseConf" === n && Ir.decode(e[n], t), 
+            "BattlePassConf" === n && Or.decode(e[n], t), "BattlePassMissionConf" === n && wr.decode(e[n], t), 
+            "blackMarketConf" === n && br.decode(e[n], t), "blackMarketMerchandiseConf" === n && Nr.decode(e[n], t), 
+            "BlessingConf" === n && Lr.decode(e[n], t), "BlessingSortConf" === n && Pr.decode(e[n], t), 
+            "BookConf" === n && Dr.decode(e[n], t), "BookStageConf" === n && Br.decode(e[n], t), 
+            "BossInfoConfig" === n && Gr.decode(e[n], t), "BossLoopConfig" === n && xr.decode(e[n], t), 
+            "BossRewardsConfig" === n && Ur.decode(e[n], t), "BossTowerConf" === n && Hr.decode(e[n], t), 
+            "BossHelpRankRewardConfig" === n && kr.decode(e[n], t), "BossTowerShopConf" === n && Fr.decode(e[n], t), 
+            "Bottle" === n && jr.decode(e[n], t), "BottlePool" === n && Kr.decode(e[n], t), 
+            "BottleTime" === n && Vr.decode(e[n], t), "BoxConf" === n && Wr.decode(e[n], t), 
+            "BoxStageConf" === n && Yr.decode(e[n], t), "BriefreportConf" === n && Qr.decode(e[n], t), 
+            "BulletConf" === n && qr.decode(e[n], t), "CalendarConf" === n && Xr.decode(e[n], t), 
+            "CalenderActIConf" === n && zr.decode(e[n], t), "CalenderMonthConf" === n && Jr.decode(e[n], t), 
+            "CardSeriesConf" === n && Zr.decode(e[n], t), "CardPackageConf" === n && $r.decode(e[n], t), 
+            "CardDetailConf" === n && eo.decode(e[n], t), "CareerChallengeConf" === n && to.decode(e[n], t), 
+            "CareerChallengeConstantConf" === n && no.decode(e[n]), "ChargePackConf" === n && ro.decode(e[n], t), 
+            "CharmConf" === n && oo.decode(e[n], t), "CharmGift" === n && io.decode(e[n], t), 
+            "CharmTask" === n && ao.decode(e[n], t), "ChatSensitiveConf" === n && so.decode(e[n], t), 
+            "ChatAlertConf" === n && co.decode(e[n], t), "CoinGetConf" === n && uo.decode(e[n], t), 
+            "CollectionConf" === n && lo.decode(e[n]), "CollectionStageConf" === n && fo.decode(e[n], t), 
+            "CollectionHeroConf" === n && po.decode(e[n], t), "CollectionSeriesConf" === n && go.decode(e[n], t), 
+            "CollectionHeroSuitsConf" === n && ho.decode(e[n], t), "ConstantConf" === n && mo.decode(e[n]), 
+            "CurrencyMarketConf" === n && vo.decode(e[n], t), "CustomCardConf" === n && Eo.decode(e[n], t), 
+            "DailyTaskConf" === n && yo.decode(e[n], t), "DayLimitConf" === n && Co.decode(e[n], t), 
+            "WeekLimitConf" === n && So.decode(e[n], t), "DialogConf" === n && Ao.decode(e[n], t), 
+            "DiamondShopConf" === n && To.decode(e[n], t), "DingniuConstantConf" === n && Ro.decode(e[n], t), 
+            "DingniuInConstantConf" === n && Io.decode(e[n], t), "DropDailyMail" === n && Oo.decode(e[n], t), 
+            "DungeonConf" === n && wo.decode(e[n], t), "DungeonMerchantConf" === n && bo.decode(e[n], t), 
+            "DungeonItemConf" === n && No.decode(e[n], t), "DungeonMonsterConf" === n && Lo.decode(e[n], t), 
+            "EffectConf" === n && Mo.decode(e[n], t), "emojiConf" === n && Po.decode(e[n], t), 
+            "EquipConf" === n && Do.decode(e[n], t), "EquipLvConf" === n && Bo.decode(e[n], t), 
+            "EquipLvSpend" === n && Go.decode(e[n], t), "EquipForgeSpend" === n && xo.decode(e[n], t), 
+            "EquipmentConf" === n && Uo.decode(e[n], t), "EquipmentLvConf" === n && Ho.decode(e[n], t), 
+            "EquipmentSetConf" === n && ko.decode(e[n], t), "EquipmentForgeSpend" === n && Fo.decode(e[n], t), 
+            "EvoTowerConstant" === n && jo.decode(e[n]), "EvoTowerScheduleConf" === n && Ko.decode(e[n], t), 
+            "EvoTowerConf" === n && Vo.decode(e[n], t), "EvoTowerClubPrivilegeConf" === n && Wo.decode(e[n], t), 
+            "EvoTowerReward" === n && Yo.decode(e[n], t), "EvoTowerStageConf" === n && Qo.decode(e[n], t), 
+            "EvoTowerTaskConf" === n && qo.decode(e[n], t), "EvoTowerLegionRankReward" === n && Xo.decode(e[n], t), 
+            "EvoTowerGachaConstant" === n && zo.decode(e[n]), "EvoTowerGachaRewardConf" === n && Jo.decode(e[n], t), 
+            "EvoTowerGachaShop" === n && Zo.decode(e[n], t), "EvoTowerShareConstant" === n && $o.decode(e[n]), 
+            "EvoTowerShareTasks" === n && ei.decode(e[n], t), "ExcelVer" === n && ti.decode(e[n], t), 
+            "FlyupTheme" === n && ni.decode(e[n], t), "FlyNumberFormatter" === n && ri.decode(e[n], t), 
+            "FlyNumberStyleSheet" === n && oi.decode(e[n], t), "FootballMatchConstantConf" === n && ii.decode(e[n]), 
+            "FootballMatchScheduleConf" === n && ai.decode(e[n], t), "WeeklyScoreConf" === n && si.decode(e[n], t), 
+            "WeeklyRankShowConf" === n && ci.decode(e[n], t), "FootballFormationConf" === n && ui.decode(e[n], t), 
+            "KnockoutStageGroupConf" === n && li.decode(e[n], t), "FootballPlayerConf" === n && fi.decode(e[n], t), 
+            "FootballMatchPicConf" === n && di.decode(e[n], t), "formationConf" === n && pi.decode(e[n], t), 
+            "GachaRewardConf" === n && gi.decode(e[n], t), "GachaGroupConf" === n && hi.decode(e[n], t), 
+            "GachaAccumRewardConf" === n && _i.decode(e[n], t), "GachaBox" === n && mi.decode(e[n], t), 
+            "GachaConstant" === n && vi.decode(e[n]), "GameCardTTConf" === n && Ei.decode(e[n], t), 
+            "TTSubscribeMsg" === n && yi.decode(e[n], t), "genieConf" === n && Ci.decode(e[n], t), 
+            "genieLevelConf" === n && Si.decode(e[n], t), "genieSweepConf" === n && Ai.decode(e[n], t), 
+            "GlobalSignConf" === n && Ti.decode(e[n], t), "SingleSignConf" === n && Ri.decode(e[n], t), 
+            "AutoAddConf" === n && Ii.decode(e[n], t), "GlobalSignGoalConf" === n && Oi.decode(e[n], t), 
+            "GuideConf" === n && wi.decode(e[n], t), "h5GiftConf" === n && bi.decode(e[n], t), 
+            "HeroConf" === n && Ni.decode(e[n], t), "HeroAttrConf" === n && Li.decode(e[n], t), 
+            "HeroLvSpend" === n && Mi.decode(e[n], t), "HeroLvLimit" === n && Pi.decode(e[n], t), 
+            "HeroOrder" === n && Di.decode(e[n], t), "HeroStarExt" === n && Bi.decode(e[n], t), 
+            "HeroStarSpend" === n && Gi.decode(e[n], t), "HorseConstant" === n && xi.decode(e[n]), 
+            "HorseScheduleConf" === n && Ui.decode(e[n], t), "HorseSubScheduleConf" === n && Hi.decode(e[n], t), 
+            "HorseProgressConf" === n && ki.decode(e[n], t), "RandomHorseConf" === n && Fi.decode(e[n], t), 
+            "HorseBoxConf" === n && ji.decode(e[n], t), "HorseLegionRewardConf" === n && Ki.decode(e[n], t), 
+            "HorseSelfRewardConf" === n && Vi.decode(e[n], t), "HorseMerchandiseConf" === n && Wi.decode(e[n], t), 
+            "HorseMatchingRule" === n && Yi.decode(e[n], t), "HorseMapConf" === n && Qi.decode(e[n], t), 
+            "HideQuenchPoint" === n && qi.decode(e[n], t), "invite" === n && Xi.decode(e[n], t), 
+            "ItemConf" === n && zi.decode(e[n], t), "ItemLegionConf" === n && Ji.decode(e[n], t), 
+            "ErrocodeLanguageConf" === n && Zi.decode(e[n], t), "LoadingLanguageConf" === n && $i.decode(e[n], t), 
+            "MailLanguageConf" === n && ea.decode(e[n], t), "IosPrice" === n && ta.decode(e[n], t), 
+            "GooglePrice" === n && na.decode(e[n], t), "LegionBossConf" === n && ra.decode(e[n], t), 
+            "LegionBossRewardConf" === n && oa.decode(e[n], t), "LegionBossDailyRewardConf" === n && ia.decode(e[n], t), 
+            "LegionBossCostConf" === n && aa.decode(e[n], t), "legionCupConf" === n && sa.decode(e[n], t), 
+            "LegionLeagePointConf" === n && ca.decode(e[n]), "LegionLeagueCheerConf" === n && ua.decode(e[n], t), 
+            "LegionLeagueSeasonCheerConf" === n && la.decode(e[n], t), "LegionLeagueRewardConf" === n && fa.decode(e[n], t), 
+            "LegionWarFinalRewardConf" === n && da.decode(e[n], t), "LegionLeagueConf" === n && pa.decode(e[n], t), 
+            "LegionLeagueSessionConf" === n && ga.decode(e[n], t), "LegionLevelConf" === n && ha.decode(e[n], t), 
+            "LegionMarqueeConf" === n && _a.decode(e[n], t), "rankRangeConf" === n && ma.decode(e[n], t), 
+            "matchZoneTypeConf" === n && va.decode(e[n], t), "legionNameplateConf" === n && Ea.decode(e[n], t), 
+            "LegionRankConf" === n && ya.decode(e[n], t), "LegionRankConstantConf" === n && Ca.decode(e[n], t), 
+            "LegionPointConf" === n && Sa.decode(e[n], t), "LegionRankRewardConf" === n && Aa.decode(e[n], t), 
+            "LegionRankVersusConf" === n && Ta.decode(e[n], t), "ResearchConf" === n && Ra.decode(e[n], t), 
+            "LegionResearchConf" === n && Ia.decode(e[n], t), "LegionStoreConf" === n && Oa.decode(e[n], t), 
+            "LegionSkinStoreConf" === n && wa.decode(e[n], t), "TagConf" === n && ba.decode(e[n], t), 
+            "TagConditionConf" === n && Na.decode(e[n], t), "LegionWarConstantConf" === n && La.decode(e[n], t), 
+            "AirshipConf" === n && Ma.decode(e[n], t), "MultiKillConf" === n && Pa.decode(e[n], t), 
+            "LegionWarLanguageConf" === n && Da.decode(e[n], t), "LegionWarMapConf" === n && Ba.decode(e[n], t), 
+            "LegionWarMapTypeMappingConf" === n && Ga.decode(e[n], t), "LegionWarMedallionConf" === n && xa.decode(e[n], t), 
+            "WarRewardPageConf" === n && Ua.decode(e[n], t), "LegionWarRewardConf" === n && Ha.decode(e[n], t), 
+            "LegionWarKillRewardConf" === n && ka.decode(e[n], t), "SeasonLegionWarSkyRewardConf" === n && Fa.decode(e[n], t), 
+            "LegionWarSkyRewardConf" === n && ja.decode(e[n], t), "LegionWarSkyKillRewardConf" === n && Ka.decode(e[n], t), 
+            "LegionWarGuildRewardConf" === n && Va.decode(e[n], t), "LegionScheduleConf" === n && Wa.decode(e[n], t), 
+            "SeasonLegionScheduleConf" === n && Ya.decode(e[n], t), "SeasonLegionLeagueSessionConf" === n && Qa.decode(e[n], t), 
+            "LevelConf" === n && qa.decode(e[n], t), "ChapterConf" === n && Xa.decode(e[n], t), 
+            "LevelWeaponConf" === n && za.decode(e[n], t), "LevelWeaponSkillConf" === n && Ja.decode(e[n], t), 
+            "LevelWeaponDropConf" === n && Za.decode(e[n], t), "ActLevelConf" === n && $a.decode(e[n], t), 
+            "ActGuideConf" === n && es.decode(e[n], t), "ActModuleConditionConf" === n && ts.decode(e[n], t), 
+            "ActLevelConstant" === n && ns.decode(e[n]), "LordLvConf" === n && rs.decode(e[n], t), 
+            "LordLvLimitConf" === n && os.decode(e[n], t), "LordOrderConf" === n && is.decode(e[n], t), 
+            "LordSkinConf" === n && as.decode(e[n], t), "ProfileCardConf" === n && ss.decode(e[n], t), 
+            "WeaponConf" === n && cs.decode(e[n], t), "WeaponActiveConf" === n && us.decode(e[n], t), 
+            "WeaponPassiveConf" === n && ls.decode(e[n], t), "MapConf" === n && fs.decode(e[n], t), 
+            "MedallionConf" === n && ds.decode(e[n], t), "ModuleConf" === n && ps.decode(e[n], t), 
+            "SubModConf" === n && gs.decode(e[n], t), "MonsterConf" === n && hs.decode(e[n], t), 
+            "LevelCoeffConf" === n && _s.decode(e[n], t), "MonthActivity" === n && ms.decode(e[n], t), 
+            "MonthActivityConf" === n && vs.decode(e[n], t), "MoonConstant" === n && Es.decode(e[n]), 
+            "MoonRabbitConf" === n && ys.decode(e[n], t), "MoonRabbitMonsterConf" === n && Cs.decode(e[n], t), 
+            "RabbitBoxConf" === n && Ss.decode(e[n], t), "MoonTreeConf" === n && As.decode(e[n], t), 
+            "TeleportConf" === n && Ts.decode(e[n], t), "MoonMerchandiseConf" === n && Rs.decode(e[n], t), 
+            "MoonLegionRewardConf" === n && Is.decode(e[n], t), "MoonSelfRewardConf" === n && Os.decode(e[n], t), 
+            "MoonScheduleConf" === n && ws.decode(e[n], t), "MoonSubScheduleConf" === n && bs.decode(e[n], t), 
+            "LegionGroupConf" === n && Ns.decode(e[n], t), "NightMareRaceConstant" === n && Ls.decode(e[n]), 
+            "NightMareRaceConf" === n && Ms.decode(e[n], t), "NightMareRaceMonsterConf" === n && Ps.decode(e[n], t), 
+            "NightMareRaceBattleBuffConf" === n && Ds.decode(e[n], t), "NightMareRaceRankRewardConf" === n && Bs.decode(e[n], t), 
+            "NightMareRaceTaskRewardConf" === n && Gs.decode(e[n], t), "NightMareStarConstant" === n && xs.decode(e[n]), 
+            "NightMareStarConf" === n && Us.decode(e[n], t), "NightMareStarBookConf" === n && Hs.decode(e[n], t), 
+            "NightMareStarWheelConf" === n && ks.decode(e[n], t), "NightMareGroupStarRewardConf" === n && Fs.decode(e[n], t), 
+            "OtherItemConf" === n && js.decode(e[n], t), "OverviewConstant" === n && Ks.decode(e[n]), 
+            "OverviewConf" === n && Vs.decode(e[n], t), "PackConf" === n && Ws.decode(e[n], t), 
+            "PaoMaDengConf" === n && Ys.decode(e[n], t), "BattleReward" === n && Qs.decode(e[n], t), 
+            "PeakRecord" === n && qs.decode(e[n], t), "PeakRecordConf" === n && Xs.decode(e[n]), 
+            "pearlConstant" === n && zs.decode(e[n]), "pearlRandConf" === n && Js.decode(e[n], t), 
+            "pearlColorConf" === n && Zs.decode(e[n], t), "pearlAttrConf" === n && $s.decode(e[n], t), 
+            "pearlSkillPoolConf" === n && ec.decode(e[n], t), "prisonConf" === n && tc.decode(e[n], t), 
+            "PrivilegeConf" === n && nc.decode(e[n], t), "PrivilegeSortConf" === n && oc.decode(e[n], t), 
+            "PushList" === n && ic.decode(e[n], t), "PVPMapConf" === n && ac.decode(e[n], t), 
+            "QualitySelectionConf" === n && sc.decode(e[n], t), "QuenchConf" === n && uc.decode(e[n], t), 
+            "QuenchAttrConf" === n && lc.decode(e[n], t), "QuenchBuffConf" === n && fc.decode(e[n], t), 
+            "QuenchBuffFloatConf" === n && dc.decode(e[n], t), "QuenchRewardConf" === n && pc.decode(e[n], t), 
+            "Recover" === n && gc.decode(e[n], t), "RegressionRuleConf" === n && hc.decode(e[n], t), 
+            "ResourcePath" === n && _c.decode(e[n], t), "ReturnGachaConf" === n && mc.decode(e[n], t), 
+            "ReturnMissionConf" === n && vc.decode(e[n], t), "RollUpPackConf" === n && Ec.decode(e[n], t), 
+            "RoomConstant" === n && yc.decode(e[n]), "RoomSettingsConf" === n && Cc.decode(e[n], t), 
+            "AdvanceRoomSettingsConf" === n && Sc.decode(e[n], t), "MatchRoomSettingsConf" === n && Ac.decode(e[n], t), 
+            "FightRoomSettingsConf" === n && Tc.decode(e[n], t), "RoomMerchandiseConf" === n && Rc.decode(e[n], t), 
+            "RoomNightmareMonster" === n && Ic.decode(e[n], t), "RobotSettingsConf" === n && Oc.decode(e[n], t), 
+            "RoomTheme" === n && wc.decode(e[n], t), "RoomFightColumnTimeConf" === n && bc.decode(e[n], t), 
+            "RoomFightRoundConf" === n && Nc.decode(e[n], t), "seasonArenaConstant" === n && Lc.decode(e[n]), 
+            "seasonArenaReward" === n && Mc.decode(e[n], t), "seasonArenaRank" === n && Pc.decode(e[n], t), 
+            "seasonBattlePassBaseConf" === n && Dc.decode(e[n], t), "seasonBattlePassReward" === n && Bc.decode(e[n], t), 
+            "seasonMerchandiseConf" === n && Gc.decode(e[n], t), "seasonHeroBookConf" === n && xc.decode(e[n], t), 
+            "seasonHeroArrt" === n && Uc.decode(e[n], t), "gemstoneRandConf" === n && Hc.decode(e[n], t), 
+            "gemstoneAttrConf" === n && kc.decode(e[n], t), "SeasonHeroConf" === n && Fc.decode(e[n], t), 
+            "HeroConditionConf" === n && jc.decode(e[n], t), "SeasonLevel" === n && Kc.decode(e[n], t), 
+            "LevelLimitConf" === n && Vc.decode(e[n], t), "seasonLordOrderConf" === n && Wc.decode(e[n], t), 
+            "SeasonRankListConf" === n && Yc.decode(e[n], t), "seasonResearchConf" === n && Qc.decode(e[n], t), 
+            "SeasonGuideConf" === n && qc.decode(e[n], t), "serverNameConf" === n && Xc.decode(e[n], t), 
+            "bigServerConf" === n && zc.decode(e[n], t), "SevenDayConf" === n && Jc.decode(e[n], t), 
+            "SkeletonConf" === n && Zc.decode(e[n], t), "SkillSchemeConf" === n && eu.decode(e[n], t), 
+            "BuffConf" === n && tu.decode(e[n], t), "BuffRewriteConf" === n && nu.decode(e[n], t), 
+            "SkillDynamicConf" === n && ru.decode(e[n], t), "SkillConf" === n && ou.decode(e[n], t), 
+            "BuffLayer" === n && iu.decode(e[n], t), "PetActiveSkillConf" === n && uu.decode(e[n], t), 
+            "PetPassiveSkillConf" === n && lu.decode(e[n], t), "SkillSchemeMemoConf" === n && fu.decode(e[n], t), 
+            "SkillStorageConf" === n && du.decode(e[n], t), "SkinConf" === n && pu.decode(e[n], t), 
+            "SkyMapConf" === n && gu.decode(e[n], t), "SkyBuildingConf" === n && hu.decode(e[n], t), 
+            "SkyConstant" === n && _u.decode(e[n]), "SkyLevel" === n && mu.decode(e[n], t), 
+            "SkyMonster" === n && vu.decode(e[n], t), "SkyBoss" === n && Eu.decode(e[n], t), 
+            "SkyBuildingBoss" === n && yu.decode(e[n], t), "SkyBuildingReward" === n && Cu.decode(e[n], t), 
+            "SpringActConf" === n && Su.decode(e[n], t), "FuKaConf" === n && Au.decode(e[n], t), 
+            "ExchangeConf" === n && Tu.decode(e[n], t), "CumulativeChargeConf" === n && Ru.decode(e[n], t), 
+            "StayBuyTimeConf" === n && Iu.decode(e[n], t), "StayRewardConf" === n && Ou.decode(e[n], t), 
+            "StayRewardOrderConf" === n && wu.decode(e[n], t), "StoreConf" === n && bu.decode(e[n], t), 
+            "GoodsConf" === n && Nu.decode(e[n], t), "StudyConf" === n && Lu.decode(e[n], t), 
+            "StudyClothesConf" === n && Mu.decode(e[n], t), "StudyRewardConf" === n && Pu.decode(e[n], t), 
+            "StudyActConf" === n && Du.decode(e[n], t), "TaskConf" === n && Bu.decode(e[n], t), 
+            "TestConf" === n && Gu.decode(e[n], t), "LocalConf" === n && xu.decode(e[n]), "tokenPackBulkConf" === n && Uu.decode(e[n], t), 
+            "TournamentConf" === n && Hu.decode(e[n], t), "TournamentScheduleConf" === n && ku.decode(e[n], t), 
+            "TournamentActConf" === n && Fu.decode(e[n], t), "TournamentShopConf" === n && ju.decode(e[n], t), 
+            "TournamentRewardConf" === n && Ku.decode(e[n], t), "TournamentMatchConf" === n && Vu.decode(e[n], t), 
+            "TournamentExtraAttr" === n && Wu.decode(e[n], t), "TournamentConstant" === n && Yu.decode(e[n]), 
+            "TowerConf" === n && Qu.decode(e[n], t), "TowerReward" === n && qu.decode(e[n], t), 
+            "TowerStageConf" === n && Xu.decode(e[n], t), "TrumpConf" === n && zu.decode(e[n], t), 
+            "TrumpTypeConf" === n && Ju.decode(e[n], t), "TrumpRankConf" === n && Zu.decode(e[n], t), 
+            "TrumpCostConf" === n && $u.decode(e[n], t), "VersionConf" === n && el.decode(e[n]), 
+            "VipConf" === n && tl.decode(e[n], t);
+        }, n.configList = [ "ActMergeConstant", "ActMergeBoardConf", "ActMergeProgressConf", "ActMergeItemCostProgressConf", "ActMergeTilesConf", "ActMergeBoxConf", "ActMergeItemConf", "ActMergeItemGroupConf", "ApexConstantConf", "ApexSeasonConf", "ApexScheduleConf", "ApexStageConf", "ApexTeamMatchConf", "ApexKoMatchConf", "ApexTaskConf", "ApexRankRewardConf", "ApexShopConf", "ApexSupport", "ApexFormation", "ApexHelp", "CollectionGiftPackConstant", "CollectionGiftPackConf", "CollectionExchangeShopConf", "CollectionRankReward", "FragmentSynthesisConf", "GoodsList", "HolyBeastConstant", "HolyBeastBaseConf", "HolyBeastSkillConf", "HolyBeastOrderConf", "HolyBeastTextureConf", "HolyBeastExchangeConf", "HorseproAttrConf", "InvitationCodeReward", "StateConf", "LeagueGroupConf", "LeagueSeasonGroupConf", "LegacyConstant", "LegacyScheduleConf", "LegacyConf", "LegacyCreateLevelConf", "LegacyDreamDustConf", "LegacyAttrWeightPoolConf", "LegacyExtraAttrWeightPoolConf", "LegacySpecialAttrConf", "LegacyShopConf", "LegacyGiftConf", "LegacyTasks", "LegacyGiftTaskConf", "LegacyBoss", "LegacyChargeReward", "CarConstantConf", "CarLegion", "CarQuality", "FreeCar", "PaidCar", "CarLegionRankReward", "CarPersonalDayRankReward", "CarPersonalPhaseRankReward", "CarModified", "CarModifiedRewards", "LegionCodeConstant", "LegionCodeConf", "LegionMemberCodeConf", "LegionLeagueMarqueeConf", "PayLoadConstant", "PayLoadScheduleConf", "PayLoadMap", "PayLoadItem", "PayLoadPathConf", "PayLoadTasks", "PayLoadTaskProgress", "LegionWarBossConf", "LegionWarBuildingConf", "LegionWarCheerConf", "LegionWarCityConf", "LegionWarPointConf", "LegionWarPreConf", "LegionWarRankConf", "LegionWarThirdPointConf", "LiveEventConf", "MatchTeam", "NightMare", "NightMareMonster", "CompassReward", "NightMareBook", "PetConstant", "PetEggConf", "PetFestivalConf", "PetColorConf", "PetConf", "PetLevelConf", "PetStarConf", "PetTalentConf", "PetQuenchAdditionConf", "QuenchAdditionConf", "PetAttrTypePoolConf", "PetAttrRandPoolConf", "PetTilesConf", "PetQuenchConsumeConf", "PetPlayConstant", "PetPlayBoardConf", "PetPlayActiveTask", "QuenchCarnivalConstant", "QuenchCarnivalMissionConf", "QuenchCarnivalLevelConf", "QuenchLotteryRewardConf", "QuenchChargeConstant", "QuenchChargeConf", "QuenchChargeMissionConf", "SeasonArtifactConf", "ArtifactDescConf", "SeasonLvRewardConf", "SeasonRescueConstant", "SeasonRescueMonster", "SeasonTowerConf", "SeasonTowerReward", "SeasonTowerRankReward", "seasonTowerRank", "SkillEffectSort", "SkyProConf", "SkyShopConstant", "SkyShopConf", "SkySkillConf", "TenDayConstantConf", "TenDayActMapConf", "TenDayActConf", "TenDayDailyConf", "TenDayExchangeConf", "TenDayTaskConf", "TenDayRankRewardConf", "TenDayGiftConf", "TenDaySprintCarnivalConf", "AccSprintConf", "UnsealBaseConf", "UnsealShowConf", "UnsealEventTimeConf", "UnsealCardConf", "AchievementConf", "AchievementTaskList", "BetBaseConf", "BetFormationConf", "BetActivityTimeConf", "ActBossConf", "ActHideBossConf", "ActCardTowerConf", "ActCardTowerShowConf", "ActCardTowerRewardConf", "ActCardTowerRankRewardConf", "ActCardTowerEquipConf", "ActCardTowerShopConf", "actConstantConf", "DragonBoatConf", "DragonBoatLegionConf", "ActFestivalConf", "MilestoneRewardConf", "LotteryActConf", "LotteryPackConf", "LotteryRatioConf", "SkinGachaRewardConf", "SkinGachaMilestoneRewarConf", "ExchangeActConf", "ActMerchandiseConf", "BingoConf", "BingoRewardConf", "MineConf", "ProgressBarConf", "FuKaActConf", "CumulativeChargeActConf", "TreasureConf", "MonopolyConf", "EGameConf", "CheerConf", "CheerRewardConf", "VoteConf", "KillBossAchievementConf", "actGmGroupConf", "MissionConf", "ActMultiTowerConf", "ActMultiTowerScheduleConf", "ActMultiTowerShowConf", "ActMultiTowerLevelRewardConf", "LanguageConf", "ActMultiTowerEnhanceConf", "ActMultiTowerRewardConf", "actNoobConf", "NoobSign", "NoobMissionConf", "NoobSubMissionConf", "ActRogueLevelConf", "ActRogueRowConf", "ActRogueRewardConf", "ActRogueRankRewardConf", "ActRogueArtifactConf", "ActRogueEquipConf", "ActRogueEquipLevelConf", "ActRogueConsumeConf", "ActRogueBuffConf", "ActRogueDebuffConf", "ActRogueBossConf", "ActRogueMonsterConf", "ActRogueBookConf", "ActRogueBookColumnConf", "ActRogueBookRewardConf", "ActivityConf", "CardConf", "DailyDealConf", "DayBuyConf", "FundConf", "FundTaskConf", "MerchandiseConf", "SignConf", "AFKMapConf", "ArenaRankConf", "ArenaScore", "ArenaGift", "ArenaRefreshConf", "ArtifactConf", "attributeCompareConf", "AttributeLimitConf", "AuraConf", "AutoConf", "AvatarConf", "AvatarFrameConf", "BasePush", "SkillLevelUpData", "AttributeData", "RewardData", "PaymentData", "RewardInfo", "ConditionData", "BattleMonsterData", "BookActivateData", "ComboActivateData", "StarSpendPack", "BundleData", "GuideAnim", "JumpInfo", "BuffCommand", "LegionRewardData", "GotoData", "OppositeBattleAttributeKey", "BattlePassBaseConf", "BattlePassConf", "BattlePassMissionConf", "blackMarketConf", "blackMarketMerchandiseConf", "BlessingConf", "BlessingData", "BlessingSortConf", "BookConf", "BookStageConf", "BossInfoConfig", "BossLoopConfig", "BossRewardsConfig", "BossTowerConf", "BossHelpRankRewardConfig", "BossTowerShopConf", "Bottle", "BottlePool", "BottleTime", "BoxConf", "BoxStageConf", "BriefreportConf", "BulletConf", "CalendarConf", "CalenderActIConf", "CalenderMonthConf", "CardSeriesConf", "CardPackageConf", "CardDetailConf", "CareerChallengeConf", "CareerChallengeConstantConf", "ChargePackConf", "CharmConf", "CharmGift", "CharmTask", "ChatSensitiveConf", "ChatAlertConf", "CoinGetConf", "CollectionConf", "CollectionStageConf", "CollectionHeroConf", "CollectionSeriesConf", "CollectionHeroSuitsConf", "CollectionItem", "ConstantConf", "CurrencyMarketConf", "CustomCardConf", "DailyTaskConf", "DayLimitConf", "WeekLimitConf", "DialogConf", "DiamondShopConf", "DingniuConstantConf", "DingniuInConstantConf", "DropDailyMail", "DungeonConf", "DungeonMerchantConf", "DungeonItemConf", "DungeonMonsterConf", "EffectConf", "emojiConf", "EquipConf", "EquipLvConf", "EquipLvSpend", "EquipForgeSpend", "EquipmentConf", "EquipmentLvConf", "EquipmentSetConf", "EquipmentForgeSpend", "EvoTowerConstant", "EvoTowerScheduleConf", "EvoTowerConf", "EvoTowerClubPrivilegeConf", "EvoTowerReward", "EvoTowerStageConf", "EvoTowerTaskConf", "EvoTowerLegionRankReward", "EvoTowerGachaConstant", "EvoTowerGachaRewardConf", "EvoTowerGachaShop", "EvoTowerShareConstant", "EvoTowerShareTasks", "ExcelVer", "FlyupTheme", "FlyNumberFormatter", "FlyNumberStyleSheet", "FootballMatchConstantConf", "FootballMatchScheduleConf", "WeeklyScoreConf", "WeeklyRankShowConf", "FootballFormationConf", "KnockoutStageGroupConf", "FootballPlayerConf", "FootballMatchPicConf", "formationConf", "GachaRewardConf", "GachaGroupConf", "GachaAccumRewardConf", "GachaBox", "GachaConstant", "GameCardTTConf", "TTSubscribeMsg", "genieConf", "genieLevelConf", "genieSweepConf", "GlobalSignConf", "SingleSignConf", "AutoAddConf", "GlobalSignGoalConf", "GuideConf", "h5GiftConf", "HeroConf", "HeroAttrConf", "HeroLvSpend", "HeroLvLimit", "HeroOrder", "HeroStarExt", "HeroStarSpend", "HorseConstant", "HorseScheduleConf", "HorseSubScheduleConf", "HorseProgressConf", "RandomHorseConf", "HorseBoxConf", "HorseLegionRewardConf", "HorseSelfRewardConf", "HorseMerchandiseConf", "HorseMatchingRule", "HorseMapConf", "HideQuenchPoint", "invite", "ItemConf", "ItemLegionConf", "ErrocodeLanguageConf", "LoadingLanguageConf", "MailLanguageConf", "IosPrice", "GooglePrice", "LegionBossConf", "LegionBossRewardConf", "LegionBossDailyRewardConf", "LegionBossCostConf", "legionCupConf", "LegionLeagePointConf", "LegionLeagueCheerConf", "LegionLeagueSeasonCheerConf", "LegionLeagueRewardConf", "LegionWarFinalRewardConf", "LegionLeagueConf", "LegionLeagueSessionConf", "LegionLevelConf", "LegionMarqueeConf", "rankRangeConf", "matchZoneTypeConf", "legionNameplateConf", "LegionRankConf", "LegionRankConstantConf", "LegionPointConf", "LegionRankRewardConf", "LegionRankVersusConf", "ResearchConf", "LegionResearchConf", "LegionStoreConf", "LegionSkinStoreConf", "TagConf", "TagConditionConf", "LegionWarConstantConf", "AirshipConf", "MultiKillConf", "LegionWarLanguageConf", "LegionWarMapConf", "LegionWarMapTypeMappingConf", "LegionWarMedallionConf", "WarRewardPageConf", "LegionWarRewardConf", "LegionWarKillRewardConf", "SeasonLegionWarSkyRewardConf", "LegionWarSkyRewardConf", "LegionWarSkyKillRewardConf", "LegionWarGuildRewardConf", "LegionScheduleConf", "SeasonLegionScheduleConf", "SeasonLegionLeagueSessionConf", "LevelConf", "ChapterConf", "LevelWeaponConf", "LevelWeaponSkillConf", "LevelWeaponDropConf", "ActLevelConf", "ActGuideConf", "ActModuleConditionConf", "ActLevelConstant", "LordLvConf", "LordLvLimitConf", "LordOrderConf", "LordSkinConf", "ProfileCardConf", "WeaponConf", "WeaponActiveConf", "WeaponPassiveConf", "MapConf", "MedallionConf", "ModuleConf", "SubModConf", "MonsterConf", "LevelCoeffConf", "MonthActivity", "MonthActivityConf", "MoonConstant", "MoonRabbitConf", "MoonRabbitMonsterConf", "RabbitBoxConf", "MoonTreeConf", "TeleportConf", "MoonMerchandiseConf", "MoonLegionRewardConf", "MoonSelfRewardConf", "MoonScheduleConf", "MoonSubScheduleConf", "LegionGroupConf", "NightMareRaceConstant", "NightMareRaceConf", "NightMareRaceMonsterConf", "NightMareRaceBattleBuffConf", "NightMareRaceRankRewardConf", "NightMareRaceTaskRewardConf", "NightMareStarConstant", "NightMareStarConf", "NightMareStarBookConf", "NightMareStarWheelConf", "NightMareGroupStarRewardConf", "OtherItemConf", "OverviewConstant", "OverviewConf", "PackConf", "PaoMaDengConf", "BattleReward", "PeakRecord", "PeakRecordConf", "pearlConstant", "pearlRandConf", "pearlColorConf", "pearlAttrConf", "pearlSkillPoolConf", "prisonConf", "PrivilegeConf", "PrivilegeData", "PrivilegeSortConf", "PushList", "PVPMapConf", "QualitySelectionConf", "QuenchConf", "QuenchAttrConf", "QuenchBuffConf", "QuenchBuffFloatConf", "QuenchRewardConf", "Recover", "RegressionRuleConf", "ResourcePath", "ReturnGachaConf", "ReturnMissionConf", "RollUpPackConf", "RoomConstant", "RoomSettingsConf", "AdvanceRoomSettingsConf", "MatchRoomSettingsConf", "FightRoomSettingsConf", "RoomMerchandiseConf", "RoomNightmareMonster", "RobotSettingsConf", "RoomTheme", "RoomFightColumnTimeConf", "RoomFightRoundConf", "seasonArenaConstant", "seasonArenaReward", "seasonArenaRank", "seasonBattlePassBaseConf", "seasonBattlePassReward", "seasonMerchandiseConf", "seasonHeroBookConf", "seasonHeroArrt", "gemstoneRandConf", "gemstoneAttrConf", "SeasonHeroConf", "HeroConditionConf", "SeasonLevel", "LevelLimitConf", "seasonLordOrderConf", "SeasonRankListConf", "seasonResearchConf", "SeasonGuideConf", "serverNameConf", "bigServerConf", "SevenDayConf", "SkeletonConf", "AnimationClipData", "SkillSchemeConf", "BuffConf", "BuffRewriteConf", "SkillDynamicConf", "SkillConf", "BuffLayer", "SkillEffectData", "SkillParams", "ComandParams", "TriggerCondition", "PetActiveSkillConf", "PetPassiveSkillConf", "SkillSchemeMemoConf", "SkillStorageConf", "SkinConf", "SkyMapConf", "SkyBuildingConf", "SkyConstant", "SkyLevel", "SkyMonster", "SkyBoss", "SkyBuildingBoss", "SkyBuildingReward", "SpringActConf", "FuKaConf", "ExchangeConf", "CumulativeChargeConf", "StayBuyTimeConf", "StayRewardConf", "StayRewardOrderConf", "StoreConf", "GoodsConf", "StudyConf", "StudyClothesConf", "StudyRewardConf", "StudyActConf", "TaskConf", "TestConf", "LocalConf", "tokenPackBulkConf", "TournamentConf", "TournamentScheduleConf", "TournamentActConf", "TournamentShopConf", "TournamentRewardConf", "TournamentMatchConf", "TournamentExtraAttr", "TournamentConstant", "TowerConf", "TowerReward", "TowerStageConf", "TrumpConf", "TrumpTypeConf", "TrumpRankConf", "TrumpCostConf", "VersionConf", "VipConf", "BenefitData" ], 
         cc._RF.pop();
     }, {} ],
     Defer: [ function(e, t, n) {
@@ -19106,6 +19122,7 @@ window.__require = function e(t, n, r) {
             EventRoomPKBattleEnd: r.Signal.create(),
             EventRoomPKShowBattleResult: r.Signal.create(),
             EventRoomPKRuleUpdated: r.Signal.create(),
+            EventRoomPKPasswordUpdated: r.Signal.create(),
             EventRoomPKReplyChangeResp: r.Signal.create(),
             EventRoomPKApplyChangeResp: r.Signal.create(),
             EventCloseRoomPKBattle: r.Signal.create(),
@@ -19519,7 +19536,7 @@ window.__require = function e(t, n, r) {
         e("./version-ext");
         var _ = e("../common/scripts/managers/ResourceManager"), m = e("./UserAuth"), v = e("./EntranceAnim");
         n.OPEN_HEAD_LESS = !1, n.OPEN_HEAD_LESS && (cc.renderer.render = function() {});
-        var E = cc._decorator, y = E.ccclass, S = E.property, C = function(e) {
+        var E = cc._decorator, y = E.ccclass, C = E.property, S = function(e) {
             function t() {
                 var t = null !== e && e.apply(this, arguments) || this;
                 return t.container = null, t.progressBar = null, t.progressLabel = null, t.progressBarHeader = null, 
@@ -19698,19 +19715,19 @@ window.__require = function e(t, n, r) {
                         }
                     });
                 });
-            }, __decorate([ S(cc.Node) ], t.prototype, "container", void 0), __decorate([ S(cc.ProgressBar) ], t.prototype, "progressBar", void 0), 
-            __decorate([ S(cc.Label) ], t.prototype, "progressLabel", void 0), __decorate([ S(cc.Node) ], t.prototype, "progressBarHeader", void 0), 
-            __decorate([ S(cc.Node) ], t.prototype, "loadingParticle", void 0), __decorate([ S(m.UserAuth) ], t.prototype, "userAuth", void 0), 
-            __decorate([ S ], t.prototype, "progressBarHeaderOffset", void 0), __decorate([ S ], t.prototype, "progressBarHeaderTotal", void 0), 
-            __decorate([ S(cc.Asset) ], t.prototype, "releaseAssets", void 0), __decorate([ S(cc.Node) ], t.prototype, "postprocess", void 0), 
-            __decorate([ S(cc.Canvas) ], t.prototype, "ccCanvas", void 0), __decorate([ S(cc.Widget) ], t.prototype, "ccWidget", void 0), 
-            __decorate([ S(cc.Node) ], t.prototype, "dustAndScratches", void 0), __decorate([ S(cc.JsonAsset) ], t.prototype, "loadingDesc", void 0), 
-            __decorate([ S(cc.Label) ], t.prototype, "codeVersion", void 0), __decorate([ S(cc.Node) ], t.prototype, "loadingFish", void 0), 
-            __decorate([ S([ cc.Node ]) ], t.prototype, "nodeArr", void 0), __decorate([ S({
+            }, __decorate([ C(cc.Node) ], t.prototype, "container", void 0), __decorate([ C(cc.ProgressBar) ], t.prototype, "progressBar", void 0), 
+            __decorate([ C(cc.Label) ], t.prototype, "progressLabel", void 0), __decorate([ C(cc.Node) ], t.prototype, "progressBarHeader", void 0), 
+            __decorate([ C(cc.Node) ], t.prototype, "loadingParticle", void 0), __decorate([ C(m.UserAuth) ], t.prototype, "userAuth", void 0), 
+            __decorate([ C ], t.prototype, "progressBarHeaderOffset", void 0), __decorate([ C ], t.prototype, "progressBarHeaderTotal", void 0), 
+            __decorate([ C(cc.Asset) ], t.prototype, "releaseAssets", void 0), __decorate([ C(cc.Node) ], t.prototype, "postprocess", void 0), 
+            __decorate([ C(cc.Canvas) ], t.prototype, "ccCanvas", void 0), __decorate([ C(cc.Widget) ], t.prototype, "ccWidget", void 0), 
+            __decorate([ C(cc.Node) ], t.prototype, "dustAndScratches", void 0), __decorate([ C(cc.JsonAsset) ], t.prototype, "loadingDesc", void 0), 
+            __decorate([ C(cc.Label) ], t.prototype, "codeVersion", void 0), __decorate([ C(cc.Node) ], t.prototype, "loadingFish", void 0), 
+            __decorate([ C([ cc.Node ]) ], t.prototype, "nodeArr", void 0), __decorate([ C({
                 type: cc.Node
             }) ], t.prototype, "entrancePetPositionNode", void 0), __decorate([ y ], t);
         }(o.GlobalEntityManager);
-        n.Launcher = C, cc._RF.pop();
+        n.Launcher = S, cc._RF.pop();
     }, {
         "../common/libs/polyfills": "polyfills",
         "../common/scripts/GlobalSignal": "GlobalSignal",
@@ -19976,7 +19993,7 @@ window.__require = function e(t, n, r) {
         cc._RF.push(t, "d6d69DNiJZFObbfMt/qigHp", "PlatformManager"), Object.defineProperty(n, "__esModule", {
             value: !0
         }), n.GET_BATTLE_VERSION = n.LOG_UIPACK = n.CHECK_SWITCH = n.TAG_LOG_ONCE_CHECK = n.TAG_LOG = n.IS_PROD = n.PlatformManager = n.NoticeType = void 0;
-        var r, o = __importStar(e("@jimu/basis")), i = e("@o4e/core"), a = e("../types-common"), s = e("../LoginService"), c = e("../platform/platform-dev"), u = e("../platform/platform-h5"), l = e("../platform/platform-qq"), f = e("../platform/platform-wx"), d = e("../platform/platform-native"), p = e("./GlobalEntityManager"), g = e("./GlobalVarManager"), h = e("./ResourceManager"), _ = e("../platform/platform-bytedance"), m = e("../GlobalSignal"), v = e("../../../config/Configs"), E = e("../platform/platform-browser"), y = e("./VerifyHelper"), S = e("../../libs/platform/hortor/platform"), C = e("../platform/platform-hw"), A = e("../../../scripts/Launcher"), T = cc._decorator, R = T.ccclass;
+        var r, o = __importStar(e("@jimu/basis")), i = e("@o4e/core"), a = e("../types-common"), s = e("../LoginService"), c = e("../platform/platform-dev"), u = e("../platform/platform-h5"), l = e("../platform/platform-qq"), f = e("../platform/platform-wx"), d = e("../platform/platform-native"), p = e("./GlobalEntityManager"), g = e("./GlobalVarManager"), h = e("./ResourceManager"), _ = e("../platform/platform-bytedance"), m = e("../GlobalSignal"), v = e("../../../config/Configs"), E = e("../platform/platform-browser"), y = e("./VerifyHelper"), C = e("../../libs/platform/hortor/platform"), S = e("../platform/platform-hw"), A = e("../../../scripts/Launcher"), T = cc._decorator, R = T.ccclass;
         T.property, function(e) {
             e.UpdateVersion = "updateVersion";
         }(r = n.NoticeType || (n.NoticeType = {}));
@@ -20072,7 +20089,7 @@ window.__require = function e(t, n, r) {
                     }
                 }), this._verifyHelper && this._verifyHelper.init(t.platformUId));
             }, t.prototype.onLoad = function() {
-                e.prototype.onLoad.call(this), this.isDev ? "web" === PLATFORM ? this._platform = new E.PlatformBrowser() : this._platform = new c.PlatformDev() : this.isH5 ? this._platform = new u.PlatformH5() : this.isQQ ? this._platform = new l.PlatformQQ() : this.isWeChat ? this._platform = new f.PlatformWX() : this.isHuaWei ? this._platform = new C.PlatformHW() : this.isByteDance ? this._platform = new _.PlatformByteDance() : this._platform = new d.PlatformNative(), 
+                e.prototype.onLoad.call(this), this.isDev ? "web" === PLATFORM ? this._platform = new E.PlatformBrowser() : this._platform = new c.PlatformDev() : this.isH5 ? this._platform = new u.PlatformH5() : this.isQQ ? this._platform = new l.PlatformQQ() : this.isWeChat ? this._platform = new f.PlatformWX() : this.isHuaWei ? this._platform = new S.PlatformHW() : this.isByteDance ? this._platform = new _.PlatformByteDance() : this._platform = new d.PlatformNative(), 
                 this._verifyHelper = new y.VerifyHelper(this.isProd);
             }, t.prototype.getClientVersion = function() {
                 return this._platform.getClientVersion();
@@ -20620,7 +20637,7 @@ window.__require = function e(t, n, r) {
                 configurable: !0
             }), Object.defineProperty(t.prototype, "isDesktopWX", {
                 get: function() {
-                    return S.platformEnv.isWXWindows || S.platformEnv.isWXMac || !1;
+                    return C.platformEnv.isWXWindows || C.platformEnv.isWXMac || !1;
                 },
                 enumerable: !1,
                 configurable: !0
@@ -21013,7 +21030,7 @@ window.__require = function e(t, n, r) {
                     cacheEnabled: !0,
                     ext: ".json"
                 }), __awaiter(this, void 0, void 0, function() {
-                    var n, r, o, a, s, f, p, g, h, _, m, v, E, y, S, C, A, T, R = this;
+                    var n, r, o, a, s, f, p, g, h, _, m, v, E, y, C, S, A, T, R = this;
                     return __generator(this, function() {
                         return u.Log.time("loadConfig"), n = c.PlatformManager.instance, this.remoteDataJson, 
                         r = this.remoteDataVersion, o = [ "config", "level", "tower", "language", "levelcoef", "config_ap", "season_tower", "season_level" ], 
@@ -21122,11 +21139,11 @@ window.__require = function e(t, n, r) {
                             });
                         }, y = function() {
                             return E(!0);
-                        }, S = function() {
+                        }, C = function() {
                             return E(!1);
-                        }, C = n.checkSwitch(d.SwitchId.SERVER_CONFIG), A = n.checkSwitch(l.C_SwitchId.ClientDVCDN), 
+                        }, S = n.checkSwitch(d.SwitchId.SERVER_CONFIG), A = n.checkSwitch(l.C_SwitchId.ClientDVCDN), 
                         T = n.checkSwitch(d.SwitchId.CONFIG_ENC_BIN) || n.checkSwitch(l.C_SwitchId.ConfigEncBinAudit7), 
-                        c.CHECK_SWITCH(l.C_SwitchId.StillUseCdnV2) ? c.CHECK_SWITCH(l.C_SwitchId.StillUseAllCfg) ? this.isLoadLocalConfig() ? [ 2, T ? g() : p() ] : T ? [ 2, "Dev" !== ENV && C && r ? v() : g() ] : [ 2, "Dev" !== ENV && C && (C || A) ? _() : p() ] : this.isLoadLocalConfig() ? [ 2, T ? f() : s() ] : T ? [ 2, "Dev" !== ENV && C && r ? y() : f() ] : [ 2, "Dev" !== ENV && C && (C || A) ? S() : s() ] : c.CHECK_SWITCH(l.C_SwitchId.StillUseAllCfg) ? c.PlatformManager.instance.isWeb || c.PlatformManager.instance.isH5 ? this.isLoadLocalConfig() ? [ 2, T ? g() : p() ] : T ? [ 2, "Dev" !== ENV && C && r ? v() : g() ] : [ 2, "Dev" !== ENV && C && (C || A) ? _() : p() ] : [ 2, T ? g() : p() ] : [ 2, T ? f() : s() ];
+                        c.CHECK_SWITCH(l.C_SwitchId.StillUseCdnV2) ? c.CHECK_SWITCH(l.C_SwitchId.StillUseAllCfg) ? this.isLoadLocalConfig() ? [ 2, T ? g() : p() ] : T ? [ 2, "Dev" !== ENV && S && r ? v() : g() ] : [ 2, "Dev" !== ENV && S && (S || A) ? _() : p() ] : this.isLoadLocalConfig() ? [ 2, T ? f() : s() ] : T ? [ 2, "Dev" !== ENV && S && r ? y() : f() ] : [ 2, "Dev" !== ENV && S && (S || A) ? C() : s() ] : c.CHECK_SWITCH(l.C_SwitchId.StillUseAllCfg) ? c.PlatformManager.instance.isWeb || c.PlatformManager.instance.isH5 ? this.isLoadLocalConfig() ? [ 2, T ? g() : p() ] : T ? [ 2, "Dev" !== ENV && S && r ? v() : g() ] : [ 2, "Dev" !== ENV && S && (S || A) ? _() : p() ] : [ 2, T ? g() : p() ] : [ 2, T ? f() : s() ];
                     });
                 });
             }, t.prototype.releaseAssetManually = function(e) {
@@ -21237,28 +21254,29 @@ window.__require = function e(t, n, r) {
         cc._RF.push(t, "9b8f6bXfKlBIpLteHGDMdlM", "UserAgreementAndPrivacyPolicy"), Object.defineProperty(n, "__esModule", {
             value: !0
         }), n.UserAgreementAndPrivacyPolicy = void 0;
-        var r = e("../common/scripts/managers/GlobalVarManager"), o = cc._decorator, i = o.ccclass, a = o.property, s = function(e) {
+        var r = e("../common/scripts/managers/GlobalVarManager"), o = e("../common/scripts/managers/PlatformManager"), i = cc._decorator, a = i.ccclass, s = i.property, c = function(e) {
             function t() {
                 var t = null !== e && e.apply(this, arguments) || this;
                 return t.labelPolicy = null, t.isPolicy = !0, t._hook = null, t;
             }
             return __extends(t, e), t.prototype.onLoad = function() {
-                var e = this, t = r.GlobalVarManager.instance.language, n = "bytedance" === PLATFORM, o = "qq" === PLATFORM, i = "policy";
-                n ? i = "policy_bytedance" : o && (i = "policy_qq");
-                var a = "_" + t, s = this.isPolicy ? "/" + i + "/policy" + a + ".txt" : "/" + i + "/agreement" + a + ".txt";
-                cc.assetManager.loadRemote(CDN + s, function(t, n) {
+                var e = this, t = r.GlobalVarManager.instance.language, n = "bytedance" === PLATFORM, i = "qq" === PLATFORM, a = "policy";
+                n ? a = "policy_bytedance" : i ? a = "policy_qq" : o.PlatformManager.instance.isAndroidAndIOSAndNative && (a = "policy_app");
+                var s = "_" + t, c = this.isPolicy ? "/" + a + "/policy" + s + ".txt" : "/" + a + "/agreement" + s + ".txt";
+                cc.assetManager.loadRemote(CDN + c, function(t, n) {
                     !t && n && (e.labelPolicy.string = n.toString());
                 });
             }, t.prototype.onClose = function() {
                 this._hook && this._hook(), this.node.destroy();
             }, t.prototype.setHook = function(e) {
                 this._hook = e;
-            }, __decorate([ a(cc.Label) ], t.prototype, "labelPolicy", void 0), __decorate([ a(cc.Boolean) ], t.prototype, "isPolicy", void 0), 
-            __decorate([ i ], t);
+            }, __decorate([ s(cc.Label) ], t.prototype, "labelPolicy", void 0), __decorate([ s(cc.Boolean) ], t.prototype, "isPolicy", void 0), 
+            __decorate([ a ], t);
         }(cc.Component);
-        n.UserAgreementAndPrivacyPolicy = s, cc._RF.pop();
+        n.UserAgreementAndPrivacyPolicy = c, cc._RF.pop();
     }, {
-        "../common/scripts/managers/GlobalVarManager": "GlobalVarManager"
+        "../common/scripts/managers/GlobalVarManager": "GlobalVarManager",
+        "../common/scripts/managers/PlatformManager": "PlatformManager"
     } ],
     UserAuth: [ function(e, t, n) {
         "use strict";
@@ -23451,8 +23469,8 @@ window.__require = function e(t, n, r) {
                   case s.C_SwitchId.CloseBattleCustom:
                   case s.C_SwitchId.Mosquito:
                   case s.C_SwitchId.CloseRFTask:
-                  case s.C_SwitchId.LeagueWarReplay:
-                  case s.C_SwitchId.LPWarReplay:
+                  case s.C_SwitchId.CloseChallengeTip2:
+                  case s.C_SwitchId.CloseChallengeTip2Payload:
                     return !1;
 
                   case s.C_SwitchId.ClientDVCDN:
@@ -23486,17 +23504,18 @@ window.__require = function e(t, n, r) {
                   case s.C_SwitchId.TestUnLockPervious:
                   case s.C_SwitchId.CloseEvoTowerOptimize:
                   case s.C_SwitchId.CloseLoginCheckItemsData:
+                  case s.C_SwitchId.CloseClearSpineResources:
+                  case s.C_SwitchId.CloseAutoReleaseResources:
                     return !1;
 
                   case s.C_SwitchId.DebugGame:
                     return this.DEBUG_UI;
 
+                  case s.C_SwitchId.LegionWarReplay:
                   case s.C_SwitchId.SeasonOutReplay:
                     return !1;
 
-                  case s.C_SwitchId.BattleSpineAllRealTime:
                   case s.C_SwitchId.BattleSpineRealTime:
-                  case s.C_SwitchId.BattleSpineAllRealTime:
                   case s.C_SwitchId.CloseFixHeroQuenchData:
                   case s.C_SwitchId.CloseCheckEquipments:
                   case s.C_SwitchId.CloseRefluxSelectServer:
@@ -23506,9 +23525,16 @@ window.__require = function e(t, n, r) {
                   case s.C_SwitchId.IgnoreApexSupportInTime:
                   case s.C_SwitchId.FixYanChangClickEvent:
                   case s.C_SwitchId.FixSummerFootBallRedPoint:
+                  case s.C_SwitchId.RestoreRedPointFix:
+                  case s.C_SwitchId.CloseChatAddLimit:
                     return !1;
 
                   case s.C_SwitchId.RealDeleteAccount:
+                    return !0;
+
+                  case s.C_SwitchId.PolishMemPet:
+                    return !1;
+
                   default:
                     return !0;
                 }
@@ -25051,7 +25077,7 @@ window.__require = function e(t, n, r) {
         function o(e, t) {
             try {
                 var r = !1;
-                (m || S || _ || n.platformEnv.isMT) && (r = !0), t && r && (t = JSON.stringify(t)), 
+                (m || C || _ || n.platformEnv.isMT) && (r = !0), t && r && (t = JSON.stringify(t)), 
                 console.warn("[platform]: " + e + " ", t || "");
             } catch (o) {
                 o = VM2_INTERNAL_STATE_DO_NOT_USE_OR_PROGRAM_WILL_FAIL.handleException(o);
@@ -25299,11 +25325,11 @@ window.__require = function e(t, n, r) {
             }
         }, o("platformVersion", "v1.10.13"), o("platformTagTime", "7/30/2025, 1:53:55 PM"), 
         o("sdk接入可联系平台组前端开发");
-        var l = n.platformEnv.isCocosGame, f = n.platformEnv.isCocos3, d = n.platformEnv.isDebug, p = n.platformEnv.isWX, g = n.platformEnv.isTT, h = n.platformEnv.isQQ, _ = n.platformEnv.isHW, m = n.platformEnv.isNativeAPP, v = n.platformEnv.isNativeIOSAPP, E = n.platformEnv.isNativeAndroidAPP, y = n.platformEnv.isH5, S = n.platformEnv.isMixMicroEnd, C = n.platformEnv.isH5PageGame, A = n.platformEnv.isMixMicroEndAndroid, T = n.platformEnv.isNonMixMicroEnd, R = n.platformEnv.isMT, I = n.platformEnv.isAlipay, O = n.platformEnv.isKuaishou;
+        var l = n.platformEnv.isCocosGame, f = n.platformEnv.isCocos3, d = n.platformEnv.isDebug, p = n.platformEnv.isWX, g = n.platformEnv.isTT, h = n.platformEnv.isQQ, _ = n.platformEnv.isHW, m = n.platformEnv.isNativeAPP, v = n.platformEnv.isNativeIOSAPP, E = n.platformEnv.isNativeAndroidAPP, y = n.platformEnv.isH5, C = n.platformEnv.isMixMicroEnd, S = n.platformEnv.isH5PageGame, A = n.platformEnv.isMixMicroEndAndroid, T = n.platformEnv.isNonMixMicroEnd, R = n.platformEnv.isMT, I = n.platformEnv.isAlipay, O = n.platformEnv.isKuaishou;
         o(l ? "isCocosGame" : "isEgretGame"), n.platformEnv.isCocosGame && o(f ? "cocos 3.0" : "cocos 2.0"), 
         d && o("isDebug"), p && o("isWX"), g && o("isTT"), h && o("isQQ"), _ && o("isHW"), 
         m && o("isNativeAPP"), v && o("isNativeIOSAPP"), E && o("isNativeAndroidAPP"), y && o("isH5"), 
-        S && o("isMixMicroEnd"), C && o("isH5PageGame"), n.platformEnv.isH5PageGameOversea && o("isH5PageGameOversea"), 
+        C && o("isMixMicroEnd"), S && o("isH5PageGame"), n.platformEnv.isH5PageGameOversea && o("isH5PageGameOversea"), 
         n.platformEnv.isH5PageGameOverseaQingCi && o("isH5PageGameOverseaQingCi"), A && o("isMixMicroEndAndroid"), 
         T && o("isNonMixMicroEnd"), R && o("isMT"), I && o("isAlipay"), O && o("isKuaishou"), 
         void 0 === window.HSDK && (window.HSDK = {}), Object.isExtensible(window.HSDK) || (window.HSDK = __assign({}, window.HSDK)), 
@@ -25320,16 +25346,16 @@ window.__require = function e(t, n, r) {
                         return o("user.tryLogin"), d ? Promise.resolve() : m ? HSDK.tryLogin() : Promise.reject(null);
                     },
                     login: function(e) {
-                        return o("user.login", e), d ? Promise.resolve() : p || g || n.platformEnv.isH5PageGame || h || _ || n.platformEnv.isH5PageGameOversea || n.platformEnv.isH5PageGameOverseaTianyou || n.platformEnv.isH5PageGameOverseaQingCi || O ? "function" == typeof HSDK.login ? HSDK.login(e) : Promise.reject(null) : S || m ? HSDK.dialogLogin() : Promise.reject(null);
+                        return o("user.login", e), d ? Promise.resolve() : p || g || n.platformEnv.isH5PageGame || h || _ || n.platformEnv.isH5PageGameOversea || n.platformEnv.isH5PageGameOverseaTianyou || n.platformEnv.isH5PageGameOverseaQingCi || O ? "function" == typeof HSDK.login ? HSDK.login(e) : Promise.reject(null) : C || m ? HSDK.dialogLogin() : Promise.reject(null);
                     },
                     onLogin: function(e) {
-                        o("user.onLogin", e), (p || g || n.platformEnv.isH5PageGame || h || _ || m || S || n.platformEnv.isH5PageGameOversea || n.platformEnv.isH5PageGameOverseaTianyou || n.platformEnv.isH5PageGameOverseaQingCi || I || O) && "function" == typeof HSDK.onLogin && HSDK.onLogin(e);
+                        o("user.onLogin", e), (p || g || n.platformEnv.isH5PageGame || h || _ || m || C || n.platformEnv.isH5PageGameOversea || n.platformEnv.isH5PageGameOverseaTianyou || n.platformEnv.isH5PageGameOverseaQingCi || I || O) && "function" == typeof HSDK.onLogin && HSDK.onLogin(e);
                     },
                     multiPlatformLogin: function(e) {
-                        return o("user.multiPlatformLogin", e), d ? Promise.resolve() : m || S ? HSDK.dialogLogin(e) : (n.platformEnv.isH5PageGame || n.platformEnv.isH5PageGameOversea) && "function" == typeof HSDK.login ? HSDK.login() : Promise.reject(null);
+                        return o("user.multiPlatformLogin", e), d ? Promise.resolve() : m || C ? HSDK.dialogLogin(e) : (n.platformEnv.isH5PageGame || n.platformEnv.isH5PageGameOversea) && "function" == typeof HSDK.login ? HSDK.login() : Promise.reject(null);
                     },
                     logout: function() {
-                        return o("user.logout"), d ? Promise.resolve() : (m || p || S || n.platformEnv.isH5PageGameOversea || n.platformEnv.isH5PageGameOverseaTianyou || n.platformEnv.isH5PageGame) && "function" == typeof HSDK.logout ? HSDK.logout() : Promise.reject(null);
+                        return o("user.logout"), d ? Promise.resolve() : (m || p || C || n.platformEnv.isH5PageGameOversea || n.platformEnv.isH5PageGameOverseaTianyou || n.platformEnv.isH5PageGame) && "function" == typeof HSDK.logout ? HSDK.logout() : Promise.reject(null);
                     },
                     weakLogin: function(e) {
                         if (o("user.weakLogin", e), d) {
@@ -25345,7 +25371,7 @@ window.__require = function e(t, n, r) {
                         return new Promise(function(t, r) {
                             p || g || n.platformEnv.isH5PageGame || h || _ || n.platformEnv.isH5PageGameOverseaQingCi || n.platformEnv.isMT || n.platformEnv.isAlipay || O ? "function" == typeof HSDK.weakLogin ? HSDK.weakLogin(e).then(t).catch(function(e) {
                                 r(e);
-                            }) : Promise.reject(null) : S || m ? HSDK.dialogLogin(e).then(t).catch(function(e) {
+                            }) : Promise.reject(null) : C || m ? HSDK.dialogLogin(e).then(t).catch(function(e) {
                                 r(e);
                             }) : r("登录失败, 暂不支持该平台");
                         });
@@ -25354,7 +25380,7 @@ window.__require = function e(t, n, r) {
                         return o("user.createInfoBtn", e), p || h ? HSDK.createUserInfoButton(e) : null;
                     },
                     setPlayerInfo: function(e) {
-                        o("user.setPlayerInfo", e), (p || h || g || _ || m || S || n.platformEnv.isH5PageGame) && "function" == typeof HSDK.setGameUserInfo && HSDK.setGameUserInfo(e);
+                        o("user.setPlayerInfo", e), (p || h || g || _ || m || C || n.platformEnv.isH5PageGame) && "function" == typeof HSDK.setGameUserInfo && HSDK.setGameUserInfo(e);
                     },
                     updateInfo: function(e) {
                         return o("user.updateInfo", e), d ? Promise.resolve() : p || g || h || _ ? HSDK.updateUserInfo(e) : Promise.reject(null);
@@ -25368,19 +25394,19 @@ window.__require = function e(t, n, r) {
                         return o("user.getFacebookUserInfo"), m ? HSDK.getFacebookUserInfo() : Promise.reject(null);
                     },
                     facebookLogin: function() {
-                        return o("user.facebookLogin"), d ? Promise.resolve() : m || S ? HSDK.facebookLogin() : Promise.reject(null);
+                        return o("user.facebookLogin"), d ? Promise.resolve() : m || C ? HSDK.facebookLogin() : Promise.reject(null);
                     },
                     googleLogin: function() {
-                        return o("user.googleLogin"), d ? Promise.resolve() : E || S ? HSDK.googleLogin() : Promise.reject(null);
+                        return o("user.googleLogin"), d ? Promise.resolve() : E || C ? HSDK.googleLogin() : Promise.reject(null);
                     },
                     bindPlatform: function(e) {
-                        return o("user.bindPlatform", e), d ? Promise.resolve() : m || S ? HSDK.bindPlatform(e) : Promise.reject(null);
+                        return o("user.bindPlatform", e), d ? Promise.resolve() : m || C ? HSDK.bindPlatform(e) : Promise.reject(null);
                     },
                     douyinLogin: function() {
-                        return o("user.douyinLogin"), d ? Promise.resolve() : m || S ? HSDK.douyinLogin() : Promise.reject(null);
+                        return o("user.douyinLogin"), d ? Promise.resolve() : m || C ? HSDK.douyinLogin() : Promise.reject(null);
                     },
                     visitorLogin: function() {
-                        return o("user.visitorLogin"), d ? Promise.resolve() : m || S ? HSDK.visitorLogin() : Promise.reject(null);
+                        return o("user.visitorLogin"), d ? Promise.resolve() : m || C ? HSDK.visitorLogin() : Promise.reject(null);
                     },
                     showProtocol: function() {
                         return o("user.showProtocol"), d ? Promise.resolve() : _ || h || p ? a(HSDK.showProtocol) : Promise.reject(null);
@@ -25405,7 +25431,7 @@ window.__require = function e(t, n, r) {
                     }
                 }, this.share = {
                     shareMsg: function(e) {
-                        return o("share.shareMsg", e), d ? Promise.resolve() : p || m || S || g || h || _ || O ? HSDK.share(e) : Promise.reject(null);
+                        return o("share.shareMsg", e), d ? Promise.resolve() : p || m || C || g || h || _ || O ? HSDK.share(e) : Promise.reject(null);
                     },
                     onShare: function(e) {
                         o("share.onShare", e), (p || h || g) && HSDK.onShare(e);
@@ -25417,20 +25443,20 @@ window.__require = function e(t, n, r) {
                         return o("share.getShareData", e), d ? Promise.resolve() : p || m || h || _ ? HSDK.getShareData(e) : Promise.reject(null);
                     },
                     wxShareMicroApp: function(e) {
-                        return o("app.wxShareMicroApp", e), d ? Promise.resolve() : m || T || S ? HSDK.wxShareMicroApp(e) : Promise.reject(null);
+                        return o("app.wxShareMicroApp", e), d ? Promise.resolve() : m || T || C ? HSDK.wxShareMicroApp(e) : Promise.reject(null);
                     },
                     decodeShareTicket: function() {
                         return o("share.decodeShareTicket"), d ? Promise.resolve() : p ? HSDK.decodeShareTicket() : Promise.reject(null);
                     },
                     overseaMultiPlatformShare: function(e) {
-                        return o("share.overseaMultiPlatformShare", e), d ? Promise.resolve() : m || S ? HSDK.overseaMultiPlatformShare(e) : Promise.reject(null);
+                        return o("share.overseaMultiPlatformShare", e), d ? Promise.resolve() : m || C ? HSDK.overseaMultiPlatformShare(e) : Promise.reject(null);
                     }
                 }, this.loading = {
                     show: function(e) {
-                        o("loading.show", e), p || m || S || g || h || _ || n.platformEnv.isMT ? HSDK.showLoading(e) : i();
+                        o("loading.show", e), p || m || C || g || h || _ || n.platformEnv.isMT ? HSDK.showLoading(e) : i();
                     },
                     hide: function() {
-                        o("loading.hide"), p || m || S || g || h || _ || n.platformEnv.isMT ? HSDK.hideLoading() : i();
+                        o("loading.hide"), p || m || C || g || h || _ || n.platformEnv.isMT ? HSDK.hideLoading() : i();
                     }
                 }, this.ui = {
                     showModal: function(e) {
@@ -25440,27 +25466,27 @@ window.__require = function e(t, n, r) {
                         o("ui.showAlert", e), (v || E || n.platformEnv.isH5PageGameOversea || n.platformEnv.isMT) && HSDK.showAlert(e);
                     },
                     exitApp: function() {
-                        o("ui.exitApp"), (m || S || _) && HSDK.exitApp();
+                        o("ui.exitApp"), (m || C || _) && HSDK.exitApp();
                     },
                     onShow: function(e) {
-                        o("ui.onShow", e), (p || m || S || g || n.platformEnv.isMT || I || O) && HSDK.onShow(e);
+                        o("ui.onShow", e), (p || m || C || g || n.platformEnv.isMT || I || O) && HSDK.onShow(e);
                     },
                     offShow: function(e) {
                         o("ui.offShow", e), (I || O) && HSDK.offShow(e);
                     },
                     onHide: function(e) {
-                        o("ui.onHide", e), (p || m || S || g || n.platformEnv.isMT || I || O) && HSDK.onHide(e);
+                        o("ui.onHide", e), (p || m || C || g || n.platformEnv.isMT || I || O) && HSDK.onHide(e);
                     },
                     offHide: function(e) {
                         o("ui.offHide", e), (I || O) && HSDK.offHide(e);
                     },
                     showUserProtocol: function() {
-                        return o("ui.showUserProtocol"), m || S ? (HSDK.openWebview({
+                        return o("ui.showUserProtocol"), m || C ? (HSDK.openWebview({
                             isShowUserProtocol: !0
                         }), Promise.resolve()) : _ ? HSDK.showUserProtocol() : p && "function" == typeof HSDK.showUserProtocol ? HSDK.showUserProtocol() : Promise.resolve();
                     },
                     showPrivacyPolicy: function() {
-                        return o("ui.showPrivacyPolicy"), m || S ? (HSDK.openWebview({
+                        return o("ui.showPrivacyPolicy"), m || C ? (HSDK.openWebview({
                             isShowUserPrivacy: !0
                         }), Promise.resolve()) : _ ? HSDK.showPrivacyPolicy() : p && "function" == typeof HSDK.showPrivacyPolicy ? HSDK.showPrivacyPolicy() : Promise.resolve();
                     },
@@ -25470,29 +25496,29 @@ window.__require = function e(t, n, r) {
                 }, this.ad = {
                     video: {
                         preload: function(e) {
-                            return o("ad.video.preload", e), d ? Promise.resolve() : m || S || p || g || h || _ || I || O ? HSDK.preloadAd(e) : T ? HSDK.preloadVideoAd(e) : Promise.reject(null);
+                            return o("ad.video.preload", e), d ? Promise.resolve() : m || C || p || g || h || _ || I || O ? HSDK.preloadAd(e) : T ? HSDK.preloadVideoAd(e) : Promise.reject(null);
                         },
                         show: function(e) {
-                            o("ad.video.show", e), m || S || p || g || h || _ || I || O ? HSDK.showAd(e) : T && HSDK.showVideoAd(e);
+                            o("ad.video.show", e), m || C || p || g || h || _ || I || O ? HSDK.showAd(e) : T && HSDK.showVideoAd(e);
                         }
                     },
                     banner: {
                         preload: function(e) {
-                            return o("ad.banner.preload", e), p || m || S || g ? HSDK.preloadAd(e) : Promise.reject(null);
+                            return o("ad.banner.preload", e), p || m || C || g ? HSDK.preloadAd(e) : Promise.reject(null);
                         },
                         show: function(e) {
-                            o("ad.banner.show", e), (p || m || S || g) && HSDK.showAd(e);
+                            o("ad.banner.show", e), (p || m || C || g) && HSDK.showAd(e);
                         },
                         hide: function(e) {
-                            return o("ad.banner.hide", e), d ? Promise.resolve() : p || m || S || g ? HSDK.hideAd(e) : Promise.reject(null);
+                            return o("ad.banner.hide", e), d ? Promise.resolve() : p || m || C || g ? HSDK.hideAd(e) : Promise.reject(null);
                         }
                     },
                     interstitial: {
                         preload: function(e) {
-                            return o("ad.interstitial.preload", e), d ? Promise.resolve() : p || m || S || g ? HSDK.preloadAd(e) : Promise.reject(null);
+                            return o("ad.interstitial.preload", e), d ? Promise.resolve() : p || m || C || g ? HSDK.preloadAd(e) : Promise.reject(null);
                         },
                         show: function(e) {
-                            o("ad.interstitial.show", e), (p || m || S || g) && HSDK.showAd(e);
+                            o("ad.interstitial.show", e), (p || m || C || g) && HSDK.showAd(e);
                         }
                     },
                     custom: {
@@ -25508,7 +25534,7 @@ window.__require = function e(t, n, r) {
                     }
                 }, this.track = {
                     gameLog: function(e) {
-                        o("track.gameLog", e), (p || m || S || T || g || h || _ || n.platformEnv.isH5PageGame || n.platformEnv.isH5PageGameOversea || n.platformEnv.isH5PageGameOverseaTianyou || n.platformEnv.isH5PageGameOverseaQingCi || n.platformEnv.isMT) && "function" == typeof HSDK.gameTrack && HSDK.gameTrack(e);
+                        o("track.gameLog", e), (p || m || C || T || g || h || _ || n.platformEnv.isH5PageGame || n.platformEnv.isH5PageGameOversea || n.platformEnv.isH5PageGameOverseaTianyou || n.platformEnv.isH5PageGameOverseaQingCi || n.platformEnv.isMT) && "function" == typeof HSDK.gameTrack && HSDK.gameTrack(e);
                     },
                     apmLog: function(e) {
                         o("track.apmLog", e), (p || g) && HSDK.postAPMLog(e);
@@ -25520,7 +25546,7 @@ window.__require = function e(t, n, r) {
                         o("track.postGameInfo", e), E ? HSDK.postGameInfo(e) : i();
                     },
                     setTGAAccountId: function(e) {
-                        o("track.setTGAAccountId", e), m || S ? HSDK.setTGAUserAccountId(e) : i();
+                        o("track.setTGAAccountId", e), m || C ? HSDK.setTGAUserAccountId(e) : i();
                     },
                     business: function(e) {
                         o("track.business", e), (I || p) && a(HSDK.business, e, !1);
@@ -25530,7 +25556,7 @@ window.__require = function e(t, n, r) {
                         return o("gm.getSwitchData", e), d ? Promise.resolve() : HSDK.checkSwitches(e);
                     },
                     getNotice: function(e) {
-                        return o("gm.getNotice", e), d ? Promise.resolve() : m || S ? HSDK.getNoticeInfo(e) : p || T || g || h || _ || n.platformEnv.isMT || I || O ? HSDK.getNotice(e) : Promise.reject(null);
+                        return o("gm.getNotice", e), d ? Promise.resolve() : m || C ? HSDK.getNoticeInfo(e) : p || T || g || h || _ || n.platformEnv.isMT || I || O ? HSDK.getNotice(e) : Promise.reject(null);
                     },
                     getProtocolText: function() {
                         return o("gm.getProtocolText"), d ? Promise.resolve() : _ || p || g || h || I || O ? HSDK.getProtocolText() : Promise.reject(null);
@@ -25556,7 +25582,7 @@ window.__require = function e(t, n, r) {
                     }
                 }, this.realName = {
                     getInfo: function() {
-                        return o("realName.getInfo"), d ? Promise.resolve() : m || S ? HSDK.getRealNameInfo() : Promise.reject(null);
+                        return o("realName.getInfo"), d ? Promise.resolve() : m || C ? HSDK.getRealNameInfo() : Promise.reject(null);
                     }
                 }, this.questionnaire = {
                     getQuestionnaireConfig: function() {
@@ -25579,7 +25605,7 @@ window.__require = function e(t, n, r) {
                     }
                 }, this.antiAddiction = {
                     listen: function(e) {
-                        o("antiAddiction.listen", e), (m || S) && HSDK.onAddictionQuit(e);
+                        o("antiAddiction.listen", e), (m || C) && HSDK.onAddictionQuit(e);
                     }
                 }, this.apple = {
                     showComment: function(e) {
@@ -25656,7 +25682,7 @@ window.__require = function e(t, n, r) {
                         return o("app.getTranslateResult", e), m ? HSDK.getTranslateResult(e) : Promise.reject(null);
                     },
                     open: function(e) {
-                        o("app.open", e), (m || S) && HSDK.openApp(e);
+                        o("app.open", e), (m || C) && HSDK.openApp(e);
                     },
                     checkNotifyAuth: function() {
                         return o("app.checkNotifyAuth"), m ? HSDK.checkNotifyAuth() : Promise.reject(null);
@@ -25683,16 +25709,16 @@ window.__require = function e(t, n, r) {
                         o("app.getNotifyWithLaunch", e), m && HSDK.getNotifyWithLaunch(e);
                     },
                     syncWxUserInfo: function() {
-                        return o("app.syncWxUserInfo"), d ? Promise.resolve() : m || S ? HSDK.syncWxUserInfo() : Promise.reject(null);
+                        return o("app.syncWxUserInfo"), d ? Promise.resolve() : m || C ? HSDK.syncWxUserInfo() : Promise.reject(null);
                     },
                     showComment: function(e) {
                         o("app.showComment", e), (m || _ || p) && HSDK.showAppComment(e);
                     },
                     openWebview: function(e) {
-                        o("app.openWebview", e), (m || S) && HSDK.openWebview(e);
+                        o("app.openWebview", e), (m || C) && HSDK.openWebview(e);
                     },
                     checkRunningProcess: function(e) {
-                        return o("app.checkRunningProcess", e), d ? Promise.resolve() : E || S ? HSDK.checkRunningProcess(e) : Promise.reject(null);
+                        return o("app.checkRunningProcess", e), d ? Promise.resolve() : E || C ? HSDK.checkRunningProcess(e) : Promise.reject(null);
                     },
                     deleteAccount: function() {
                         return o("app.deleteAccount"), d ? Promise.resolve() : v ? HSDK.deleteAppleAccount() : Promise.reject(null);
@@ -25727,10 +25753,10 @@ window.__require = function e(t, n, r) {
                     }
                 }, this.file = {
                     chooseImage: function(e) {
-                        return o("file.chooseImage"), d ? Promise.resolve() : m || S ? HSDK.chooseImage(e) : m || S || T || p || h || g ? HSDK.chooseImage() : Promise.reject(null);
+                        return o("file.chooseImage"), d ? Promise.resolve() : m || C ? HSDK.chooseImage(e) : m || C || T || p || h || g ? HSDK.chooseImage() : Promise.reject(null);
                     },
                     saveImage: function(e) {
-                        return o("file.saveImage", e), d ? Promise.resolve() : m || S || T || p || h || g ? HSDK.saveImage(e) : Promise.reject(null);
+                        return o("file.saveImage", e), d ? Promise.resolve() : m || C || T || p || h || g ? HSDK.saveImage(e) : Promise.reject(null);
                     },
                     getPath: function(e) {
                         return o("file.getPath", e), d ? Promise.resolve() : E || A ? HSDK.getFilePath(e) : Promise.reject(null);
@@ -25752,16 +25778,16 @@ window.__require = function e(t, n, r) {
                         return o("device.getNetworkType"), d ? Promise.resolve() : m || p || g || n.platformEnv.isMT || _ ? HSDK.getNetworkType() : Promise.reject(null);
                     },
                     setClipboard: function(e) {
-                        return o("device.setClipboard", e), m || S || _ || p || g || n.platformEnv.isH5PageGameOverseaQingCi || n.platformEnv.isMT ? HSDK.setClipboard ? HSDK.setClipboard(e) : void 0 : Promise.reject(null);
+                        return o("device.setClipboard", e), m || C || _ || p || g || n.platformEnv.isH5PageGameOverseaQingCi || n.platformEnv.isMT ? HSDK.setClipboard ? HSDK.setClipboard(e) : void 0 : Promise.reject(null);
                     },
                     getClipboard: function() {
                         return o("device.getClipboard"), _ || p || n.platformEnv.isMT || m || g || h ? HSDK.getClipboard ? HSDK.getClipboard() : void 0 : Promise.resolve();
                     },
                     setKeepScreenOn: function(e) {
-                        return d ? Promise.resolve() : m || p || g || S || n.platformEnv.isMT ? HSDK.setKeepScreenOn(e) : Promise.reject(null);
+                        return d ? Promise.resolve() : m || p || g || C || n.platformEnv.isMT ? HSDK.setKeepScreenOn(e) : Promise.reject(null);
                     },
                     setVibrate: function(e) {
-                        return d ? Promise.resolve() : m || S || h || p || g || n.platformEnv.isMT ? HSDK.setVibrate(e) : Promise.reject(null);
+                        return d ? Promise.resolve() : m || C || h || p || g || n.platformEnv.isMT ? HSDK.setVibrate(e) : Promise.reject(null);
                     },
                     onBackBtnTap: function(e) {
                         return !!E && HSDK.onBackBtnTap(e);
@@ -25958,8 +25984,8 @@ window.__require = function e(t, n, r) {
                         if ((a = n.call(u)) !== c && a !== r && "[object Undefined]" !== a) throw TypeError("Failed to execute 'decode' on 'TextDecoder': The provided value is not of type '(ArrayBuffer or ArrayBufferView)'");
                         u = o ? new i(u) : u || [];
                     }
-                    for (var l = "", d = "", p = 0, g = 0 | u.length, h = g - 32 | 0, _ = 0, m = 0, v = 0, E = 0, y = 0, S = 0, C = -1; p < g; ) {
-                        for (_ = p <= h ? 32 : g - p | 0; S < _; p = p + 1 | 0, S = S + 1 | 0) {
+                    for (var l = "", d = "", p = 0, g = 0 | u.length, h = g - 32 | 0, _ = 0, m = 0, v = 0, E = 0, y = 0, C = 0, S = -1; p < g; ) {
+                        for (_ = p <= h ? 32 : g - p | 0; C < _; p = p + 1 | 0, C = C + 1 | 0) {
                             switch ((m = 255 & u[p]) >> 4) {
                               case 15:
                                 if ((y = 255 & u[p = p + 1 | 0]) >> 6 != 2 || 247 < m) {
@@ -25975,13 +26001,13 @@ window.__require = function e(t, n, r) {
                               case 13:
                               case 12:
                                 v <<= 6, v |= (31 & m) << 6 | 63 & (y = 255 & u[p = p + 1 | 0]), E = E + 7 | 0, 
-                                p < g && y >> 6 == 2 && v >> E && v < 1114112 ? (m = v, 0 <= (v = v - 65536 | 0) ? (C = 55296 + (v >> 10) | 0, 
-                                m = 56320 + (1023 & v) | 0, S < 31 ? (f[S] = C, S = S + 1 | 0, C = -1) : (y = C, 
-                                C = m, m = y)) : _ = _ + 1 | 0) : (p = p - (m >>= 8) - 1 | 0, m = 65533), E = 0, 
+                                p < g && y >> 6 == 2 && v >> E && v < 1114112 ? (m = v, 0 <= (v = v - 65536 | 0) ? (S = 55296 + (v >> 10) | 0, 
+                                m = 56320 + (1023 & v) | 0, C < 31 ? (f[C] = S, C = C + 1 | 0, S = -1) : (y = S, 
+                                S = m, m = y)) : _ = _ + 1 | 0) : (p = p - (m >>= 8) - 1 | 0, m = 65533), E = 0, 
                                 v = 0, _ = p <= h ? 32 : g - p | 0;
 
                               default:
-                                f[S] = m;
+                                f[C] = m;
                                 continue;
 
                               case 11:
@@ -25989,12 +26015,12 @@ window.__require = function e(t, n, r) {
                               case 9:
                               case 8:
                             }
-                            f[S] = 65533;
+                            f[C] = 65533;
                         }
                         if (d += t(f[0], f[1], f[2], f[3], f[4], f[5], f[6], f[7], f[8], f[9], f[10], f[11], f[12], f[13], f[14], f[15], f[16], f[17], f[18], f[19], f[20], f[21], f[22], f[23], f[24], f[25], f[26], f[27], f[28], f[29], f[30], f[31]), 
-                        S < 32 && (d = d.slice(0, S - 32 | 0)), p < g) {
-                            if (f[0] = C, S = ~C >>> 31, C = -1, d.length < l.length) continue;
-                        } else -1 !== C && (d += t(C));
+                        C < 32 && (d = d.slice(0, C - 32 | 0)), p < g) {
+                            if (f[0] = S, C = ~S >>> 31, S = -1, d.length < l.length) continue;
+                        } else -1 !== S && (d += t(S));
                         l += d, d = "";
                     }
                     return l;
@@ -26320,7 +26346,11 @@ window.__require = function e(t, n, r) {
             e.IgnoreApexTips = "IgnoreApexTips", e.IgnoreApexSupportInTime = "IgnoreApexSupportInTime", 
             e.FixYanChangClickEvent = "FixYanChangClickEvent", e.FixSummerFootBallRedPoint = "FixSummerFootBallRedPoint", 
             e.O4eTcpEnable = "O4eTcpEnable", e.O4eTcpPlanB = "O4eTcpPlanB", e.IgnoreErrorBigSkill = "IgnoreErrorBigSkill", 
-            e.PolishMemPet = "PolishMemPet";
+            e.CloseChallengeTip2 = "CloseChallengeTip2", e.CloseChallengeTip2Payload = "CloseChallengeTip2Payload", 
+            e.RestoreRedPointFix = "RestoreRedPointFix", e.ReleaseAvatar = "ReleaseAvatar", 
+            e.ReleaseUIResources = "ReleaseUIResources", e.CloseClearSpineResources = "ClearSpineResources", 
+            e.CloseAutoReleaseResources = "CloseAutoReleaseResources", e.ClearLocalUrlResources = "ClearLocalUrlResources", 
+            e.CloseChatAddLimit = "CloseChatAddLimit", e.PolishMemPet = "PolishMemPet", e.FixQQSound = "FixQQSound";
         }(n.C_SwitchId || (n.C_SwitchId = {})), function(e) {
             e.Green = "green", e.Grey = "grey", e.Red = "red", e.Yellow = "yellow";
         }(n.ColorNames || (n.ColorNames = {})), function(e) {
@@ -26397,7 +26427,7 @@ window.__require = function e(t, n, r) {
     } ],
     "version-ext": [ function(e, t) {
         "use strict";
-        cc._RF.push(t, "79179+xOa5NopaRFJzCLMzJ", "version-ext"), globalThis.CODE_VERSION = "2.39.6", 
+        cc._RF.push(t, "79179+xOa5NopaRFJzCLMzJ", "version-ext"), globalThis.CODE_VERSION = "2.42.2", 
         globalThis.BATTLE_VERSION = "7f91491b47", cc._RF.pop();
     }, {} ]
 }, {}, [ "platform", "polyfills", "emitter", "lower-bound", "p-delay", "p-pipe", "p-queue-kit", "p-queue", "p-series", "p-timeout", "priority-queue", "types-promise-ext", "Defer", "GlobalSignal", "Log", "LoginService", "decorators-common", "MaterialParameterUpdater", "OldFilmShaderHelper", "ext-funs", "ext-switch", "ext-trigger", "ext", "pipe", "FsmState", "StateMachine", "types-fsm", "GlobalEntityManager", "GlobalVarManager", "LocalStorage", "PlatformManager", "ResourceManager", "VerifyHelper", "HortorSwitch", "platform-base", "platform-browser", "platform-bytedance", "platform-dev", "platform-h5", "platform-hw", "platform-mix", "platform-native", "platform-qq", "platform-web", "platform-wx", "types-platform", "vedioBtn", "types-common", "Configs", "ConfigsExt", "EntranceAnim", "Game", "Launcher", "UserAgreementAndPrivacyPolicy", "UserAuth", "base-loading", "launcher-init", "load-error", "load-game-scene", "load-manifest", "mini-check-update", "platform-login", "fix-clean-cache-url", "fix-head-image-cross-domain", "fix-ios-touch", "fix-ios14-buffer", "fix-o4e-bytedance", "fix-render-error", "fix-scheduler-updateInvoker", "fix-skeleton-err", "fix-textUtils", "index-patch", "version-ext" ]);
